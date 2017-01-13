@@ -129,27 +129,32 @@ function get_business($business_id) {
 }
 
 function stripBizDetails($biz) {
-    pr($biz);
-
     // Save certain things
     $biz['coordinates'] = $biz['location']['coordinate'];
     //$biz['user_image_url'] = $biz['reviews']['user']['image_url'];
 
-    // Kill the rest    
-    unset($biz['is_claimed']);
-    unset($biz['menu_date_updated']);
-    unset($biz['rating_img_url_large']);
-    unset($biz['location']);
+    // Kill the rest
+    $unsetVars = [
+        'is_claimed',
+        'menu_date_updated',
+        'rating_img_url_large',
+        'location',
+        'snippet_text',
+        'menu_provider',
+        'mobile_url',
+        'categories',
+        'phone',
+        'rating_img_url',
+        'rating_img_url_small',
+    ];
 
-    unset($biz['snippet_text']);
-    unset($biz['menu_provider']);
-    unset($biz['mobile_url']);
-    unset($biz['categories']);
-
-    pr($biz);
+    foreach($unsetVars as $v) {
+         unset($biz[$v]);
+    }
 
     return $biz;
 }
+
 /**
  * Queries the API by the input values from the user 
  * 
@@ -160,39 +165,27 @@ function query_yelp_api($term, $location) {
     $responseRaw = search($term, $location);
     $responseDecoded = json_decode($responseRaw, true);
 
-    //pr($responseDecoded);
-
     if (array_key_exists('error', $responseDecoded)) {
         $response = ['error' => $responseDecoded['error']];
-        $success = false;        
     }
     else {
         $resultCount = count($responseDecoded['businesses']);
 
+        $trimmedDataset = [];
         // $responseDecoded['total'];
         foreach ($responseDecoded['businesses'] as $biz) {
-            pr("<hr>");
-            stripBizDetails($biz);
-
-           
+            $trimmedDataset[] = stripBizDetails($biz);
         }
-
 
         // also have
         // $responseDecoded['region']['span'];
         // $responseDecoded['region']['center'];    
         
-        $success = true;
-        $response = [];
-        // $bizInfo = get_business($business_id);
-        // pr($bizInfo);
+        $response = [
+            'count' => $resultCount,
+            'results' => $trimmedDataset,
+        ];
     }
-    $payload = [
-        'success' => $success,
-        'response' => $response,
-    ];
-
-    //print sprintf("Result for business \"%s\" found:\n", $business_id);
-    //print "$response\n";
+    return $response;
 }
 ?>
