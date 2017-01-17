@@ -4,69 +4,78 @@
  * @param  {array} 	bikes - Array of objects
  * @param  {string} targetElement - Id of where this will get loaded into
  */
-function loadShopsIntoTemplate(bikes, targetElement) {	
+function loadDataIntoTemplate(items, targetElement) {
+
 	// Load html template, then inject data into cloned containers
-	$('#template-temp')
-		.load('templates/portfolio-item.html', function(){
+	$('#item-thumb-template')
+		.load('templates/item-thumb.html', function(){
 			// Then fill in the bike data with the ajax response payload
-			loadBikes(bikes, targetElement);
+			loadItems(items, targetElement);
 		});
 } // End loadBikesIntoTemplate()
 
 /**
  * Loads given array's content into the specific dom selector
- * @param  {array} 	bikes - Array of bike objects
- * @param  {string} targetElement - Id of where this will get loaded into
+ * @param  {array} 	items - Array of item objects
+ * @param  {string} targetElement - Div selector where this will get loaded into
  */
-function loadBikes(bikes, targetElement) {	
+function loadItems(items, targetElement) {
+
 	// Append incoming data to DOM (fields below)
 	// 
 	// 	 Make, Model, Year, Notes, Photos
 	//   Color, Country, Display, Gearing
 	//   Price, Size, Style, Use, Wheelsize
 	//   
-	var bike = '';
-	for (var i = 0; i < bikes.length; i++) {
-		bike = bikes[i];
+	var item = '';
+
+	for (var i = 0; i < items.length; i++) {
+		
+		item = items[i];
+
+		console.log(item);
 
 		// Create a unique element id to reference the element by
-		var bikeId = 'bike-' + bikes[i]['Id'];
+		var itemId = items[i]['id'];
 
-		var bikeName = 
-			bike.Make + ' ' + 
-			bike.Model + 
-			(bike.Year ? ' (' + bike.Year + ')' : '');
-
-		var bikeSize = bike.Size + 
-			(bike.Use ? ', ' + bike.Use : '');
-
-		$('#item-template')
+		console.log(itemId);
+		
+		$('#item-thumb-template')
 			.clone()
 			.removeClass('hidden')
-			.attr('data-bikeid', bikes[i]['Id'])
-			.attr('id', bikeId)
+			.attr('data-itemid', items[i]['Id'])
+			.attr('id', itemId)
 			.appendTo(targetElement);
 
 		// Change attributes of the most recent dynamically created element
-		$(targetElement + ' #' + bikeId).find('#bike-photo-main').attr('src', bike.Photos[0]);
+		$(targetElement + ' #' + itemId)
+			.find('#bike-photo-main')
+			.attr('src', item.image_url);
 
-		$(targetElement + ' #' + bikeId).find('.portfolio-caption .bike-name')
-			.removeClass('loading')
-			.html(bikeName);
+		// name
+		// rating
+			// is_closed order by "open" vs "closed" status
 
-		$(targetElement + ' #' + bikeId).find('.portfolio-caption .bike-size')
+		$(targetElement + ' #' + itemId).find('.portfolio-caption .name')
 			.removeClass('loading')
-			.html(bikeSize);
+			.html(item.name);
 
-		$(targetElement + ' #' + bikeId).find('.portfolio-caption .bike-price')
+		$(targetElement + ' #' + itemId).find('.portfolio-caption .rating')
 			.removeClass('loading')
-			.html(bike.Price);
+			.html(item.rating);
+
+		// $(targetElement + ' #' + itemId).find('.portfolio-caption .bike-price')
+		// 	.removeClass('loading')
+		// 	.html(bike.Price);
 	} // End for loop through all bike items
 
 	// If detail modal is clicked, need to load custom data
 	$('.portfolio-item').on('click', function() {
 		// Search for the bike's id in the global array 
-		var bike = window.bikes.pluckIfKeyValueExists('Id', $(this).data('bikeid'))[0];
+		debugger;	
+
+		/*
+		var bike = window.bikes.pluckIfKeyValueExists('Id', $(this).data('itemId'))[0];
 
 		$("#bikeDetails #bike-title").html(bike.Make + ' ' + bike.Model);
 		$("#bikeDetails #bike-subtitle").html(bike.Price);
@@ -78,5 +87,6 @@ function loadBikes(bikes, targetElement) {
 		$("#bikeDetails #bike-wheelsize").html(bike.Wheelsize);
 		$("#bikeDetails #bike-color").html(bike.Color);
 		$("#bikeDetails #bike-country").html(bike.Country);
+		*/
 	}); 	
 }

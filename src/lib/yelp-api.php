@@ -146,6 +146,7 @@ function stripBizDetails($biz) {
         'phone',
         'rating_img_url',
         'rating_img_url_small',
+        'snippet_image_url',
     ];
 
     foreach($unsetVars as $v) {

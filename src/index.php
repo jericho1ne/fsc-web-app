@@ -42,12 +42,15 @@
 			<div class="col-lg-12 text-center intro-heading">Find you some coffee, yeah?</div>
 		</div>
 	</div>
-
+	
+	<div class="hidden">
+		<div id="item-thumb-template">...</div>
+	</div>
 	<!-- Data -->
 	<div class="container pad-top-50">
 		<div class="row">
 			<div id="coffeeShops" 
-				class="col-lg-12"> ...
+				class="col-lg-12"> * items load here *
 			</div>
 		</div>
 	</div>
@@ -98,28 +101,25 @@ $(document).ready(function() {
 		.then(function(response) {
 			// If response was received
 			if (response.success) {
-				debugger;
-
 				// Clear target div
 				$('#coffeeShops').empty();
 				
 				// Make bike data global object, import template and clone it
-				window.businesses = response.payload;
-				loadCoffeeShopsIntoTemplate(window.businesses, '#coffeeShops');
+				window.businesses = response.payload.results;
+				loadDataIntoTemplate(window.businesses, '#coffeeShops');
 			}	
 			// Else, surface the error message
 			else {
 				console.warn('Uh oh.');
-				debugger;
 				// $('#errorDiv').html(response.message);
 			}
 		})
 		.then(function(data) {
 			// Generate bike use options
-			generateStuff(window.businesses, "#somethingContainer");
+			//generateStuff(window.businesses, "#somethingContainer");
 
 			// Set click listeners and such
-			setListeners();
+			//setListeners();
 		});
 
 }); // End document.ready
