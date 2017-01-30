@@ -1,0 +1,22 @@
+{
+  "name": "findsomecoffee",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jericho1ne/findsomecoffee.git"
+  },
+  "author": "Mihai Peteu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jericho1ne/findsomecoffee/issues"
+  },
+  "homepage": "https://github.com/jericho1ne/findsomecoffee#readme",
+  "devDependencies": {
+    "vue": "^2.1.10"
+  }
+}

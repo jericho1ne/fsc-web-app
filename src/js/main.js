@@ -11,6 +11,9 @@ function loadDataIntoTemplate(items, targetElement) {
 		.load('templates/item-thumb.html', function(){
 			// Then fill in the bike data with the ajax response payload
 			loadItems(items, targetElement);
+		})
+		.then(function() {
+			console.log('ok whats next');
 		});
 } // End loadBikesIntoTemplate()
 
@@ -29,18 +32,15 @@ function loadItems(items, targetElement) {
 	//   
 	var item = '';
 
-	for (var i = 0; i < items.length; i++) {
-		
+	for (var i = 0; i < items.length; i++) {		
 		item = items[i];
-
-		console.log(item);
 
 		// Create a unique element id to reference the element by
 		var itemId = items[i]['id'];
 
 		console.log(itemId);
 		
-		$('#item-thumb-template')
+		$('#item-template')
 			.clone()
 			.removeClass('hidden')
 			.attr('data-itemid', items[i]['Id'])
@@ -49,7 +49,7 @@ function loadItems(items, targetElement) {
 
 		// Change attributes of the most recent dynamically created element
 		$(targetElement + ' #' + itemId)
-			.find('#bike-photo-main')
+			.find('#photo-main')
 			.attr('src', item.image_url);
 
 		// name
@@ -71,7 +71,7 @@ function loadItems(items, targetElement) {
 
 	// If detail modal is clicked, need to load custom data
 	$('.portfolio-item').on('click', function() {
-		// Search for the bike's id in the global array 
+		// Search for item id in the global array 
 		debugger;	
 
 		/*
@@ -89,4 +89,7 @@ function loadItems(items, targetElement) {
 		$("#bikeDetails #bike-country").html(bike.Country);
 		*/
 	}); 	
+
+	$('#coffeeShops').toggleClass('loading', false);
+	$('.intro-heading').html('Nearby stuff: ');
 }

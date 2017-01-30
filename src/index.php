@@ -19,9 +19,9 @@
 	<!-- Theme CSS -->
 	<!-- <link href="css/agency.min.css" rel="stylesheet"> -->
 
-	<!-- Renova Bikes Custom CSS -->
-	<!-- <link href="css/main.css" rel="stylesheet"> -->
-	<!-- <link href="css/custom-inputs.css" rel="stylesheet"> -->
+	<!-- Custom CSS -->
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/custom-inputs.css" rel="stylesheet">
 	<!-- <link href="css/datatables.css" rel="stylesheet"> -->
 </head>
 
@@ -29,17 +29,12 @@
 <body>
 	<!-- Navigation -->
 	<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
-		<div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header page-scroll">
-				<a class="navbar-brand" href="index.html">Go Back</a>
-			</div>
-		</div>
+		<!-- menu bar -->
 	</nav>
 	<!-- Header -->
 	<div class="container herotext pad-top-50">
 		<div class="row intro-text">
-			<div class="col-lg-12 text-center intro-heading">Find you some coffee, yeah?</div>
+			<div class="col-lg-12 text-center intro-heading">Finding you nearby coffee shops...</div>
 		</div>
 	</div>
 	
@@ -50,7 +45,7 @@
 	<div class="container pad-top-50">
 		<div class="row">
 			<div id="coffeeShops" 
-				class="col-lg-12"> * items load here *
+				class="col-lg-12 loading">
 			</div>
 		</div>
 	</div>
