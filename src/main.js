@@ -21,9 +21,12 @@ new Vue({
 	template: '<App/>',
 	components: { App },
 	created: function () {
+		console.log(' ** Vue created() ** ');
 		// `this` points to the vm instance
 	}, 
 	mounted: function () {
+		console.log(' ** Vue mounted() ** ');
+
 		var self = this;
 
 		// '../getCoffeeShops.php';
@@ -41,11 +44,11 @@ new Vue({
 	},
 	methods: {
 		fetchData: function(requestUrl, params) {
-			console.log(requestUrl);
+			console.log('fetchData :: ' + requestUrl);
 
 		    this.$http.get(requestUrl)
 		   		.then(response => {
-		   			console.log( "done." );
+		   			console.log( " ** done with fetchData." );
 					if (response.body.count) {
 						// Which one does what?
 		       			this.coffeeshops = response.body.results;
@@ -63,10 +66,10 @@ new Vue({
 		}, // End fetchData
 
 		displayData: function(data) {
-			console.log(data[0]);
-			console.log(data[1]);
-			console.log(data[2]);
-
+   			console.log( " ** displayData " );
+			console.log(data);
+			debugger;
+			this.$set('items', data);
 		},
 
 		deleteItem: function(index) {

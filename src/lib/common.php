@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 setlocale(LC_ALL, 'en_US.UTF8');
-date_default_timezone_set('America/Detroit');
+date_default_timezone_set('America/Los_Angeles');
 
 
 //------------------------------------------------------------------------------

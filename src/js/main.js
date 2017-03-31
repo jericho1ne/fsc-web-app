@@ -5,7 +5,7 @@
  * @param  {string} targetElement - Id of where this will get loaded into
  */
 function loadDataIntoTemplate(items, targetElement) {
-
+	console.log(" loadDataIntoTemplate called ");
 	// Load html template, then inject data into cloned containers
 	$('#item-thumb-template')
 		.load('templates/item-thumb.html', function(){
@@ -23,7 +23,8 @@ function loadDataIntoTemplate(items, targetElement) {
  * @param  {string} targetElement - Div selector where this will get loaded into
  */
 function loadItems(items, targetElement) {
-
+	console.log(" loadItems called ");
+	
 	// Append incoming data to DOM (fields below)
 	// 
 	// 	 Make, Model, Year, Notes, Photos

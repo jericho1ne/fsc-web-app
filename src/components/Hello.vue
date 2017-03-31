@@ -1,3 +1,11 @@
+
+
+
+
+<!-- TUTORIAL HERE: -->
+
+<!-- https://medium.com/codingthesmartway-com-blog/vue-js-2-quickstart-tutorial-2017-246195cfbdd2 -->
+
 <template>
 	<div class="hello border-dev">
 		<h1>{{ msg }}</h1>
@@ -11,9 +19,13 @@
 
 		<!-- Coffee shops display here -->
 		<div class="list-group">
-			<li v-repeat="items">
+			<!-- <li v-repeat="items">
 		    	{{name}} {{rating}}
-		  	</li>
+		  	</li> -->
+		  	<li v-for="item in items">
+	         	{{item.name}} {{item.rating}}
+	        </li>
+		</div>
 			<!--
 			<a href="#" class="list-group-item" 
 				v-repeat="item in coffeeshops">
@@ -30,12 +42,10 @@
 			<p class="list-group-item-text" 
 				v-if="item.review_count">{{ item.review_count }} reviews</p>
 
-			<!--<button class="btn btn-xs btn-danger" 
-				v-on="click: deleteItem($index)">Delete</button>-->
+			<button class="btn btn-xs btn-danger" 
+				v-on="click: deleteItem($index)">Delete</button>
 			</a> 
 			-->
-		</div>
-
 	</div>
 </template>
 
@@ -46,7 +56,7 @@ export default {
 		return {
 			msg: 'Find Some Coffee',
 			msg2: 'nearby:',
-			item: { name: '', rating: '', review_count: '' },
+			//item: { name: '', rating: '', review_count: '' },
 			items: [
 				{ name: 'Refinery', rating: '5', review_count: '200' },
 				{ name: 'Metropolis', rating: '3', review_count: '10' }

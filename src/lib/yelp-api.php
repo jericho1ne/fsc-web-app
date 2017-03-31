@@ -18,7 +18,8 @@
  * `php sample.php --term="bars" --location="San Francisco, CA"`
  */
 
-// Enter the path that the oauth library is in relation to the php file
+// Enter the path that the oauth lsibrary is in relation to the php file
+require_once('globals.php');
 require_once('oauth.php');
 
 // Set your OAuth credentials here  
@@ -102,10 +103,18 @@ function request($host, $path) {
  * @param    $location    The search location passed to the API 
  * @return   The JSON response from the request 
  */
-function search($term, $location) {
+function search($params) {
+    pr($params);
+    //  Parameters:
+    //   https://www.yelp.com/developers/documentation/v3/business_search
     $url_params = [
-        'term' => $term,
-        'location' => $location 
+        'term' => $params['term'],
+        'location' => $params['city'],
+        'lat' => $params['lat'],
+        'lon' => $params['lon'],
+        'sort_by' => 'rating', // best_match, rating, review_count, distance
+        'radius' => '8000',   // 8000m = 5miles, 16000m = 10 miles
+        'price' => $PRESETS['PRICE_LOW'],
     ];
 
     // TODO: consider allowing user to select up to 10-20 results
@@ -162,8 +171,11 @@ function stripBizDetails($biz) {
  * @param    $term        The search term to query
  * @param    $location    The location of the business to query
  */
-function query_yelp_api($term, $location) {     
-    $responseRaw = search($term, $location);
+function query_yelp_api($params) {  
+    
+    echo "<hr>";   pr($params);
+
+    $responseRaw = search($params);
     $responseDecoded = json_decode($responseRaw, true);
 
     if (array_key_exists('error', $responseDecoded)) {
