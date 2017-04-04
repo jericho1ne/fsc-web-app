@@ -3,9 +3,20 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
-//Vue.use(require('vue-resource'));
 import Resource from 'vue-resource'
+
+// Include Font Awesome globally
+// Font Awesome icons (single includes to reduce bundle size) 
+// import 'vue-awesome/icons/circle'
+// import 'vue-awesome/icons/coffee'
+// Or include full set (dev mode)
+import 'vue-awesome/icons'
+
+import Icon from 'vue-awesome/components/Icon.vue'
+Vue.component('icon', Icon)
+
+import StarRating from 'vue-star-rating'
+
 Vue.use(Resource)
 
 /* eslint-disable no-new */
@@ -28,12 +39,14 @@ new Vue({
 		}
 	}, // End watch task
 	router,
-	coffeeshops: {},
 	
 	template: '<App/>',
-	components: { App },
+	components: { 
+		App,
+		Icon,
+		StarRating,
+	},
 	created: function () {
-		console.log(' ** main.js created() ** ');
 		// `this` points to the vm instance
 	}, 
 	mounted: function () {

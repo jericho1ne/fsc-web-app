@@ -1,42 +1,48 @@
-
-
-<!-- TUTORIAL HERE: -->
-
-<!-- https://medium.com/codingthesmartway-com-blog/vue-js-2-quickstart-tutorial-2017-246195cfbdd2 -->
-
 <template>
-	<div class="hello border-dev">
-		<h1>{{ msg }}</h1>
-		<h2>{{ msg2 }}</h2>
-		<input type="text" v-model="msg" />
-		<h3>Essential Links</h3>
-		<ul>
-		  <li><a href="#" target="_blank">Link 1</a></li>
-		  <li><a href="#" target="_blank">Link 2</a></li>
-		  <br>
-		</ul>
-
-		<!-- Coffee shops display here -->
-		<!-- <div class="list-group">
-			<li v-repeat="items">
-				{{item.name}} {{item.rating}}
-			</li>
-		</div> -->
+	<div class="">
+		<!-- <input type="text" v-model="msg" /> -->
+		<!-- <icon name="circle" class="fa-icon-xs"></icon>
+		<icon name="circle" class="fa-icon-sm"></icon>
+		<icon name="circle" class="fa-icon-md"></icon>
+		<icon name="circle" class="fa-icon-lg"></icon>
+		<icon name="circle" class="fa-icon-xl"></icon> -->
+		
 		<div class="list-group">
-			<ul>
-				<li v-for="item in items">
-					<h4 class="list-group-item-heading">{{item.name}}</h4>
-					<i class="glyphicon glyphicon-bullhorn"></i> 
-					<h5>{{item.rating}}</h5>
-					<!-- <i class="glyphicon glyphicon-calendar" v-if="{{item.rating}}"></i> -->
+			<star-rating :star-size="20"></star-rating>
+			
+			<ul class="items">
+				<li v-for="item in items" class="item">	
 					
-					<img :src="item.image_url" />
-					<p class="list-group-item-text" v-if="item.review_count">
-						{{ item.review_count }} reviews
-					</p>
+					<div class="thumb" 
+						v-bind:style="{ backgroundImage: 'url(' + item.image_url + ')' }">
+						
+						<div class="item-title">
+							<h4 class="list-group-item-heading">{{item.name}}</h4>		
+							<!-- <img :src="" /> -->
+							<h5 class="list-group-item-text" v-if="item.review_count">
+								{{ item.review_count }} reviews
+							</h5>
+						</div>
+						<div class="thumb-spacer">
+							<span>	
+								{{item.rating}}
+							</span>
+						</div>
 
-					<!-- //click:deleteItem({{index}}) -->
-					<button class="btn btn-xs btn-danger" v-on="">Delete</button>
+						<div class="mini-action-bar">
+							<!-- //click:deleteItem({{index}}) -->
+							<icon name="bookmark" class="fa-icon-md" style="fill:#fff"></icon>
+							<icon name="compass" class="fa-icon-md" style="fill:#fff"></icon>
+							<icon name="share-square" class="fa-icon-md" style="fill:#fff"></icon>
+							
+							<!-- <br>
+							<button class="btn btn-xs btn-danger" v-on="">Delete</button> -->
+						</div>
+
+					</div>
+					
+					
+
 				</li>
 			</ul>
 		</div>
@@ -49,8 +55,7 @@ export default {
 	name: 'hello',
 	data () {
 		return {
-			msg: 'Find Some Coffee',
-			msg2: 'nearby:',
+			msg2: '...',
 			cityList: [],
 			// Set up dummy array of coffeeshops
 			items: [
@@ -128,27 +133,53 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
+	ul.items {
+		list-style-type: none;
+		padding: 0;
+	}
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  border: 1px solid #ccc;
-  padding: 4px;
-  border-radius: 4px;
-  min-width: 240px;
-  min-height: 120px;
-  background-color: #fafafa;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
+	li.item {
+		position: relative;
+		display: inline-block;
+		border: 1px solid #dedede;
+		margin: 0px 10px 10px 0px;
+		border-radius: 4px;
+		width: 180px;
+		height: 180px;
+		background-color: #fafafa;
+		overflow: hidden;
+	}
+	li .thumb:hover {
+		cursor: pointer;
+	}
+	.thumb {
+		top: 0px;
+		height: 100%;
+		background-position: left top;
+		background: no-repeat;
+		background-size: cover;
+	}
+	.item-title {
+		min-height: 15%;
+		height: auto;
+		background-color: #fff;
+		padding: 2px 6px;
+		opacity: 0.9;
+	}
+	.thumb-spacer {
+		height: auto;
+	}
+	.mini-action-bar {
+		position: absolute;
+		bottom: -2px;
+		margin-left: 30%;
+		text-align: center;
+		opacity: 0.95;
+		padding: 0px;
+		height: auto;
+		color: #fff;
+	}
+	a {
+		color: #42b983;
+	}
 </style>
