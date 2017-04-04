@@ -12,10 +12,13 @@ import Resource from 'vue-resource'
 // Or include full set (dev mode)
 import 'vue-awesome/icons'
 
-import Icon from 'vue-awesome/components/Icon.vue'
+import Icon from 'vue-awesome/components/Icon'
 Vue.component('icon', Icon)
 
 import StarRating from 'vue-star-rating'
+
+// import StarRating from 'components/StarRating'
+Vue.component('star-rating', StarRating)
 
 Vue.use(Resource)
 

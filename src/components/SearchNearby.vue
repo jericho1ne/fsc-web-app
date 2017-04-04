@@ -8,8 +8,6 @@
 		<icon name="circle" class="fa-icon-xl"></icon> -->
 		
 		<div class="list-group">
-			<star-rating :star-size="20"></star-rating>
-			
 			<ul class="items">
 				<li v-for="item in items" class="item">	
 					
@@ -20,13 +18,21 @@
 							<h4 class="list-group-item-heading">{{item.name}}</h4>		
 							<!-- <img :src="" /> -->
 							<h5 class="list-group-item-text" v-if="item.review_count">
-								{{ item.review_count }} reviews
+								{{item.review_count}} reviews
 							</h5>
+							<div>
+								<star-rating 
+									:star-size="24" 
+								 	:rating="item.rating"
+									:show-rating="false"
+									:border-width="1"
+								 	:increment="0.1"
+								 	:read-only="true"
+								 ></star-rating>
+							 </div>
 						</div>
 						<div class="thumb-spacer">
-							<span>	
-								{{item.rating}}
-							</span>
+							
 						</div>
 
 						<div class="mini-action-bar">
@@ -59,8 +65,8 @@ export default {
 			cityList: [],
 			// Set up dummy array of coffeeshops
 			items: [
-				{ name: 'Refinery', rating: '5', review_count: '200' },
-				{ name: 'Metropolis', rating: '3', review_count: '10' }
+				// { name: 'Refinery', rating: '5', review_count: '200' },
+				// { name: 'Metropolis', rating: '3', review_count: '10' }
 			]
 		}
 	},
@@ -90,16 +96,14 @@ export default {
 		 * @return {[type]}            [description]
 		 */
 		fetchData: function(requestUrl, params) {
-			// console.log('fetchData :: ' + requestUrl);
 			var _self = this;
 
 		    this.$http.get(requestUrl)
 		   		.then(response => {
 		   			// Set the displayed item to the AJAX response
 		   			if (response.body.count) {
-		   			_self.items = response.body.results;
-
-		   			console.log(_self.items);
+			   			_self.items = response.body.results;
+			   			//console.log(_self.items);
 		   			}
 		   			else {
 		   				console.warn("No results.");
@@ -108,9 +112,8 @@ export default {
 					console.warn("Error");
 				})
 				.then(function() {
-					console.log('*** fire this after data is received ***')
+					// console.log('*** fire this after data is received ***')
 					// TODO:  fill in actions that should always fire
-
 					//this.displayData(this.items);
 				});
 		}, // End fetchData
@@ -142,10 +145,10 @@ export default {
 		position: relative;
 		display: inline-block;
 		border: 1px solid #dedede;
-		margin: 0px 10px 10px 0px;
+		margin: 0px 20px 20px 0px;
 		border-radius: 4px;
-		width: 180px;
-		height: 180px;
+		width: 200px;
+		height: 200px;
 		background-color: #fafafa;
 		overflow: hidden;
 	}
@@ -172,7 +175,7 @@ export default {
 	.mini-action-bar {
 		position: absolute;
 		bottom: -2px;
-		margin-left: 30%;
+		margin-left: 35%;
 		text-align: center;
 		opacity: 0.95;
 		padding: 0px;
