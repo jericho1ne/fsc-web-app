@@ -11,11 +11,11 @@
 			style="background-color: #FF9A9A"
 		>
 			<h3>
-				<a href="">nearby</a> 
+				<a href="nearby/">nearby</a> 
 					<icon name="circle" class="fa-icon-xs"></icon> 
-				<a href="">cities</a> 
+				<a href="cities/">cities</a> 
 					<icon name="circle" class="fa-icon-xs"></icon>
-				<a href="">about</a>
+				<a href="about/">about</a>
 			</h3>
 
 		</div>
