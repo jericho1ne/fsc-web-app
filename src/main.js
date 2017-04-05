@@ -41,7 +41,9 @@ new Vue({
 			}
 		}
 	}, // End watch task
-	router,
+
+
+	router: router,
 	
 	template: '<App/>',
 	components: { 
