@@ -9,47 +9,7 @@
 		
 		<div class="list-group">
 			<ul class="items">
-				<li v-for="item in items" class="item">	
-					
-					<div class="thumb" 
-						v-bind:style="{ backgroundImage: 'url(' + item.image_url + ')' }">
-						
-						<div class="item-title">
-							<h4 class="list-group-item-heading">{{item.name}}</h4>		
-							<!-- <img :src="" /> -->
-							<h5 class="list-group-item-text" v-if="item.review_count">
-								{{item.review_count}} reviews
-							</h5>
-							<div>
-								<star-rating 
-									:star-size="24" 
-								 	:rating="item.rating"
-									:show-rating="false"
-									:border-width="1"
-								 	:increment="0.1"
-								 	:read-only="true"
-								 ></star-rating>
-							 </div>
-						</div>
-						<div class="thumb-spacer">
-							
-						</div>
-
-						<div class="mini-action-bar">
-							<!-- //click:deleteItem({{index}}) -->
-							<icon name="bookmark" class="fa-icon-md" style="fill:#fff"></icon>
-							<icon name="compass" class="fa-icon-md" style="fill:#fff"></icon>
-							<icon name="share-square" class="fa-icon-md" style="fill:#fff"></icon>
-							
-							<!-- <br>
-							<button class="btn btn-xs btn-danger" v-on="">Delete</button> -->
-						</div>
-
-					</div>
-					
-					
-
-				</li>
+				
 			</ul>
 		</div>
 			
@@ -58,38 +18,32 @@
 
 <script>
 export default {
-	name: 'SearchNearby',
+	name: 'About',
 	data () {
 		return {
-			msg2: '...',
-			cityList: [],
-			// Set up dummy array of coffeeshops
-			items: [
-				// { name: 'Refinery', rating: '5', review_count: '200' },
-				// { name: 'Metropolis', rating: '3', review_count: '10' }
-			]
+			
 		}
 	},
 	created: function () {
-		// `this` points to the vue instance
 		console.log(` ** ${this.$options.name} ** created `);
 	}, 
 	mounted: function () {
 		console.log(` ** ${this.$options.name} ** mounted `);
+
 		var self = this;
 
-		// Get coffee shops AJAX
-		var requestUrl = 'http://findsomecoffee.com/getCoffeeShops.php';
-		// Hardcoded by default
-		// TODO: get position of user when requested
-		var params = {
-			'city': 'Santa Monica, CA' 
-		};
-		self.fetchData(requestUrl, params);
+		// // Get coffee shops AJAX
+		// var requestUrl = 'http://findsomecoffee.com/getCoffeeShops.php';
+		// // Hardcoded by default
+		// // TODO: get position of user when requested
+		// var params = {
+		// 	'city': 'Santa Monica, CA' 
+		// };
+		// self.fetchData(requestUrl, params);
 	},
 	
 	methods: {
-		/**
+			/**
 		 * Ajax call to data source
 		 * @param  {[type]} requestUrl [description]
 		 * @param  {[type]} params     [description]
@@ -117,19 +71,7 @@ export default {
 					//this.displayData(this.items);
 				});
 		}, // End fetchData
-
-		displayData: function(data) {
-   			console.log( " ** displayData " );
-			console.log(data);
-			// this.$set('items', data);
-		},
-
-		deleteItem: function(index) {
-			if( confirm("Are you sure you want to delete this entry?")) {
-				// $remove is a Vue convenience method similar to splice
-				this.coffeeshops.$remove(index);        
-			}
-		}
+		
 	},
 }
 </script>

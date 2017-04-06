@@ -1,8 +1,13 @@
+
+//
+// App entrypoint (defined in ./build/webpack.base.conf.js)
+// 
+
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
+import VueRouter from './VueRouter'
 import Resource from 'vue-resource'
 
 // Include Font Awesome globally
@@ -23,17 +28,21 @@ Vue.component('star-rating', StarRating)
 Vue.use(Resource)
 
 /* eslint-disable no-new */
-new Vue({
+const app = new Vue({
 	el: '#app',
 	data: {
-		cityList: ['asdfasdf', 'asdfasdf2'],
-	    item: { name: '', rating: '', review_count: '' },
+		position: {
+			coords: '',
+			lat: '',
+			lon: '',
+		},
 	    items: [],
 	},
 	// Anything that changes inside this task will trigger the
 	// provided method
 	watch: {
 		searchCity: function() {
+			console.log( "WATCH searchCity TRIGGERED ")
 			this.cityList = [];
 			// Await a few chars before starting city name auto-search
 			if (this.searchCity.length == 3) {
@@ -42,10 +51,11 @@ new Vue({
 		}
 	}, // End watch task
 
-
-	router: router,
+	router: VueRouter,
 	
 	template: '<App/>',
+
+	// Globally available components
 	components: { 
 		App,
 		Icon,
@@ -55,7 +65,13 @@ new Vue({
 		// `this` points to the vm instance
 	}, 
 	mounted: function () {
-
+		let _self = this
+		navigator.geolocation.getCurrentPosition(function(position) {
+          _self.position.coords = position.coords
+          _self.position.lat = position.coords.longitude
+          _self.position.lon = position.coords.latitude
+          console.log(_self.position.coords)
+        });
 	},
 	// Custom Functions that do what I want
 	methods: {

@@ -1,3 +1,6 @@
+
+<!-- "HTML" BASE FILE -->
+
 <template>
 	<div id="app" class="border-dark">
 		<div id="header" class="pad10">
@@ -11,11 +14,11 @@
 			style="background-color: #FF9A9A"
 		>
 			<h3>
-				<a href="nearby/">nearby</a> 
+				<a href="nearby">nearby</a> 
 					<icon name="circle" class="fa-icon-xs"></icon> 
-				<a href="cities/">cities</a> 
+				<a href="cities">cities</a> 
 					<icon name="circle" class="fa-icon-xs"></icon>
-				<a href="about/">about</a>
+				<a href="about">about</a>
 			</h3>
 
 		</div>
@@ -160,5 +163,4 @@
 	.pad10 {
 		padding: 10px;
 	}
-	
 </style>
