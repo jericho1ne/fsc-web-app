@@ -14,13 +14,13 @@
 			style="background-color: #FF9A9A"
 		>
 			<h3>
-				<a href="nearby">nearby</a> 
-					<icon name="circle" class="fa-icon-xs"></icon> 
-				<a href="cities">cities</a> 
-					<icon name="circle" class="fa-icon-xs"></icon>
-				<a href="about">about</a>
+				<router-link to="/nearby">near me</router-link>
+				<icon name="circle" class="fa-icon-xs"></icon> 
+				<router-link to="/cities">by city</router-link>
+			
+				<!-- <icon name="circle" class="fa-icon-xs"></icon> -->
+				<!-- <a v-link="{path: '/about'}">about</a>  -->
 			</h3>
-
 		</div>
 		
 		<router-view></router-view>
@@ -65,6 +65,26 @@
 	a:hover {
 		background-color: #EE2222;
 		cursor: pointer;
+	}
+	button {
+		width: auto;
+		box-shadow:  #0C5C76 0px 1px 0px 0px;
+		background-color: #34849F;
+		border-radius: 3px;
+		border: none;
+		display: inline-block;
+		cursor: pointer;
+		color: rgb(255, 255, 255);
+		font-family: Arial;
+		font-size: .8em;
+		font-weight: normal;
+		padding: 8px 12px;
+		margin: 4px 4px 0px 0px;
+		text-decoration: none;
+		text-shadow: #aaa 0px 1px 1px;
+	}
+	button:hover {
+		background-color: #EE2222;
 	}
 	/* COLOR PALETTE */
 	/* http://paletton.com/palette.php?uid=7000A0kmtw0cHNai7DJrrtVtYnD */

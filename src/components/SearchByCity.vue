@@ -8,17 +8,22 @@
 		<icon name="circle" class="fa-icon-xl"></icon> -->
 		
 		<div class="list-group">
-			<ul class="items">
+			<ul class="">
 				<li v-for="city in cities" class="city">	
 					
-					
+					<button v-on:click="selectCity(city)"
+						class="btn btn-primary"
+					>{{city.display}}</button>
 					
 
 				</li>
 			</ul>
 		</div>
-			
+		<div id="items">
+		<!-- results populate here -->
+		</div>
 	</div>
+	
 </template>
 
 <script>
@@ -27,13 +32,56 @@ export default {
 	data () {
 		return {
 			cities: [
-				'Los Angeles',
-				'Santa Monica',
-				'Culver City',
-				'San Francisco',
-				'Santa Barbara',
-				'Seattle',
-				'San Diego',
+				{ 
+					name: 'Los Angeles',
+					display: 'LA',
+					state: 'CA',
+				},
+				{ 
+					name: 'Santa Monica',
+					display: 'Santa Monica',
+					state: 'CA',
+				},
+				{ 
+					name: 'Culver City',
+					display: 'Culver City',
+					state: 'CA',
+				},
+				{ 
+					name: 'Santa Barbara',
+					display: 'SB',
+					state: 'CA',
+				},
+				{ 
+					name: 'San Diego',
+					display: 'SD',
+					state: 'CA',
+				},
+				{ 
+					name: 'San Francisco',
+					display: 'SF',
+					state: 'CA',
+				},
+				{ 
+					name: 'Chicago',
+					display: 'CHI',
+					state: 'IL',
+				},
+				{ 
+					name: 'New York',
+					display: 'NYC',
+					state: 'NYC',
+				},
+				{ 
+					name: 'Melbourne',
+					display: 'Melbourne',
+					state: 'VIC',
+				},
+				{ 
+					name: 'Sydney',
+					display: 'Sydney',
+					state: 'NSW',
+				},
 			],
 		}
 	},
@@ -56,33 +104,36 @@ export default {
 	},
 	
 	methods: {
-			/**
-		 * Ajax call to data source
-		 * @param  {[type]} requestUrl [description]
+		/**
+		 * Ajax call to search by city name
 		 * @param  {[type]} params     [description]
 		 * @return {[type]}            [description]
 		 */
-		fetchData: function(requestUrl, params) {
+		selectCity: function(city) {
 			var _self = this;
 
-		    this.$http.get(requestUrl)
-		   		.then(response => {
-		   			// Set the displayed item to the AJAX response
-		   			if (response.body.count) {
-			   			_self.items = response.body.results;
-			   			//console.log(_self.items);
-		   			}
-		   			else {
-		   				console.warn("No results.");
-		   			}
-				}, response => {
-					console.warn("Error");
-				})
-				.then(function() {
-					// console.log('*** fire this after data is received ***')
-					// TODO:  fill in actions that should always fire
-					//this.displayData(this.items);
-				});
+			let selectedCity = city.name + ', ' + city.state;
+			console.log(" selectCity called :: " + selectedCity)
+
+
+		  //   this.$http.get(requestUrl)
+		  //  		.then(response => {
+		  //  			// Set the displayed item to the AJAX response
+		  //  			if (response.body.count) {
+			 //   			_self.items = response.body.results;
+			 //   			//console.log(_self.items);
+		  //  			}
+		  //  			else {
+		  //  				console.warn("No results.");
+		  //  			}
+				// }, response => {
+				// 	console.warn("Error");
+				// })
+				// .then(function() {
+				// 	// console.log('*** fire this after data is received ***')
+				// 	// TODO:  fill in actions that should always fire
+				// 	//this.displayData(this.items);
+				// });
 		}, // End fetchData
 
 		displayData: function(data) {
@@ -104,49 +155,6 @@ export default {
 		list-style-type: none;
 		padding: 0;
 	}
-
-	li.item {
-		position: relative;
-		display: inline-block;
-		border: 1px solid #dedede;
-		margin: 0px 20px 20px 0px;
-		border-radius: 4px;
-		width: 200px;
-		height: 200px;
-		background-color: #fafafa;
-		overflow: hidden;
-	}
-	li .thumb:hover {
-		cursor: pointer;
-	}
-	.thumb {
-		top: 0px;
-		height: 100%;
-		background-position: left top;
-		background: no-repeat;
-		background-size: cover;
-	}
-	.item-title {
-		min-height: 15%;
-		height: auto;
-		background-color: #fff;
-		padding: 2px 6px;
-		opacity: 0.9;
-	}
-	.thumb-spacer {
-		height: auto;
-	}
-	.mini-action-bar {
-		position: absolute;
-		bottom: -2px;
-		margin-left: 35%;
-		text-align: center;
-		opacity: 0.95;
-		padding: 0px;
-		height: auto;
-		color: #fff;
-	}
-	a {
-		color: #42b983;
-	}
+	ul li { display: inline; }
+	
 </style>
