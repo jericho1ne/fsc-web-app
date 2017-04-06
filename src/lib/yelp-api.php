@@ -19,7 +19,6 @@
  */
 
 // Enter the path that the oauth lsibrary is in relation to the php file
-require_once('globals.php');
 require_once('oauth.php');
 
 // Set your OAuth credentials here  
@@ -32,11 +31,14 @@ $TOKEN_SECRET       = '5FNCx8Jr8ebFT79E7BxqV9tglf8';
 
 // Defaults
 $API_HOST = 'api.yelp.com';
-$DEFAULT_TERM = 'coffee';
-$DEFAULT_LOCATION = 'Los Angeles, CA';
-$SEARCH_LIMIT = 30;
+
+// v 2
 $SEARCH_PATH = '/v2/search/';
 $BUSINESS_PATH = '/v2/business/';
+
+// V 3 (doesn't work yet)
+// $SEARCH_PATH = '/v3/businesses/';
+// $BUSINESS_PATH = '/v3/businesses/search';
 
 
 /** 
@@ -104,24 +106,37 @@ function request($host, $path) {
  * @return   The JSON response from the request 
  */
 function search($params) {
-    pr($params);
+    // Use presets from constants.php
+    global $DEFAULTS;
+    
+    if ($params['debug']) {
+        pr($params);
+    }
+
     //  Parameters:
     //   https://www.yelp.com/developers/documentation/v3/business_search
     $url_params = [
         'term' => $params['term'],
         'location' => $params['city'],
-        'lat' => $params['lat'],
-        'lon' => $params['lon'],
-        'sort_by' => 'rating', // best_match, rating, review_count, distance
-        'radius' => '8000',   // 8000m = 5miles, 16000m = 10 miles
-        'price' => $PRESETS['PRICE_LOW'],
+
+        //'category_filter' => $params['category'],
+        'radius_filter' => $params['radius'],
+        'limit' => $params['limit'],
+
+        // best_match, rating, review_count, distance
+        'sort' => $params['sort'], 
+
+        // DOES NOT WORK IN V2 API
+        //'lat' => isset($params['lat']) ? $params['lat'] : $DEFAULTS,
+        //'lon' => isset($params['lon']) ? $params['lon'] : $DEFAULTS,
+    
+        // 'price' => $PRESETS['PRICE_LOW'],
     ];
 
     // TODO: consider allowing user to select up to 10-20 results
     // plus add in other search params (cross referencing Yelp results w/ our db)
-    $url_params['limit'] = $GLOBALS['SEARCH_LIMIT'];
+
     $search_path = $GLOBALS['SEARCH_PATH'] . "?" . http_build_query($url_params);
-    
     return request($GLOBALS['API_HOST'], $search_path);
 }
 
@@ -171,34 +186,38 @@ function stripBizDetails($biz) {
  * @param    $term        The search term to query
  * @param    $location    The location of the business to query
  */
-function query_yelp_api($params) {  
-    
-    echo "<hr>";   pr($params);
-
+function query_yelp_api($params) {
     $responseRaw = search($params);
     $responseDecoded = json_decode($responseRaw, true);
 
-    if (array_key_exists('error', $responseDecoded)) {
-        $response = ['error' => $responseDecoded['error']];
-    }
-    else {
-        $resultCount = count($responseDecoded['businesses']);
-
-        $trimmedDataset = [];
-        // $responseDecoded['total'];
-        foreach ($responseDecoded['businesses'] as $biz) {
-            $trimmedDataset[] = stripBizDetails($biz);
+    // If API has returned a response
+    if (isset($responseDecoded)) {
+        if (array_key_exists('error', $responseDecoded)) {
+            $response = ['error' => $responseDecoded['error']];
         }
+        else {
+            $resultCount = count($responseDecoded['businesses']);
 
-        // also have
-        // $responseDecoded['region']['span'];
-        // $responseDecoded['region']['center'];    
-        
-        $response = [
-            'count' => $resultCount,
-            'results' => $trimmedDataset,
-        ];
+            $trimmedDataset = [];
+            // $responseDecoded['total'];
+            foreach ($responseDecoded['businesses'] as $biz) {
+                $trimmedDataset[] = stripBizDetails($biz);
+            }
+
+            // also have
+            // $responseDecoded['region']['span'];
+            // $responseDecoded['region']['center'];    
+            
+            $response = [
+                'count' => $resultCount,
+                'results' => $trimmedDataset,
+            ];
+        }
+    } // End if response exists
+    else {
+        $response = ['error' => 'Unable to complete ajax request'];
     }
+    
     return $response;
 }
 ?>

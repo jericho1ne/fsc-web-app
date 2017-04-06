@@ -10,7 +10,7 @@ date_default_timezone_set('America/Los_Angeles');
 //  Name:     set
 //  Purpose:  silently fails when trying to echo an empty string
 //------------------------------------------------------------------------------
-function set(& $var) {
+function is_Set(& $var) {
 	if (isset($var))
 		return $var;
 	else
@@ -22,7 +22,9 @@ function set(& $var) {
 //  Purpose:  formats arrays into readable text
 //------------------------------------------------------------------------------
 function pr($data) {
-	echo "<PRE>"; print_r($data); echo "</PRE>";
+	$debugTrace = debug_backtrace();
+	echo '<hr>' . $debugTrace[0]['file'] . ', L'.  $debugTrace[0]['line'] . '<br>';
+	echo "<blockquote><PRE>"; print_r($data); echo "</PRE></blockquote>";
 }
 
 

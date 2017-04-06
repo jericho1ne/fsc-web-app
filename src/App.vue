@@ -138,23 +138,23 @@
 	}
 	.fa-icon-xs {
 		width: auto;
-		height: .5em;
+		height: 12px;
 	}
 	.fa-icon-sm {
 		width: auto;
-		height: 1em; /* or any other relative font sizes */
+		height: 14px; /* or any other relative font sizes */
 	}
 	.fa-icon-md {
 		width: auto;
-		height: 1.5em; /* or any other relative font sizes */
+		height: 20px; /* or any other relative font sizes */
 	}
 	.fa-icon-lg {
 		width: auto;
-		height: 3.5em; /* or any other relative font sizes */
+		height: 30px; /* or any other relative font sizes */
 	}
 	.fa-icon-xl {
 		width: auto;
-		height: 6em; /* or any other relative font sizes */
+		height: 80px; /* or any other relative font sizes */
 	}
 	.border-dev {
 		border: 1px solid pink;

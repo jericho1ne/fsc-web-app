@@ -82,23 +82,29 @@ export default {
 		var requestUrl = 'http://findsomecoffee.com/getCoffeeShops.php';
 		// Hardcoded by default
 		// TODO: get position of user when requested
-		var params = {
-			'city': 'Santa Monica, CA' 
-		};
-		self.fetchData(requestUrl, params);
+		let urlParams = 
+			`city=Santa Monica&limit=10&term=coffee&radius=3200&limit=30`;
+			// 'city': 'Santa Monica, CA', 
+			// 'term': 'coffee, cafe',
+			// 'radius': '100',
+		self.fetchData(requestUrl + '?' + urlParams);
 	},
 	
 	methods: {
 		/**
 		 * Ajax call to data source
 		 * @param  {[type]} requestUrl [description]
-		 * @param  {[type]} params     [description]
 		 * @return {[type]}            [description]
 		 */
-		fetchData: function(requestUrl, params) {
+		fetchData: function(requestUrl) {
 			var _self = this;
+			
+			console.log(requestUrl);
 
-		    this.$http.get(requestUrl)
+		    this.$http({ 
+		    		url: requestUrl, 
+		    		method: 'GET',
+		    	})
 		   		.then(response => {
 		   			// Set the displayed item to the AJAX response
 		   			if (response.body.count) {
