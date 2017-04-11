@@ -61,6 +61,11 @@ export default {
 	name: 'SearchNearby',
 	data () {
 		return {
+			position: {
+				coords: '',
+				lat: '',
+				lon: '',
+			},
 			msg2: '...',
 			cityList: [],
 			// Set up dummy array of coffeeshops
@@ -68,7 +73,7 @@ export default {
 				// { name: 'Refinery', rating: '5', review_count: '200' },
 				// { name: 'Metropolis', rating: '3', review_count: '10' }
 			]
-		}
+		} // End return
 	},
 	created: function () {
 		// `this` points to the vue instance
@@ -76,18 +81,33 @@ export default {
 	}, 
 	mounted: function () {
 		console.log(` ** ${this.$options.name} ** mounted `);
-		var self = this;
+		let _self = this;
+
+		this.getLocation().then(function(position) {
+			console.log(position.coords)
+			console.log(_self)
+			_self.position.coords = position.coords
+			_self.position.lat = position.coords.latitude
+			_self.position.lon = position.coords.longitude
+
+			var requestUrl = 'http://api.findsomecoffee.com/search';
+			// var requestUrl = 'http://localhost:3001/search';
+			// TODOL  Hardcoded, for now.  But, need position of user when requested
+			let urlParams = 
+				`term=coffee&` + 
+				`lat=${_self.position.lat}&lon=${_self.position.lon}&` +
+				`price=1,2&` +
+				`limit=30`;
+			
+			_self.fetchData(requestUrl + '?' + urlParams);
+		});
 
 		// Get coffee shops AJAX
+		/*
 		var requestUrl = 'http://findsomecoffee.com/getCoffeeShops.php';
-		// Hardcoded by default
-		// TODO: get position of user when requested
 		let urlParams = 
 			`city=Santa Monica&limit=10&term=coffee&radius=3200&limit=30`;
-			// 'city': 'Santa Monica, CA', 
-			// 'term': 'coffee, cafe',
-			// 'radius': '100',
-		self.fetchData(requestUrl + '?' + urlParams);
+		*/		
 	},
 	
 	methods: {
@@ -107,9 +127,8 @@ export default {
 		    	})
 		   		.then(response => {
 		   			// Set the displayed item to the AJAX response
-		   			if (response.body.count) {
-			   			_self.items = response.body.results;
-			   			//console.log(_self.items);
+		   			if (typeof response.body.businesses === 'object') {
+			   			_self.items = response.body.businesses;
 		   			}
 		   			else {
 		   				console.warn("No results.");
@@ -123,6 +142,14 @@ export default {
 					//this.displayData(this.items);
 				});
 		}, // End fetchData
+
+		getLocation: function() {
+			return new Promise(function (resolve, reject) {
+				navigator.geolocation.getCurrentPosition(function (position) {
+					resolve(position);
+				});
+			});
+		},
 
 		displayData: function(data) {
    			console.log( " ** displayData " );

@@ -1,0 +1,11 @@
+# https://kb.hostineer.com/guides/running-node-js/
+
+#
+# Node.js with Passenger
+#
+PassengerNodejs /usr/bin/node
+
+#
+# Node.js standalone
+#
+PassengerStartupFile server.js

@@ -1,0 +1,21 @@
+{
+  "name": "find-some-coffee-api",
+  "version": "1.0.0",
+  "description": "find some coffee api",
+  "author": "Mihai Peteu <mihai.peteu@gmail.com>",
+  "private": true,
+  "scripts": {},
+  "repository": {},
+  "license": "ISC",
+  "bugs": {},
+  "dependencies": {
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "node-yelp-api-v3": "^1.0.1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  }
+}

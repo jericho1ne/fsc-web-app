@@ -31,12 +31,12 @@ Vue.use(Resource)
 const app = new Vue({
 	el: '#app',
 	data: {
-		position: {
-			coords: '',
-			lat: '',
-			lon: '',
-		},
-	    items: [],
+		// position: {
+		// 	coords: '',
+		// 	lat: '',
+		// 	lon: '',
+		// },
+		items: [],
 	},
 	// Anything that changes inside this task will trigger the
 	// provided method
@@ -65,13 +65,7 @@ const app = new Vue({
 		// `this` points to the vm instance
 	}, 
 	mounted: function () {
-		let _self = this
-		navigator.geolocation.getCurrentPosition(function(position) {
-          _self.position.coords = position.coords
-          _self.position.lat = position.coords.longitude
-          _self.position.lon = position.coords.latitude
-          console.log(_self.position.coords)
-        });
+		
 	},
 	// Custom Functions that do what I want
 	methods: {
