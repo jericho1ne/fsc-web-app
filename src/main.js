@@ -1,4 +1,3 @@
-
 //
 // App entrypoint (defined in ./build/webpack.base.conf.js)
 // 
@@ -67,8 +66,10 @@ const app = new Vue({
 	mounted: function () {
 		
 	},
-	// Custom Functions that do what I want
+	// Custom Globally-avaiable functions
 	methods: {
-		// 
+		globalMethod: function() {
+			console.log( ' globalMethod called. ')
+		}
 	}, 
 })

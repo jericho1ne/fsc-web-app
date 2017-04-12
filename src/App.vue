@@ -3,9 +3,9 @@
 
 <template>
 	<div id="app" class="border-dark">
-		<div id="header" class="pad10">
-			<div><icon name="coffee" class="fa-icon-xl blue-90"></icon></div>
-			<div><span class="blue-90">Find Some Coffee</span></div>
+		<div id="header" class="">
+			<div><icon name="coffee" class="fa-icon-xl blue-80"></icon></div>
+			<!-- <div><span class="blue-90">Find Some Coffee</span></div> -->
 		</div>
 
 		<!-- Menu Bar -->
@@ -67,24 +67,28 @@
 		cursor: pointer;
 	}
 	button {
+		/*font-family: Arial;*/
+		letter-spacing: 2px;
+		font-size: 1em;
+		font-weight: normal;
+		padding: 8px 14px;
+		margin: 8px;
+		color: rgb(255, 255, 255);
+		text-decoration: none;
+		text-transform: uppercase;
+		text-shadow: #0C5C76 0px 1px 2px;
 		width: auto;
-		box-shadow:  #0C5C76 0px 1px 0px 0px;
-		background-color: #34849F;
-		border-radius: 3px;
+		background-color: #84C2D6;
+		border-radius: 14px;
 		border: none;
 		display: inline-block;
 		cursor: pointer;
-		color: rgb(255, 255, 255);
-		font-family: Arial;
-		font-size: .8em;
-		font-weight: normal;
-		padding: 8px 12px;
-		margin: 4px 4px 0px 0px;
-		text-decoration: none;
-		text-shadow: #aaa 0px 1px 1px;
 	}
 	button:hover {
 		background-color: #EE2222;
+	}
+	button:active {
+		background-color: #1A7695;
 	}
 	/* COLOR PALETTE */
 	/* http://paletton.com/palette.php?uid=7000A0kmtw0cHNai7DJrrtVtYnD */
@@ -134,26 +138,26 @@
 	}
 	
 	.fa-icon {
-		color: #bde2ee;
+		color: #84C2D6;
 	}
 	.fa-icon-xs {
-		width: auto;
+		width: 12px;
 		height: 12px;
 	}
 	.fa-icon-sm {
-		width: auto;
+		width: 14px;
 		height: 14px; /* or any other relative font sizes */
 	}
 	.fa-icon-md {
-		width: auto;
+		width: 20px;
 		height: 20px; /* or any other relative font sizes */
 	}
 	.fa-icon-lg {
-		width: auto;
+		width: 30px;
 		height: 30px; /* or any other relative font sizes */
 	}
 	.fa-icon-xl {
-		width: auto;
+		width: 80px;
 		height: 80px; /* or any other relative font sizes */
 	}
 	.border-dev {

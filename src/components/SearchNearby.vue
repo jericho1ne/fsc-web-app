@@ -20,31 +20,27 @@
 							<h5 class="list-group-item-text" v-if="item.review_count">
 								{{item.review_count}} reviews
 							</h5>
-							<div>
+							<div v-if="item.rating">
 								<star-rating 
 									:star-size="24" 
-								 	:rating="item.rating"
+									:rating="item.rating"
 									:show-rating="false"
 									:border-width="1"
-								 	:increment="0.1"
-								 	:read-only="true"
-								 ></star-rating>
+									:increment="0.1"
+									:read-only="true"
+								></star-rating>
 							 </div>
 						</div>
-						<div class="thumb-spacer">
-							
+						<div class="thumb-spacer" v-if="item.rating">
 						</div>
-
-						<div class="mini-action-bar">
+						<div class="mini-action-bar" v-if="item.rating">
 							<!-- //click:deleteItem({{index}}) -->
 							<icon name="bookmark" class="fa-icon-md" style="fill:#fff"></icon>
 							<icon name="compass" class="fa-icon-md" style="fill:#fff"></icon>
 							<icon name="share-square" class="fa-icon-md" style="fill:#fff"></icon>
-							
 							<!-- <br>
 							<button class="btn btn-xs btn-danger" v-on="">Delete</button> -->
 						</div>
-
 					</div>
 					
 					
@@ -70,44 +66,38 @@ export default {
 			cityList: [],
 			// Set up dummy array of coffeeshops
 			items: [
-				// { name: 'Refinery', rating: '5', review_count: '200' },
-				// { name: 'Metropolis', rating: '3', review_count: '10' }
+				{ name: ' * Searching Nearby *', rating: '', review_count: '' },
 			]
 		} // End return
 	},
 	created: function () {
 		// `this` points to the vue instance
-		console.log(` ** ${this.$options.name} ** created `);
+		// console.log(` ** ${this.$options.name} ** created `);
 	}, 
 	mounted: function () {
-		console.log(` ** ${this.$options.name} ** mounted `);
+		console.log(` ** ${this.$options.name} mounted **`);
 		let _self = this;
 
 		this.getLocation().then(function(position) {
-			console.log(position.coords)
-			console.log(_self)
+			// Save position to member vars
 			_self.position.coords = position.coords
 			_self.position.lat = position.coords.latitude
 			_self.position.lon = position.coords.longitude
 
-			var requestUrl = 'http://api.findsomecoffee.com/search';
-			// var requestUrl = 'http://localhost:3001/search';
-			// TODOL  Hardcoded, for now.  But, need position of user when requested
+			// Ajax request to places API
 			let urlParams = 
 				`term=coffee&` + 
 				`lat=${_self.position.lat}&lon=${_self.position.lon}&` +
-				`price=1,2&` +
+				// List of comma delimited pricing levels (1,2,3,4)
+				`price=1,2,3,4&` +
+				// defaults to best_match
+				// { best_match, rating, review_count, distance }
+				`sort_by=distance` +
 				`limit=30`;
-			
-			_self.fetchData(requestUrl + '?' + urlParams);
-		});
 
-		// Get coffee shops AJAX
-		/*
-		var requestUrl = 'http://findsomecoffee.com/getCoffeeShops.php';
-		let urlParams = 
-			`city=Santa Monica&limit=10&term=coffee&radius=3200&limit=30`;
-		*/		
+			console.log(" Grabbing location ... ");
+			_self.fetchData(urlParams);
+		});
 	},
 	
 	methods: {
@@ -116,13 +106,13 @@ export default {
 		 * @param  {[type]} requestUrl [description]
 		 * @return {[type]}            [description]
 		 */
-		fetchData: function(requestUrl) {
+		fetchData: function(urlParams) {
+			console.log(" ** Query ** ")
+			console.log(urlParams)
 			var _self = this;
-			
-			console.log(requestUrl);
-
+			var requestUrl = '//api.findsomecoffee.com/search';
 		    this.$http({ 
-		    		url: requestUrl, 
+		    		url: requestUrl + '?' + urlParams, 
 		    		method: 'GET',
 		    	})
 		   		.then(response => {
@@ -177,12 +167,12 @@ export default {
 	li.item {
 		position: relative;
 		display: inline-block;
-		border: 1px solid #dedede;
-		margin: 0px 20px 20px 0px;
-		border-radius: 4px;
+		/*border: 1px solid #dedede;*/
+		margin: 10px 10px 5px 10px;
+		border-radius: 3px;
 		width: 200px;
 		height: 200px;
-		background-color: #fafafa;
+		background-color: transparent;
 		overflow: hidden;
 	}
 	li .thumb:hover {
@@ -198,9 +188,11 @@ export default {
 	.item-title {
 		min-height: 15%;
 		height: auto;
-		background-color: #fff;
-		padding: 2px 6px;
-		opacity: 0.9;
+		width: 100%;
+		color: #fff;
+		background-color: #84C2D6;
+		padding: 2px;
+		opacity: 1;
 	}
 	.thumb-spacer {
 		height: auto;

@@ -10,12 +10,9 @@
 		<div class="list-group">
 			<ul class="">
 				<li v-for="city in cities" class="city">	
-					
-					<button v-on:click="selectCity(city)"
+					<button @click="selectCity(city)"
 						class="btn btn-primary"
 					>{{city.display}}</button>
-					
-
 				</li>
 			</ul>
 		</div>
@@ -87,6 +84,8 @@ export default {
 	},
 	created: function () {
 		console.log(` ** ${this.$options.name} ** created `);
+
+		this.globalMethod(); 
 	}, 
 	mounted: function () {
 		console.log(` ** ${this.$options.name} ** mounted `);
