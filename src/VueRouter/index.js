@@ -3,12 +3,10 @@
 // 
 
 
-// Architectural
+// Architectural (Icon and StarRating already in global scope)
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
-
-// Already in Global scope: Icon and StarRating
 
 // Pages 
 import SearchNearby from 'components/SearchNearby'

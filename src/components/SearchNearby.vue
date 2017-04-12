@@ -25,7 +25,7 @@
 									:star-size="24" 
 									:rating="item.rating"
 									:show-rating="false"
-									:border-width="1"
+									:border-width="0"
 									:increment="0.1"
 									:read-only="true"
 								></star-rating>
@@ -159,55 +159,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	ul.items {
-		list-style-type: none;
-		padding: 0;
-	}
-
-	li.item {
-		position: relative;
-		display: inline-block;
-		/*border: 1px solid #dedede;*/
-		margin: 10px 10px 5px 10px;
-		border-radius: 3px;
-		width: 200px;
-		height: 200px;
-		background-color: transparent;
-		overflow: hidden;
-	}
-	li .thumb:hover {
-		cursor: pointer;
-	}
-	.thumb {
-		top: 0px;
-		height: 100%;
-		background-position: left top;
-		background: no-repeat;
-		background-size: cover;
-	}
-	.item-title {
-		min-height: 15%;
-		height: auto;
-		width: 100%;
-		color: #fff;
-		background-color: #84C2D6;
-		padding: 2px;
-		opacity: 1;
-	}
-	.thumb-spacer {
-		height: auto;
-	}
-	.mini-action-bar {
-		position: absolute;
-		bottom: -2px;
-		margin-left: 35%;
-		text-align: center;
-		opacity: 0.95;
-		padding: 0px;
-		height: auto;
-		color: #fff;
-	}
-	a {
-		color: #42b983;
-	}
+	
+	
 </style>

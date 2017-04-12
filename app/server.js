@@ -33,15 +33,19 @@ app.get('/search', function(request, response) {
 
 	let params = {
 		term: query.term,
-		//location: '90401', 
+		location: query.location, 
 		longitude: parseFloat(query.lon),
 		latitude: parseFloat(query.lat),
 		price: query.price, 
 		limit: parseInt(query.limit)
 	};
+/*
+	console.log(" >> app.get << ")
+	console.log(' *** query ***');
+	console.log(params);
 	console.log(' *** params ***');
 	console.log(params);
-
+*/
 	yelp.searchBusiness(params)
 		.then((results) => {
 			console.log(' * Results in browser *');

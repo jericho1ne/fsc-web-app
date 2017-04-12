@@ -7,7 +7,7 @@
 		<icon name="circle" class="fa-icon-lg"></icon>
 		<icon name="circle" class="fa-icon-xl"></icon> -->
 		
-		<div class="list-group">
+		<div class="">
 			<ul class="">
 				<li v-for="city in cities" class="city">	
 					<button @click="selectCity(city)"
@@ -16,8 +16,46 @@
 				</li>
 			</ul>
 		</div>
-		<div id="items">
-		<!-- results populate here -->
+		<div class="list-group">
+			<ul class="items">
+				<li v-for="item in items" class="item">	
+					
+					<div class="thumb" 
+						v-bind:style="{ backgroundImage: 'url(' + item.image_url + ')' }">
+						
+						<div class="item-title">
+							<h4 class="list-group-item-heading">{{item.name}}</h4>		
+							<!-- <img :src="" /> -->
+							<h5 class="list-group-item-text" v-if="item.review_count">
+								{{item.review_count}} reviews
+							</h5>
+							<div v-if="item.rating">
+								<star-rating 
+									:star-size="24" 
+									:rating="item.rating"
+									:show-rating="false"
+									:border-width="0"
+									:increment="0.1"
+									:read-only="true"
+								></star-rating>
+							 </div>
+						</div>
+						<div class="thumb-spacer" v-if="item.rating">
+						</div>
+						<div class="mini-action-bar" v-if="item.rating">
+							<!-- //click:deleteItem({{index}}) -->
+							<icon name="bookmark" class="fa-icon-md" style="fill:#fff"></icon>
+							<icon name="compass" class="fa-icon-md" style="fill:#fff"></icon>
+							<icon name="share-square" class="fa-icon-md" style="fill:#fff"></icon>
+							<!-- <br>
+							<button class="btn btn-xs btn-danger" v-on="">Delete</button> -->
+						</div>
+					</div>
+					
+					
+
+				</li>
+			</ul>
 		</div>
 	</div>
 	
@@ -28,7 +66,25 @@ export default {
 	name: 'SearchByCity',
 	data () {
 		return {
+			items: [
+				// { name: ' * Searching Nearby *', rating: '', review_count: '' },
+			],
 			cities: [
+				{ 
+					name: 'Seattle',
+					display: 'Seattle',
+					state: 'WA',
+				},
+				{ 
+					name: 'Portland',
+					display: 'Portland',
+					state: 'OR',
+				},
+				{ 
+					name: 'San Francisco',
+					display: 'San Francisco',
+					state: 'CA',
+				},
 				{ 
 					name: 'Los Angeles',
 					display: 'LA',
@@ -46,18 +102,23 @@ export default {
 				},
 				{ 
 					name: 'Santa Barbara',
-					display: 'SB',
+					display: 'Santa Barbara',
 					state: 'CA',
 				},
 				{ 
 					name: 'San Diego',
-					display: 'SD',
+					display: 'San Diego',
 					state: 'CA',
 				},
 				{ 
 					name: 'San Francisco',
-					display: 'SF',
+					display: 'San Francisco',
 					state: 'CA',
+				},
+				{ 
+					name: 'East Lansing',
+					display: 'East Lansing',
+					state: 'MI',
 				},
 				{ 
 					name: 'Chicago',
@@ -67,7 +128,7 @@ export default {
 				{ 
 					name: 'New York',
 					display: 'NYC',
-					state: 'NYC',
+					state: 'NY',
 				},
 				{ 
 					name: 'Melbourne',
@@ -83,12 +144,10 @@ export default {
 		}
 	},
 	created: function () {
-		console.log(` ** ${this.$options.name} ** created `);
-
-		this.globalMethod(); 
+		// this.globalMethod(); 
 	}, 
 	mounted: function () {
-		console.log(` ** ${this.$options.name} ** mounted `);
+		console.log(` ** ${this.$options.name} mounted **`);
 
 		var self = this;
 
@@ -115,45 +174,67 @@ export default {
 			console.log(" selectCity called :: " + selectedCity)
 
 
-		  //   this.$http.get(requestUrl)
-		  //  		.then(response => {
-		  //  			// Set the displayed item to the AJAX response
-		  //  			if (response.body.count) {
-			 //   			_self.items = response.body.results;
-			 //   			//console.log(_self.items);
-		  //  			}
-		  //  			else {
-		  //  				console.warn("No results.");
-		  //  			}
-				// }, response => {
-				// 	console.warn("Error");
-				// })
-				// .then(function() {
-				// 	// console.log('*** fire this after data is received ***')
-				// 	// TODO:  fill in actions that should always fire
-				// 	//this.displayData(this.items);
-				// });
+		  	// Ajax request to places API
+			let urlParams = 
+				`term=coffee&` + 
+				`location=${selectedCity}&` +
+				// List of comma delimited pricing levels (1,2,3,4)
+				`price=1,2,3,4&` +
+				// defaults to best_match
+				// { best_match, rating, review_count, distance }
+				// `sort_by=rating` +
+				`limit=30`;
+
+			console.log(" Grabbing location ... ");
+			_self.fetchData(urlParams);
 		}, // End fetchData
 
-		displayData: function(data) {
-   			console.log( " ** displayData " );
-			console.log(data);
-			// this.$set('items', data);
-		},
+		/**
+		 * Ajax call to data source
+		 * @param  {[type]} requestUrl [description]
+		 * @return {[type]}            [description]
+		 */
+		fetchData: function(urlParams) {
+			console.log(" ** Query ** ")
+			console.log(urlParams)
+			var _self = this;
+			var requestUrl = '//api.findsomecoffee.com/search';
+		    this.$http({ 
+		    		url: requestUrl + '?' + urlParams, 
+		    		method: 'GET',
+		    	})
+		   		.then(response => {
+		   			console.log(response)
+		   			// Set the displayed item to the AJAX response
+		   			if (typeof response.body.businesses === 'object') {
+			   			_self.items = response.body.businesses;
+		   			}
+		   			else {
+		   				console.warn("No results.");
+		   			}
+				}, response => {
+					console.warn("Error");
+				})
+				.then(function() {
+					// console.log('*** fire this after data is received ***')
+					// TODO:  fill in actions that should always fire
+					//this.displayData(this.items);
+				});
+		}, // End fetchData
 
-		deleteItem: function(index) {
-			
-		}
+		getLocation: function() {
+			return new Promise(function (resolve, reject) {
+				navigator.geolocation.getCurrentPosition(function (position) {
+					resolve(position);
+				});
+			});
+		},
 	},
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	ul.items {
-		list-style-type: none;
-		padding: 0;
-	}
-	ul li { display: inline; }
+	
 	
 </style>

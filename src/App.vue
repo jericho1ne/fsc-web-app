@@ -50,7 +50,7 @@
 	}
 	h3, h4 {
 		font-weight: bold;
-		margin: 0.25em;
+		margin: 0.35em;
 	}
 	h5 {
 		font-weight: normal;
@@ -66,6 +66,9 @@
 		background-color: #EE2222;
 		cursor: pointer;
 	}
+
+	/* General */
+
 	button {
 		/*font-family: Arial;*/
 		letter-spacing: 2px;
@@ -137,6 +140,7 @@
 		fill: #BC0C0C !important;
 	}
 	
+	/* Icons */
 	.fa-icon {
 		color: #84C2D6;
 	}
@@ -160,6 +164,8 @@
 		width: 80px;
 		height: 80px; /* or any other relative font sizes */
 	}
+
+	/* BORDERS */
 	.border-dev {
 		border: 1px solid pink;
 	}
@@ -178,6 +184,8 @@
 	.bg-gray {
 		background-color: #eee;
 	}
+
+	/* PADDING / LAYOUT */
 	.pad2 {
 		padding: 2px;
 	}
@@ -186,5 +194,57 @@
 	}
 	.pad10 {
 		padding: 10px;
+	}
+
+	/* ITEM LIST */
+	ul li { display: inline; }
+	
+	ul.items {
+		list-style-type: none;
+		padding: 0;
+	}
+	li.item {
+		position: relative;
+		display: inline-block;
+		/*border: 1px solid #dedede;*/
+		margin: 10px 10px 5px 10px;
+		border-radius: 3px;
+		width:  300px;
+		height: 300px;
+		background-color: transparent;
+		overflow: hidden;
+	}
+	li .thumb:hover {
+		cursor: pointer;
+		opacity: 0.8;
+	}
+	.thumb {
+		top: 0px;
+		height: 100%;
+		background-position: left top;
+		background: no-repeat;
+		background-size: cover;
+	}
+	.item-title {
+		min-height: 15%;
+		height: auto;
+		width: auto;
+		color: #fff;
+		background-color: #84C2D6;
+		padding: 2px;
+		opacity: 1;
+	}
+	.thumb-spacer {
+		height: auto;
+	}
+	.mini-action-bar {
+		position: absolute;
+		bottom: -2px;
+		margin-left: 35%;
+		text-align: center;
+		opacity: 0.95;
+		padding: 0px;
+		height: auto;
+		color: #fff;
 	}
 </style>
