@@ -171,8 +171,7 @@ export default {
 			var _self = this;
 
 			let selectedCity = city.name + ', ' + city.state;
-			console.log(" selectCity called :: " + selectedCity)
-
+			//console.log(" selectCity called :: " + selectedCity)
 
 		  	// Ajax request to places API
 			let urlParams = 
@@ -185,7 +184,7 @@ export default {
 				`sort_by=rating&` +
 				`limit=30`;
 
-			console.log(" Grabbing location ... ");
+			//console.log(" Grabbing location ... ");
 			_self.fetchData(urlParams);
 		}, // End fetchData
 
@@ -195,8 +194,6 @@ export default {
 		 * @return {[type]}            [description]
 		 */
 		fetchData: function(urlParams) {
-			console.log(" ** Query ** ")
-			console.log(urlParams)
 			var _self = this;
 			var requestUrl = '//api.findsomecoffee.com/search';
 		    this.$http({ 
@@ -204,7 +201,6 @@ export default {
 		    		method: 'GET',
 		    	})
 		   		.then(response => {
-		   			console.log(response)
 		   			// Set the displayed item to the AJAX response
 		   			if (typeof response.body.businesses === 'object') {
 			   			_self.items = response.body.businesses;
@@ -216,9 +212,7 @@ export default {
 					console.warn("Error");
 				})
 				.then(function() {
-					// console.log('*** fire this after data is received ***')
 					// TODO:  fill in actions that should always fire
-					//this.displayData(this.items);
 				});
 		}, // End fetchData
 

@@ -110,8 +110,6 @@ export default {
 		 * @return {[type]}            [description]
 		 */
 		fetchData: function(urlParams) {
-			console.log(" ** Query ** ")
-			console.log(urlParams)
 			var _self = this;
 			var requestUrl = '//api.findsomecoffee.com/search';
 			this.$http({ 
