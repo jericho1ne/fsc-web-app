@@ -20,6 +20,9 @@
 							<h5 class="list-group-item-text" v-if="item.review_count">
 								{{item.review_count}} reviews
 							</h5>
+							<h5 class="list-group-item-text" v-if="item.review_count">
+								{{item.distance}} miles away
+							</h5>
 							<div v-if="item.rating">
 								<star-rating 
 									:star-size="24" 
@@ -92,7 +95,7 @@ export default {
 				`price=1,2,3,4&` +
 				// defaults to best_match
 				// { best_match, rating, review_count, distance }
-				`sort_by=distance` +
+				`sort_by=distance&` +
 				`limit=30`;
 
 			console.log(" Grabbing location ... ");
@@ -111,18 +114,29 @@ export default {
 			console.log(urlParams)
 			var _self = this;
 			var requestUrl = '//api.findsomecoffee.com/search';
-		    this.$http({ 
-		    		url: requestUrl + '?' + urlParams, 
-		    		method: 'GET',
-		    	})
-		   		.then(response => {
-		   			// Set the displayed item to the AJAX response
-		   			if (typeof response.body.businesses === 'object') {
-			   			_self.items = response.body.businesses;
-		   			}
-		   			else {
-		   				console.warn("No results.");
-		   			}
+			this.$http({ 
+					url: requestUrl + '?' + urlParams, 
+					method: 'GET',
+				})
+				.then(response => {
+					// Set the displayed item to the AJAX response
+					if (typeof response.body.businesses === 'object') {
+						const items = response.body.businesses;
+
+						// Convert meters to miles
+						items.forEach((item) => {
+							item.distance = (item.distance * 0.000621371).toFixed(1);
+						});
+
+						// Sort based on proximity
+						items.sort(function(a, b) {		// sort by proximity (closest first)
+							return parseFloat(a.distance) - parseFloat(b.distance);
+						});
+						_self.items = items;
+					}
+					else {
+						console.warn("No results.");
+					}
 				}, response => {
 					console.warn("Error");
 				})
@@ -142,7 +156,7 @@ export default {
 		},
 
 		displayData: function(data) {
-   			console.log( " ** displayData " );
+			console.log( " ** displayData " );
 			console.log(data);
 			// this.$set('items', data);
 		},

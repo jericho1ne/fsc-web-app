@@ -182,7 +182,7 @@ export default {
 				`price=1,2,3,4&` +
 				// defaults to best_match
 				// { best_match, rating, review_count, distance }
-				// `sort_by=rating` +
+				`sort_by=rating&` +
 				`limit=30`;
 
 			console.log(" Grabbing location ... ");

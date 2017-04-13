@@ -74,6 +74,7 @@
     "shelljs": "^0.7.6",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
+    "underscore": "^1.8.3",
     "url-loader": "^0.5.7",
     "vue": "^2.2.6",
     "vue-awesome": "^2.2.3",

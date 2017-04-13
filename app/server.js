@@ -37,6 +37,7 @@ app.get('/search', function(request, response) {
 		longitude: parseFloat(query.lon),
 		latitude: parseFloat(query.lat),
 		price: query.price, 
+		sort_by: query.sort_by,
 		limit: parseInt(query.limit)
 	};
 /*
