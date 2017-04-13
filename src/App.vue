@@ -197,6 +197,9 @@
 	}
 
 	/* ITEM LIST */
+	div .star-rating {
+		display: inline-block !important;
+	}
 	ul li { display: inline; }
 	
 	ul.items {
@@ -209,8 +212,8 @@
 		/*border: 1px solid #dedede;*/
 		margin: 10px 10px 5px 10px;
 		border-radius: 3px;
-		width:  300px;
-		height: 300px;
+		width:  280px;
+		height: 280px;
 		background-color: transparent;
 		overflow: hidden;
 	}

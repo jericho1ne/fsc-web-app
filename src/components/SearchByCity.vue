@@ -86,8 +86,8 @@ export default {
 					state: 'CA',
 				},
 				{ 
-					name: 'Los Angeles',
-					display: 'LA',
+					name: 'Santa Barbara',
+					display: 'Santa Barbara',
 					state: 'CA',
 				},
 				{ 
@@ -96,23 +96,23 @@ export default {
 					state: 'CA',
 				},
 				{ 
+					name: 'Los Angeles',
+					display: 'LA',
+					state: 'CA',
+				},
+				{ 
 					name: 'Culver City',
 					display: 'Culver City',
 					state: 'CA',
 				},
 				{ 
-					name: 'Santa Barbara',
-					display: 'Santa Barbara',
+					name: 'Mission Viejo',
+					display: 'Mission Viejo',
 					state: 'CA',
 				},
 				{ 
 					name: 'San Diego',
 					display: 'San Diego',
-					state: 'CA',
-				},
-				{ 
-					name: 'San Francisco',
-					display: 'San Francisco',
 					state: 'CA',
 				},
 				{ 
