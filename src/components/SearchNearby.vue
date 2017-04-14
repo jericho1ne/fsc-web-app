@@ -113,7 +113,8 @@ export default {
 						});
 
 						// Sort based on proximity
-						items.sort(function(a, b) {		// sort by proximity (closest first)
+						items.sort(function(a, b) {		
+							// sort by proximity (closest first)
 							return parseFloat(a.distance) - parseFloat(b.distance);
 						});
 						_self.items = items;
@@ -131,7 +132,7 @@ export default {
 		getItemDetail: function(itemid) {
 			this.$root.getItemDetail(itemid);
 		},
-		
+
 		deleteItem: function(index) {
 			if( confirm("Are you sure you want to delete this entry?")) {
 				// $remove is a Vue convenience method similar to splice

@@ -175,7 +175,15 @@ export default {
 			_self.$root.fetchData(urlParams).then(response => {
 				// Set the displayed item to the AJAX response
 				if (typeof response.body.businesses === 'object') {
-					_self.items = response.body.businesses;
+					const items = response.body.businesses;
+
+					// Sort based on proximity
+					items.sort(function(a, b) {		
+						// sort by rating (highest first)
+						return parseFloat(a.rating) - parseFloat(b.rating);
+					}).reverse();
+
+					_self.items = items;
 				}
 				else {
 					console.warn("No results.");
