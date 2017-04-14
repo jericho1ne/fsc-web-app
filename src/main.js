@@ -66,10 +66,15 @@ const app = new Vue({
 	mounted: function () {
 		
 	},
-	// Custom Globally-avaiable functions
+	// Globally-avaiable functions
 	methods: {
-		globalMethod: function() {
-			console.log( ' globalMethod called. ')
-		}
+		getLocation: function() {
+			return new Promise(function (resolve, reject) {
+				navigator.geolocation.getCurrentPosition(function (position) {
+					resolve(position);
+				});
+			});
+		},
+		
 	}, 
 })

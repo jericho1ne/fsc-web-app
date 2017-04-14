@@ -216,13 +216,6 @@ export default {
 				});
 		}, // End fetchData
 
-		getLocation: function() {
-			return new Promise(function (resolve, reject) {
-				navigator.geolocation.getCurrentPosition(function (position) {
-					resolve(position);
-				});
-			});
-		},
 	},
 }
 </script>

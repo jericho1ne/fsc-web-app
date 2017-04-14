@@ -81,7 +81,7 @@ export default {
 		console.log(` ** ${this.$options.name} mounted **`);
 		let _self = this;
 
-		this.getLocation().then(function(position) {
+		this.$root.getLocation().then(function(position) {
 			// Save position to member vars
 			_self.position.coords = position.coords
 			_self.position.lat = position.coords.latitude
