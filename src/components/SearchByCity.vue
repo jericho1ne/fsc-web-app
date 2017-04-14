@@ -8,7 +8,17 @@
 		<icon name="circle" class="fa-icon-xl"></icon> -->
 		
 		<div class="">
-			<ul class="">
+			<button v-if="isActive" ><icon name="angle-up" class="fa-icon-lg"
+				@click="toggleVisibility"
+   				v-bind:class="{ active: isActive }"
+    		></icon></button>
+			
+			<button v-else><icon name="angle-down" class="fa-icon-lg"
+				@click="toggleVisibility"
+    			v-bind:class="{ active: isActive }"
+    		></icon></button>
+			
+			<ul id="cityList" class="">
 				<li v-for="city in cities" class="city">	
 					<button @click="selectCity(city)"
 						class="btn btn-primary"
@@ -66,6 +76,7 @@ export default {
 	name: 'SearchByCity',
 	data () {
 		return {
+			isActive: false,
 			items: [
 				// { name: ' * Searching Nearby *', rating: '', review_count: '' },
 			],
@@ -169,8 +180,8 @@ export default {
 				`price=1,2,3,4&` +
 				// defaults to best_match
 				// { best_match, rating, review_count, distance }
-				`sort_by=rating&` +
-				`limit=30`;
+				`sort_by=review_count&` +
+				`limit=40`;
 
 			_self.$root.fetchData(urlParams).then(response => {
 				// Set the displayed item to the AJAX response
@@ -180,7 +191,8 @@ export default {
 					// Sort based on proximity
 					items.sort(function(a, b) {		
 						// sort by rating (highest first)
-						return parseFloat(a.rating) - parseFloat(b.rating);
+						return parseFloat(a.rating) - parseFloat(b.rating)
+							|| a.reviews - b.reviews;
 					}).reverse();
 
 					_self.items = items;
@@ -196,6 +208,12 @@ export default {
 		getItemDetail: function(itemid) {
 			this.$root.getItemDetail(itemid);
 		},
+
+		toggleVisibility: function() {
+			console.log( 'toggleVisibility' );
+            this.isActive = !this.isActive;
+          // some code to filter users
+        },
 
 	},
 }
