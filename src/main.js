@@ -68,6 +68,10 @@ const app = new Vue({
 	},
 	// Globally-avaiable functions
 	methods: {
+		/**
+		 * Gets a user's position
+		 * @return {Promise} Object that can be resolved with the provided value
+		 */
 		getLocation: function() {
 			return new Promise(function (resolve, reject) {
 				navigator.geolocation.getCurrentPosition(function (position) {
@@ -76,5 +80,23 @@ const app = new Vue({
 			});
 		},
 		
+		/**
+		 * Ajax call to data source
+		 * @param  {string} requestUrl GET url params to be appended
+		 * @return {Promise} 
+		 */
+		fetchData: function(urlParams) {
+			console.log(urlParams);
+			var _self = this;
+			var requestUrl = '//api.findsomecoffee.com/search';
+		    return this.$http({ 
+		    		url: requestUrl + '?' + urlParams, 
+		    		method: 'GET',
+		    	});
+		}, // End fetchData
+
+		getItemDetail: function(itemid) {
+			console.log(itemid);
+		},
 	}, 
 })

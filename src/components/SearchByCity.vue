@@ -21,7 +21,9 @@
 				<li v-for="item in items" class="item">	
 					
 					<div class="thumb" 
-						v-bind:style="{ backgroundImage: 'url(' + item.image_url + ')' }">
+						v-bind:style="{ backgroundImage: 'url(' + item.image_url + ')' }"
+						@click="getItemDetail(item.id)"
+					>
 						
 						<div class="item-title">
 							<h4 class="list-group-item-heading">{{item.name}}</h4>		
@@ -52,8 +54,6 @@
 						</div>
 					</div>
 					
-					
-
 				</li>
 			</ul>
 		</div>
@@ -144,21 +144,9 @@ export default {
 		}
 	},
 	created: function () {
-		// this.globalMethod(); 
 	}, 
 	mounted: function () {
 		console.log(` ** ${this.$options.name} mounted **`);
-
-		var self = this;
-
-		// // Get coffee shops AJAX
-		// var requestUrl = 'http://findsomecoffee.com/getCoffeeShops.php';
-		// // Hardcoded by default
-		// // TODO: get position of user when requested
-		// var params = {
-		// 	'city': 'Santa Monica, CA' 
-		// };
-		// self.fetchData(requestUrl, params);
 	},
 	
 	methods: {
@@ -184,37 +172,22 @@ export default {
 				`sort_by=rating&` +
 				`limit=30`;
 
-			//console.log(" Grabbing location ... ");
-			_self.fetchData(urlParams);
-		}, // End fetchData
+			_self.$root.fetchData(urlParams).then(response => {
+				// Set the displayed item to the AJAX response
+				if (typeof response.body.businesses === 'object') {
+					_self.items = response.body.businesses;
+				}
+				else {
+					console.warn("No results.");
+				}
+			}, response => {
+				console.warn("Error");
+			});
+		}, // End selectCity
 
-		/**
-		 * Ajax call to data source
-		 * @param  {[type]} requestUrl [description]
-		 * @return {[type]}            [description]
-		 */
-		fetchData: function(urlParams) {
-			var _self = this;
-			var requestUrl = '//api.findsomecoffee.com/search';
-		    this.$http({ 
-		    		url: requestUrl + '?' + urlParams, 
-		    		method: 'GET',
-		    	})
-		   		.then(response => {
-		   			// Set the displayed item to the AJAX response
-		   			if (typeof response.body.businesses === 'object') {
-			   			_self.items = response.body.businesses;
-		   			}
-		   			else {
-		   				console.warn("No results.");
-		   			}
-				}, response => {
-					console.warn("Error");
-				})
-				.then(function() {
-					// TODO:  fill in actions that should always fire
-				});
-		}, // End fetchData
+		getItemDetail: function(itemid) {
+			this.$root.getItemDetail(itemid);
+		},
 
 	},
 }

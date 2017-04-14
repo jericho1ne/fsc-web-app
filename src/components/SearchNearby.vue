@@ -12,7 +12,9 @@
 				<li v-for="item in items" class="item">	
 					
 					<div class="thumb" 
-						v-bind:style="{ backgroundImage: 'url(' + item.image_url + ')' }">
+						v-bind:style="{ backgroundImage: 'url(' + item.image_url + ')' }"
+						@click="getItemDetail(item.id)"
+					>
 						
 						<div class="item-title">
 							<h4 class="list-group-item-heading">{{item.name}}</h4>		
@@ -99,23 +101,7 @@ export default {
 				`limit=30`;
 
 			console.log(" Grabbing location ... ");
-			_self.fetchData(urlParams);
-		});
-	},
-	
-	methods: {
-		/**
-		 * Ajax call to data source
-		 * @param  {[type]} requestUrl [description]
-		 * @return {[type]}            [description]
-		 */
-		fetchData: function(urlParams) {
-			var _self = this;
-			var requestUrl = '//api.findsomecoffee.com/search';
-			this.$http({ 
-					url: requestUrl + '?' + urlParams, 
-					method: 'GET',
-				})
+			_self.$root.fetchData(urlParams)
 				.then(response => {
 					// Set the displayed item to the AJAX response
 					if (typeof response.body.businesses === 'object') {
@@ -137,32 +123,19 @@ export default {
 					}
 				}, response => {
 					console.warn("Error");
-				})
-				.then(function() {
-					// console.log('*** fire this after data is received ***')
-					// TODO:  fill in actions that should always fire
-					//this.displayData(this.items);
 				});
-		}, // End fetchData
-
-		getLocation: function() {
-			return new Promise(function (resolve, reject) {
-				navigator.geolocation.getCurrentPosition(function (position) {
-					resolve(position);
-				});
-			});
+		});
+	},
+	
+	methods: {
+		getItemDetail: function(itemid) {
+			this.$root.getItemDetail(itemid);
 		},
-
-		displayData: function(data) {
-			console.log( " ** displayData " );
-			console.log(data);
-			// this.$set('items', data);
-		},
-
+		
 		deleteItem: function(index) {
 			if( confirm("Are you sure you want to delete this entry?")) {
 				// $remove is a Vue convenience method similar to splice
-				this.coffeeshops.$remove(index);        
+				// this.coffeeshops.$remove(index);        
 			}
 		}
 	},
