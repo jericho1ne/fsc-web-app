@@ -7,10 +7,10 @@
 		<icon name="circle" class="fa-icon-lg"></icon>
 		<icon name="circle" class="fa-icon-xl"></icon> -->
 		
-		<div class="border-bottom">
+		<div class="border-bottom" >		
 
-			<button 
-				v-if="isActive" 
+			<!-- Toggle button  -->
+			<button v-if="isActive" 
 				@click="toggleVisibility()" 
 				class="toggle"
 			>
@@ -18,8 +18,7 @@
 					class="fa-icon-lg"
    					v-bind:class="{ active: isActive }"></icon>
    			</button>
-			<button 
-				v-else 
+			<button v-else 
 				@click="toggleVisibility()" 
 				class="toggle"
 			>
@@ -28,21 +27,25 @@
 					v-bind:class="{ active: isActive }"></icon>
     		</button>
 			
-			<ul 
-				v-if="isActive"
-				id="cityList" 
-				v-bind:class="{ active: isActive }" 
-				class=""
-			>
-				<li v-for="city in cities" class="city">	
-					<button 
-						class="btn primary"
-						@click="selectCity(city)"
-					>
-						{{city.display}}
-					</button>
-				</li>
-			</ul>
+			<transition name="fade">
+				<!-- City List  -->
+				<ul 
+					v-if="isActive"
+					id="cityList" 
+					v-bind:class="{ active: isActive }" 
+					class=""
+				>
+					<li v-for="city in cities" class="city">	
+						<button 
+							class="btn primary"
+							@click="selectCity(city)"
+						>
+							{{city.display}}
+						</button>
+					</li>
+				</ul>
+			</transition>
+
 		</div>
 		<div class="list-group">
 			<ul class="items">
@@ -213,7 +216,10 @@ export default {
 							|| a.reviews - b.reviews;
 					}).reverse();
 
+					// Update displayed items
 					_self.items = items;
+					// Hide city selection buttons
+					this.toggleVisibility();
 				}
 				else {
 					console.warn("No results.");
@@ -237,6 +243,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	
-	
+	.fade-enter-active, .fade-leave-active {
+		transition: all 0.15s ease;
+	}
+	.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+		opacity: 0;
+	}
 </style>

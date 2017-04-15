@@ -101,6 +101,8 @@
 	}
 	button.toggle {
 		background-color: #fff;
+		padding: 2px;
+		margin: 4px;
 	}
 	button:hover.toggle {
 		background-color: none;
