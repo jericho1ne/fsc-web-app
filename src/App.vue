@@ -2,7 +2,7 @@
 <!-- "HTML" BASE FILE -->
 
 <template>
-	<div id="app" class="border-dark">
+	<div id="app" class="">
 		<div id="header" class="">
 			<div><icon name="coffee" class="fa-icon-xl blue-80"></icon></div>
 			<!-- <div><span class="blue-90">Find Some Coffee</span></div> -->
@@ -35,6 +35,9 @@
 </script>
 
 <style>
+	body {
+		margin: 0px;
+	}
 	#app {
 		font-family: 'Avenir', Helvetica, Arial, sans-serif;
 		-webkit-font-smoothing: antialiased;
@@ -81,18 +84,28 @@
 		text-transform: uppercase;
 		text-shadow: #0C5C76 0px 1px 2px;
 		width: auto;
-		background-color: #84C2D6;
 		border-radius: 14px;
 		border: none;
 		display: inline-block;
 		cursor: pointer;
 	}
-	button:hover {
-		background-color: #EE2222;
-	}
 	button:active {
 		background-color: #1A7695;
 	}
+	
+	button.primary {
+		background-color: #84C2D6;
+	}
+	button:hover.primary {
+		background-color: #EE2222;
+	}
+	button.toggle {
+		background-color: #fff;
+	}
+	button:hover.toggle {
+		background-color: none;
+	}
+
 	/* COLOR PALETTE */
 	/* http://paletton.com/palette.php?uid=7000A0kmtw0cHNai7DJrrtVtYnD */
 	.green-80 {

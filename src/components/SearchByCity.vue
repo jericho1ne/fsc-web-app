@@ -7,22 +7,40 @@
 		<icon name="circle" class="fa-icon-lg"></icon>
 		<icon name="circle" class="fa-icon-xl"></icon> -->
 		
-		<div class="">
-			<button v-if="isActive" ><icon name="angle-up" class="fa-icon-lg"
-				@click="toggleVisibility"
-   				v-bind:class="{ active: isActive }"
-    		></icon></button>
+		<div class="border-bottom">
+
+			<button 
+				v-if="isActive" 
+				@click="toggleVisibility()" 
+				class="toggle"
+			>
+				<icon name="angle-up" 
+					class="fa-icon-lg"
+   					v-bind:class="{ active: isActive }"></icon>
+   			</button>
+			<button 
+				v-else 
+				@click="toggleVisibility()" 
+				class="toggle"
+			>
+				<icon name="angle-down" 
+					class="fa-icon-lg"
+					v-bind:class="{ active: isActive }"></icon>
+    		</button>
 			
-			<button v-else><icon name="angle-down" class="fa-icon-lg"
-				@click="toggleVisibility"
-    			v-bind:class="{ active: isActive }"
-    		></icon></button>
-			
-			<ul id="cityList" class="">
+			<ul 
+				v-if="isActive"
+				id="cityList" 
+				v-bind:class="{ active: isActive }" 
+				class=""
+			>
 				<li v-for="city in cities" class="city">	
-					<button @click="selectCity(city)"
-						class="btn btn-primary"
-					>{{city.display}}</button>
+					<button 
+						class="btn primary"
+						@click="selectCity(city)"
+					>
+						{{city.display}}
+					</button>
 				</li>
 			</ul>
 		</div>
@@ -76,7 +94,7 @@ export default {
 	name: 'SearchByCity',
 	data () {
 		return {
-			isActive: false,
+			isActive: true,
 			items: [
 				// { name: ' * Searching Nearby *', rating: '', review_count: '' },
 			],
@@ -210,9 +228,7 @@ export default {
 		},
 
 		toggleVisibility: function() {
-			console.log( 'toggleVisibility' );
             this.isActive = !this.isActive;
-          // some code to filter users
         },
 
 	},
