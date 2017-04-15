@@ -23,7 +23,7 @@
 								{{item.review_count}} reviews
 							</h5>
 							<h5 class="list-group-item-text" v-if="item.review_count">
-								{{item.distance}} miles away
+								{{item.distance}}
 							</h5>
 							<div v-if="item.rating">
 								<star-rating 
@@ -107,15 +107,18 @@ export default {
 					if (typeof response.body.businesses === 'object') {
 						const items = response.body.businesses;
 
-						// Convert meters to miles
-						items.forEach((item) => {
-							item.distance = (item.distance * 0.000621371).toFixed(1);
-						});
-
 						// Sort based on proximity
 						items.sort(function(a, b) {		
 							// sort by proximity (closest first)
 							return parseFloat(a.distance) - parseFloat(b.distance);
+						});
+
+						// Convert meters to miles, customize display value
+						items.forEach((item) => {
+							let thisFarAway = (item.distance * 0.000621371).toFixed(1);
+							item.distance = thisFarAway < 0.1 
+								? `* Really Close *`
+								: `${thisFarAway} miles away`
 						});
 						_self.items = items;
 					}
