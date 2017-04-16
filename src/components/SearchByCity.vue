@@ -10,13 +10,13 @@
 		<div class="border-bottom" >		
 
 			<!-- Toggle button  -->
-			<button v-if="isActive" 
+			<button v-if="cityListActive" 
 				@click="toggleVisibility()" 
 				class="toggle"
 			>
 				<icon name="angle-up" 
 					class="fa-icon-lg"
-   					v-bind:class="{ active: isActive }"></icon>
+   					v-bind:class="{ active: cityListActive }"></icon>
    			</button>
 			<button v-else 
 				@click="toggleVisibility()" 
@@ -24,19 +24,20 @@
 			>
 				<icon name="angle-down" 
 					class="fa-icon-lg"
-					v-bind:class="{ active: isActive }"></icon>
+					v-bind:class="{ active: cityListActive }"></icon>
     		</button>
 			
 			<transition name="fade">
 				<!-- City List  -->
 				<ul 
-					v-if="isActive"
+					v-if="cityListActive"
 					id="cityList" 
-					v-bind:class="{ active: isActive }" 
+					v-bind:class="{ active: cityListActive }" 
 					class=""
 				>
 					<li v-for="city in cities" class="city">	
 						<button 
+							:class="{ 'button-selected': isThisTheCurrentCity(city) }"
 							class="btn primary"
 							@click="selectCity(city)"
 						>
@@ -97,7 +98,8 @@ export default {
 	name: 'SearchByCity',
 	data () {
 		return {
-			isActive: true,
+			cityListActive: true,
+			currentCity: '',
 			items: [
 				// { name: ' * Searching Nearby *', rating: '', review_count: '' },
 			],
@@ -178,10 +180,16 @@ export default {
 	created: function () {
 	}, 
 	mounted: function () {
-		console.log(` ** ${this.$options.name} mounted **`);
+		// console.log(` ** ${this.$options.name} mounted **`);
 	},
 	
 	methods: {
+		isThisTheCurrentCity: function(city) {
+			const thisIsTheCurrentCity = this.currentCity === (city.name + ', ' + city.state);
+			// console.log( city.name + ' : ' + thisIsTheCurrentCity);
+			return thisIsTheCurrentCity;
+		},
+
 		/**
 		 * Ajax call to search by city name
 		 * @param  {[type]} params     [description]
@@ -191,7 +199,9 @@ export default {
 			var _self = this;
 
 			let selectedCity = city.name + ', ' + city.state;
-			//console.log(" selectCity called :: " + selectedCity)
+			_self.currentCity = selectedCity;
+
+			// console.log(" selectCity called :: " + _self.currentCity);
 
 		  	// Ajax request to places API
 			let urlParams = 
@@ -234,7 +244,7 @@ export default {
 		},
 
 		toggleVisibility: function() {
-            this.isActive = !this.isActive;
+            this.cityListActive = !this.cityListActive;
         },
 
 	},
@@ -248,5 +258,8 @@ export default {
 	}
 	.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
 		opacity: 0;
+	}
+	.button-selected {
+		background-color: #BC0C0C;
 	}
 </style>

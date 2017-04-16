@@ -80,7 +80,7 @@ export default {
 		// console.log(` ** ${this.$options.name} ** created `);
 	}, 
 	mounted: function () {
-		console.log(` ** ${this.$options.name} mounted **`);
+		// console.log(` ** ${this.$options.name} mounted **`);
 		let _self = this;
 
 		this.$root.getLocation().then(function(position) {
