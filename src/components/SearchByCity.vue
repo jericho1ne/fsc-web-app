@@ -201,6 +201,9 @@ export default {
 			let selectedCity = city.name + ', ' + city.state;
 			_self.currentCity = selectedCity;
 
+			// Hide city selection buttons
+			this.toggleVisibility();
+
 			// console.log(" selectCity called :: " + _self.currentCity);
 
 		  	// Ajax request to places API
@@ -228,8 +231,6 @@ export default {
 
 					// Update displayed items
 					_self.items = items;
-					// Hide city selection buttons
-					this.toggleVisibility();
 				}
 				else {
 					console.warn("No results.");
