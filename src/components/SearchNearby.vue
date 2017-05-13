@@ -100,8 +100,8 @@ export default {
 				`sort_by=distance&` +
 				`limit=30`;
 
-			console.log(" Grabbing location ... ");
-			_self.$root.fetchData(urlParams)
+			// console.log(" Grabbing location ... ");
+			_self.$root.fetchDataFromApi(urlParams)
 				.then(response => {
 					// Set the displayed item to the AJAX response
 					if (typeof response.body.businesses === 'object') {

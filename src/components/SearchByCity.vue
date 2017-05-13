@@ -180,7 +180,26 @@ export default {
 	created: function () {
 	}, 
 	mounted: function () {
-		// console.log(` ** ${this.$options.name} mounted **`);
+		var self = this;
+        console.log(' loading JSON ');
+
+        //_self.$root.fetchData
+        this.$http({ 
+			url: 'assets/cities.json', 
+			method: 'GET'
+		})
+		.then(response => {
+			console.log(response);
+			// Set the displayed item to the AJAX response
+			// if (typeof response.body.businesses === 'object') {
+				
+			// }
+			// else {
+			// 	console.warn("No results.");
+			// }
+		}, response => {
+			console.warn("Error");
+		});
 	},
 	
 	methods: {
@@ -217,7 +236,7 @@ export default {
 				`sort_by=review_count&` +
 				`limit=40`;
 
-			_self.$root.fetchData(urlParams).then(response => {
+			_self.$root.fetchDataFromApi(urlParams).then(response => {
 				// Set the displayed item to the AJAX response
 				if (typeof response.body.businesses === 'object') {
 					const items = response.body.businesses;

@@ -85,14 +85,14 @@ const app = new Vue({
 		 * @param  {string} requestUrl GET url params to be appended
 		 * @return {Promise} 
 		 */
-		fetchData: function(urlParams) {
+		fetchDataFromApi: function(urlParams) {
 			console.log(urlParams);
 			var _self = this;
 			var requestUrl = '//api.findsomecoffee.com/search';
-		    return this.$http({ 
-		    		url: requestUrl + '?' + urlParams, 
-		    		method: 'GET',
-		    	});
+			return this.$http({ 
+					url: requestUrl + '?' + urlParams, 
+					method: 'GET',
+				});
 		}, // End fetchData
 
 		getItemDetail: function(itemid) {

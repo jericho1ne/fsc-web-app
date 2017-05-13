@@ -29,49 +29,10 @@ export default {
 	}, 
 	mounted: function () {
 		console.log(` ** ${this.$options.name} ** mounted `);
-
 		var self = this;
-
-		// // Get coffee shops AJAX
-		// var requestUrl = 'http://findsomecoffee.com/getCoffeeShops.php';
-		// // Hardcoded by default
-		// // TODO: get position of user when requested
-		// var params = {
-		// 	'city': 'Santa Monica, CA' 
-		// };
-		// self.fetchData(requestUrl, params);
 	},
 	
-	methods: {
-			/**
-		 * Ajax call to data source
-		 * @param  {[type]} requestUrl [description]
-		 * @param  {[type]} params     [description]
-		 * @return {[type]}            [description]
-		 */
-		fetchData: function(requestUrl, params) {
-			var _self = this;
-
-		    this.$http.get(requestUrl)
-		   		.then(response => {
-		   			// Set the displayed item to the AJAX response
-		   			if (response.body.count) {
-			   			_self.items = response.body.results;
-			   			//console.log(_self.items);
-		   			}
-		   			else {
-		   				console.warn("No results.");
-		   			}
-				}, response => {
-					console.warn("Error");
-				})
-				.then(function() {
-					// console.log('*** fire this after data is received ***')
-					// TODO:  fill in actions that should always fire
-					//this.displayData(this.items);
-				});
-		}, // End fetchData
-		
+	methods: {		
 	},
 }
 </script>
