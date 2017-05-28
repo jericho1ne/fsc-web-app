@@ -58,13 +58,14 @@
 					>
 						
 						<div class="item-title">
+							<img src="../assets/img/photo-not-available.jpg">
 							<h4 class="list-group-item-heading">{{item.name}}</h4>		
 							<!-- <img :src="" /> -->
 							<h5 class="list-group-item-text" v-if="item.review_count">
 								{{item.review_count}} reviews
 							</h5>
 							<div v-if="item.rating">
-								<star-rating 
+								 <star-rating 
 									:star-size="24" 
 									:rating="item.rating"
 									:show-rating="false"
@@ -184,25 +185,33 @@ export default {
         console.log(' loading JSON ');
 
         //_self.$root.fetchData
-        this.$http({ 
-			url: 'assets/cities.json', 
-			method: 'GET'
-		})
-		.then(response => {
-			console.log(response);
-			// Set the displayed item to the AJAX response
-			// if (typeof response.body.businesses === 'object') {
-				
-			// }
-			// else {
-			// 	console.warn("No results.");
-			// }
-		}, response => {
-			console.warn("Error");
-		});
+        this.fetchCities()
+	        .then(response => {
+				console.log(response);
+				// Set the displayed item to the AJAX response
+				// if (typeof response.body.businesses === 'object') {
+					
+				// }
+				// else {
+				// 	console.warn("No results.");
+				// }
+			}, response => {
+				console.warn("Error");
+			});
 	},
 	
 	methods: {
+		/**
+		 * Ajax call to grab preset city list
+		 * @return {Promise} 
+		 */
+		fetchCities: function() {
+			return this.$http({ 
+				url: '//www.findsomecoffee.com/assets/cities.json',
+				method: 'GET',
+			});
+		}, // End fetchCities
+
 		isThisTheCurrentCity: function(city) {
 			const thisIsTheCurrentCity = this.currentCity === (city.name + ', ' + city.state);
 			// console.log( city.name + ' : ' + thisIsTheCurrentCity);
