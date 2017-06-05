@@ -16,8 +16,8 @@
 			>
 				<icon name="angle-up" 
 					class="fa-icon-lg"
-   					v-bind:class="{ active: cityListActive }"></icon>
-   			</button>
+					v-bind:class="{ active: cityListActive }"></icon>
+			</button>
 			<button v-else 
 				@click="toggleVisibility()" 
 				class="toggle"
@@ -25,7 +25,7 @@
 				<icon name="angle-down" 
 					class="fa-icon-lg"
 					v-bind:class="{ active: cityListActive }"></icon>
-    		</button>
+			</button>
 			
 			<transition name="fade">
 				<!-- City List  -->
@@ -48,6 +48,7 @@
 			</transition>
 
 		</div>
+		
 		<div class="list-group">
 			<ul class="items">
 				<li v-for="item in items" class="item">	
@@ -58,14 +59,13 @@
 					>
 						
 						<div class="item-title">
-							<img src="../assets/img/photo-not-available.jpg">
 							<h4 class="list-group-item-heading">{{item.name}}</h4>		
 							<!-- <img :src="" /> -->
 							<h5 class="list-group-item-text" v-if="item.review_count">
 								{{item.review_count}} reviews
 							</h5>
 							<div v-if="item.rating">
-								 <star-rating 
+								<star-rating 
 									:star-size="24" 
 									:rating="item.rating"
 									:show-rating="false"
@@ -87,9 +87,12 @@
 						</div>
 					</div>
 					
+					
+
 				</li>
 			</ul>
 		</div>
+
 	</div>
 	
 </template>
@@ -104,114 +107,28 @@ export default {
 			items: [
 				// { name: ' * Searching Nearby *', rating: '', review_count: '' },
 			],
-			cities: [
-				{ 
-					name: 'Seattle',
-					display: 'Seattle',
-					state: 'WA',
-				},
-				{ 
-					name: 'Portland',
-					display: 'Portland',
-					state: 'OR',
-				},
-				{ 
-					name: 'San Francisco',
-					display: 'San Francisco',
-					state: 'CA',
-				},
-				{ 
-					name: 'Santa Barbara',
-					display: 'Santa Barbara',
-					state: 'CA',
-				},
-				{ 
-					name: 'Santa Monica',
-					display: 'Santa Monica',
-					state: 'CA',
-				},
-				{ 
-					name: 'Los Angeles',
-					display: 'LA',
-					state: 'CA',
-				},
-				{ 
-					name: 'Culver City',
-					display: 'Culver City',
-					state: 'CA',
-				},
-				{ 
-					name: 'Mission Viejo',
-					display: 'Mission Viejo',
-					state: 'CA',
-				},
-				{ 
-					name: 'San Diego',
-					display: 'San Diego',
-					state: 'CA',
-				},
-				{ 
-					name: 'East Lansing',
-					display: 'East Lansing',
-					state: 'MI',
-				},
-				{ 
-					name: 'Chicago',
-					display: 'CHI',
-					state: 'IL',
-				},
-				{ 
-					name: 'New York',
-					display: 'NYC',
-					state: 'NY',
-				},
-				{ 
-					name: 'Melbourne',
-					display: 'Melbourne',
-					state: 'VIC',
-				},
-				{ 
-					name: 'Sydney',
-					display: 'Sydney',
-					state: 'NSW',
-				},
-			],
+			cities: [],
 		}
 	},
 	created: function () {
 	}, 
 	mounted: function () {
-		var self = this;
-        console.log(' loading JSON ');
-
-        //_self.$root.fetchData
-        this.fetchCities()
-	        .then(response => {
-				console.log(response);
-				// Set the displayed item to the AJAX response
-				// if (typeof response.body.businesses === 'object') {
-					
-				// }
-				// else {
-				// 	console.warn("No results.");
-				// }
+		var _self = this;
+		_self.$root.fetchDataFromApi('cities', '')
+			.then(response => {
+				// Set the displayed cities to the AJAX response
+				if (typeof response.body === 'object') {
+					_self.cities = response.body;
+				}
+				else {
+					console.warn("No results.");
+				}
 			}, response => {
-				console.warn("Error");
+				console.warn("Error grabbing list of cities");
 			});
 	},
 	
 	methods: {
-		/**
-		 * Ajax call to grab preset city list
-		 * @return {Promise} 
-		 */
-		fetchCities: function() {
-			return this.$http({ 
-				url: '//www.findsomecoffee.com/assets/cities.json',
-				method: 'GET',
-			});
-		}, // End fetchCities
-
 		isThisTheCurrentCity: function(city) {
 			const thisIsTheCurrentCity = this.currentCity === (city.name + ', ' + city.state);
 			// console.log( city.name + ' : ' + thisIsTheCurrentCity);
@@ -225,16 +142,18 @@ export default {
 		 */
 		selectCity: function(city) {
 			var _self = this;
-
 			let selectedCity = city.name + ', ' + city.state;
 			_self.currentCity = selectedCity;
 
+			// Remove existing list of shops, display loading message
+			_self.items = [{ name: ' * Searching in ' + selectedCity + ' *', rating: '', review_count: '' }];
+			
 			// Hide city selection buttons
 			this.toggleVisibility();
 
-			// console.log(" selectCity called :: " + _self.currentCity);
+			console.log(" selectCity called :: " + _self.currentCity);
 
-		  	// Ajax request to places API
+			// Ajax request to places API
 			let urlParams = 
 				`term=coffee&` + 
 				`location=${selectedCity}&` +
@@ -245,7 +164,7 @@ export default {
 				`sort_by=review_count&` +
 				`limit=40`;
 
-			_self.$root.fetchDataFromApi(urlParams).then(response => {
+			_self.$root.fetchDataFromApi('search', urlParams).then(response => {
 				// Set the displayed item to the AJAX response
 				if (typeof response.body.businesses === 'object') {
 					const items = response.body.businesses;
@@ -273,8 +192,8 @@ export default {
 		},
 
 		toggleVisibility: function() {
-            this.cityListActive = !this.cityListActive;
-        },
+			this.cityListActive = !this.cityListActive;
+		},
 
 	},
 }

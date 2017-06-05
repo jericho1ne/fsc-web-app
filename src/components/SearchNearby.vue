@@ -101,7 +101,7 @@ export default {
 				`limit=30`;
 
 			// console.log(" Grabbing location ... ");
-			_self.$root.fetchDataFromApi(urlParams)
+			_self.$root.fetchDataFromApi('search', urlParams)
 				.then(response => {
 					// Set the displayed item to the AJAX response
 					if (typeof response.body.businesses === 'object') {

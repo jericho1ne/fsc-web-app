@@ -35,7 +35,6 @@ const app = new Vue({
 		// 	lat: '',
 		// 	lon: '',
 		// },
-		items: [],
 	},
 	// Anything that changes inside this task will trigger the
 	// provided method
@@ -82,13 +81,14 @@ const app = new Vue({
 		
 		/**
 		 * Ajax call to data source
-		 * @param  {string} requestUrl GET url params to be appended
+		 * @param {string} endpoint (eg: search, cities, etc)
+		 * @param {string} requestUrl GET url params to be appended
 		 * @return {Promise} 
 		 */
-		fetchDataFromApi: function(urlParams) {
+		fetchDataFromApi: function(endpoint, urlParams) {
 			console.log(urlParams);
 			var _self = this;
-			var requestUrl = '//api.findsomecoffee.com/search';
+			var requestUrl = '//api.findsomecoffee.com/' + endpoint;
 			return this.$http({ 
 					url: requestUrl + '?' + urlParams, 
 					method: 'GET',
