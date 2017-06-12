@@ -151,8 +151,6 @@ export default {
 			// Hide city selection buttons
 			this.toggleVisibility();
 
-			console.log(" selectCity called :: " + _self.currentCity);
-
 			// Ajax request to places API
 			let urlParams = 
 				`term=coffee&` + 

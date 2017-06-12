@@ -100,11 +100,13 @@ export default {
 				`sort_by=distance&` +
 				`limit=30`;
 
-			// console.log(" Grabbing location ... ");
 			_self.$root.fetchDataFromApi('search', urlParams)
 				.then(response => {
 					// Set the displayed item to the AJAX response
 					if (typeof response.body.businesses === 'object') {
+
+						console.log(response.body.businesses[0]);
+
 						const items = response.body.businesses;
 
 						// Sort based on proximity
@@ -118,7 +120,15 @@ export default {
 							let thisFarAway = (item.distance * 0.000621371).toFixed(1);
 							item.distance = thisFarAway < 0.1 
 								? `* Really Close *`
-								: `${thisFarAway} miles away`
+								: `${thisFarAway} miles away`;
+
+							// Replace the larger original image with a smaller one
+							const pattern = /o.jpg/;
+							const smaller_img = item.image_url.replace(pattern, 'l.jpg');							
+							item.image_url = smaller_img;
+
+							console.log(item);
+							
 						});
 						_self.items = items;
 					}

@@ -2,6 +2,9 @@
 
 > find some decent coffee nearby and maybe some wifi, yeah?
 
+## File Structure
+[https://vuejs-templates.github.io/webpack/structure.html](https://vuejs-templates.github.io/webpack/structure.html)
+
 ## Build Setup
 
 ``` bash

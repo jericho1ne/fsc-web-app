@@ -28,24 +28,26 @@ let portNumber = 3001;
 app.use(cors())
 
 
+//
 // API endpoints
-app
-	/**
-	 * :search
-	 * 
-	 * Returns a list of nearby coffee shops
-	 * URL example: ?term=coffee&lon=-118.495155&lat=34.012638&price=1,2&
-	 * 	sort_by=distance&limit=10
-	 * @param term (eg: coffee)
-	 * @param location Either city/province or zip
-	 * @param lat If location not filled in lat/lon required instead 
-	 * @param lon Same as above
-	 * @param sort_by Order the dataset
-	 * @param [price] One or more of the following price ranges: 1,2,3,4
-	 * @param [limit]  
-	 * @return Nearby coffee shops, nearest first
-	 */
-	.get('/search', function(request, response) {
+// 
+
+/**
+ * :search
+ * 
+ * Returns a list of nearby coffee shops
+ * URL example: ?term=coffee&lon=-118.495155&lat=34.012638&price=1,2&
+ * 	sort_by=distance&limit=10
+ * @param term (eg: coffee)
+ * @param location Either city/province or zip
+ * @param lat If location not filled in lat/lon required instead 
+ * @param lon Same as above
+ * @param sort_by Order the dataset
+ * @param [price] One or more of the following price ranges: 1,2,3,4
+ * @param [limit]  
+ * @return Nearby coffee shops, nearest first
+ */
+app.get('/search', function(request, response) {
 		let query = request.query;
 
 		let params = {
