@@ -60,15 +60,30 @@ app.get('/search', function(request, response) {
 			limit: parseInt(query.limit)
 		};
 		/*
-			console.log(" >> app.get << ")
-			console.log(' *** query ***');
-			console.log(params);
-			console.log(' *** params ***');
+			console.log(" >> app.get /search << ")
 			console.log(params);
 		*/
 		yelp.searchBusiness(params)
 			.then((results) => {
-				console.log(' * Results in browser *');
+				// Pass along the response payload directly	
+				response.json(results)
+			})
+			.catch(function (err) {
+				console.log(' *** Error ***');
+			    console.error(err);
+			});
+
+	})
+	/**
+	 * :business
+	 * @param  {[type]} request   [description]
+	 * @param  {[type]} response) {		let       query [description]
+	 * @return {[type]}           [description]
+	 */
+	.get('/business', function(request, response) {
+		const query = request.query;
+		yelp.getBusinessById(query.business) 
+			.then((results) => {
 				// Pass along the response payload directly	
 				response.json(results)
 			})

@@ -60,7 +60,6 @@
 						
 						<div class="item-title">
 							<h4 class="list-group-item-heading">{{item.name}}</h4>		
-							<!-- <img :src="" /> -->
 							<h5 class="list-group-item-text" v-if="item.review_count">
 								{{item.review_count}} reviews
 							</h5>
@@ -131,7 +130,6 @@ export default {
 	methods: {
 		isThisTheCurrentCity: function(city) {
 			const thisIsTheCurrentCity = this.currentCity === (city.name + ', ' + city.state);
-			// console.log( city.name + ' : ' + thisIsTheCurrentCity);
 			return thisIsTheCurrentCity;
 		},
 

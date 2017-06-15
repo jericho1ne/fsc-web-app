@@ -18,7 +18,6 @@
 						
 						<div class="item-title">
 							<h4 class="list-group-item-heading">{{item.name}}</h4>		
-							<!-- <img :src="" /> -->
 							<h5 class="list-group-item-text" v-if="item.review_count">
 								{{item.review_count}} reviews
 							</h5>
@@ -104,9 +103,6 @@ export default {
 				.then(response => {
 					// Set the displayed item to the AJAX response
 					if (typeof response.body.businesses === 'object') {
-
-						console.log(response.body.businesses[0]);
-
 						const items = response.body.businesses;
 
 						// Sort based on proximity
@@ -125,10 +121,7 @@ export default {
 							// Replace the larger original image with a smaller one
 							const pattern = /o.jpg/;
 							const smaller_img = item.image_url.replace(pattern, 'l.jpg');							
-							item.image_url = smaller_img;
-
-							console.log(item);
-							
+							item.image_url = smaller_img;							
 						});
 						_self.items = items;
 					}

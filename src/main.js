@@ -8,6 +8,7 @@ import Vue from 'vue'
 import App from './App'
 import VueRouter from './VueRouter'
 import Resource from 'vue-resource'
+import Icon from 'vue-awesome/components/Icon'
 
 // Include Font Awesome globally
 // Font Awesome icons (single includes to reduce bundle size) 
@@ -15,16 +16,20 @@ import Resource from 'vue-resource'
 // import 'vue-awesome/icons/coffee'
 // Or include full set (dev mode)
 import 'vue-awesome/icons'
-
-import Icon from 'vue-awesome/components/Icon'
 Vue.component('icon', Icon)
 
-import StarRating from 'vue-star-rating'
 
-// import StarRating from 'components/StarRating'
+// Import reusable UI elements from 'components/*'
+import StarRating from 'vue-star-rating'
 Vue.component('star-rating', StarRating)
 
+// import Modal from 'Modal'
+// Vue.component('modal', Modal)
+
+
+// 
 Vue.use(Resource)
+
 
 /* eslint-disable no-new */
 const app = new Vue({
@@ -96,7 +101,21 @@ const app = new Vue({
 		}, // End fetchData
 
 		getItemDetail: function(itemid) {
-			console.log(itemid);
+			let urlParams = `business=${itemid}`;
+			let _self = this;
+			
+			_self.$root.fetchDataFromApi('business', urlParams)
+				.then(response => {
+					if (typeof response.body === 'object') {
+						console.log(response.body);
+
+						// TODO store business details locally in an array to save 
+						// future lookups
+						// _self.businesses['this_one'] = response.body;
+					}
+				}, response => {
+					console.warn("Error");
+				});
 		},
 	}, 
 })
