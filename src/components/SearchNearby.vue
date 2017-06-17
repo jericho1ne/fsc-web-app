@@ -124,8 +124,7 @@ export default {
 							item.image_url = smaller_img;							
 						});
 						_self.items = items;
-					}
-					else {
+					} else {
 						console.warn("No results.");
 					}
 				}, response => {
