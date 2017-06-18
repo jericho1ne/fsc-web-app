@@ -10,7 +10,7 @@ Vue.use(VueRouter)
 // Pages 
 import SearchNearby from 'components/SearchNearby'
 import SearchByCity from 'components/SearchByCity'
-import About from 'components/About'
+import About 		from 'components/About'
 
 // Define the URL routes
 const routes = [

@@ -76,6 +76,7 @@
 						</div>
 						<div class="thumb-spacer" v-if="item.rating">
 						</div>
+						
 						<div class="mini-action-bar" v-if="item.rating">
 							<!-- //click:deleteItem({{index}}) -->
 							<icon name="bookmark" class="fa-icon-md" style="fill:#fff"></icon>

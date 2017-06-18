@@ -7,11 +7,14 @@
 				"app/node_modules",
 				"node_modules",
 				"dist",
+				"test",
+				"assets",
+				"static" 
 			],
 			"file_exclude_patterns": [
 				"*.sublime-project",
 				"*.sublime-workspace",
-				"*.zip",
+				"*.zip", "*.log"
 			]
 		},
 	],

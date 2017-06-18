@@ -7,7 +7,6 @@
 import Vue from 'vue'
 import App from './App'
 import VueRouter from './VueRouter'
-import Resource from 'vue-resource'
 import Icon from 'vue-awesome/components/Icon'
 
 // Include Font Awesome globally
@@ -23,12 +22,22 @@ Vue.component('icon', Icon)
 import StarRating from 'vue-star-rating'
 Vue.component('star-rating', StarRating)
 
-// import Modal from 'Modal'
-// Vue.component('modal', Modal)
-
-
-// 
+//
+// Register components
+//
+import Resource from 'vue-resource'
 Vue.use(Resource)
+
+//  https://www.npmjs.com/package/vue-js-modal 
+//  http://vue-js-modal.yev.io/
+import vmodal from 'vue-js-modal'
+Vue.use(vmodal);
+
+//  https://bootstrap-vue.github.io/docs/setup
+// import BootstrapVue from 'bootstrap-vue';
+// Vue.use(BootstrapVue);
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 
 /* eslint-disable no-new */
@@ -63,9 +72,11 @@ const app = new Vue({
 		App,
 		Icon,
 		StarRating,
+		vmodal
 	},
 	created: function () {
 		// `this` points to the vm instance
+		console.log(vmodal);
 	}, 
 	mounted: function () {
 		
@@ -104,10 +115,14 @@ const app = new Vue({
 			let urlParams = `business=${itemid}`;
 			let _self = this;
 			
+			_self.$modal.show('vue-js-modal');
+
 			_self.$root.fetchDataFromApi('business', urlParams)
 				.then(response => {
 					if (typeof response.body === 'object') {
 						console.log(response.body);
+
+						
 
 						// TODO store business details locally in an array to save 
 						// future lookups

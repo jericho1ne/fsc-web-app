@@ -1,5 +1,17 @@
 <template>
 	<div class="">
+		<modal name="vue-js-modal">
+			<form @submit.stop.prevent="submit">
+		  		hello, world! (http://vue-js-modal.yev.io/ modal)
+		  	</form>
+		</modal>
+
+		<!-- <b-modal id="modal1" title="Submit your name" @ok="submit" @shown="clearName">
+    		<form @submit.stop.prevent="submit">
+				<b-form-input type="text" placeholder="Enter your name" v-model="name"></b-form-input>
+			</form>
+		</b-modal> -->
+
 		<!-- <input type="text" v-model="msg" /> -->
 		<!-- <icon name="circle" class="fa-icon-xs"></icon>
 		<icon name="circle" class="fa-icon-sm"></icon>
