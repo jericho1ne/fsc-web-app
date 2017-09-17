@@ -39,16 +39,15 @@ Vue.use(vmodal);
 // import 'bootstrap/dist/css/bootstrap.css'
 // import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-
 /* eslint-disable no-new */
 const app = new Vue({
 	el: '#app',
 	data: {
-		// position: {
+		// apiUrl: 'https://api-php.findsomecoffee.com/',
+		apiUrl: '../../api-php/',
 		// 	coords: '',
 		// 	lat: '',
 		// 	lon: '',
-		// },
 	},
 	// Anything that changes inside this task will trigger the
 	// provided method
@@ -102,13 +101,16 @@ const app = new Vue({
 		 * @return {Promise} 
 		 */
 		fetchDataFromApi: function(endpoint, urlParams) {
-			console.log(urlParams);
 			var _self = this;
-			var requestUrl = '//api.findsomecoffee.com/' + endpoint;
+			var requestUrl = _self._data.apiUrl + endpoint + '?' + urlParams;
+			
 			return this.$http({ 
-					url: requestUrl + '?' + urlParams, 
-					method: 'GET',
-				});
+				url: requestUrl, 
+				method: 'GET',
+				headers: { 
+					'Access-Control-Allow-Origin': '*'
+				}
+			});
 		}, // End fetchData
 
 		getItemDetail: function(itemid) {
@@ -121,8 +123,6 @@ const app = new Vue({
 				.then(response => {
 					if (typeof response.body === 'object') {
 						console.log(response.body);
-
-						
 
 						// TODO store business details locally in an array to save 
 						// future lookups
