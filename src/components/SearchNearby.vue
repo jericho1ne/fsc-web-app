@@ -80,10 +80,8 @@ export default {
 	},
 	created: function () {
 		// `this` points to the vue instance
-		// console.log(` ** ${this.$options.name} ** created `);
 	}, 
 	mounted: function () {
-		// console.log(` ** ${this.$options.name} mounted **`);
 		let _self = this;
 
 		this.$root.getLocation().then(function(position) {
@@ -148,10 +146,10 @@ export default {
 			}
 		},
 		beforeOpen (event) {
-			console.log(event.params);
+			// console.log(event.params);
 		},
 		beforeClose (event) {
-			console.log(event.params);
+			// console.log(event.params);
 		},
 	},
 }

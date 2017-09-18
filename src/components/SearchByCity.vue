@@ -1,11 +1,6 @@
 <template>
 	<div class="">
-		<!-- <input type="text" v-model="msg" /> -->
-		<!-- <icon name="circle" class="fa-icon-xs"></icon>
-		<icon name="circle" class="fa-icon-sm"></icon>
-		<icon name="circle" class="fa-icon-md"></icon>
-		<icon name="circle" class="fa-icon-lg"></icon>
-		<icon name="circle" class="fa-icon-xl"></icon> -->
+		<v-dialog/>
 		
 		<div class="border-bottom" >		
 

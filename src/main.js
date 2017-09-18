@@ -77,11 +77,6 @@ const app = new Vue({
 	},
 	created: function () {
 		// `this` points to the vm instance		
-		// console.log(" ** modal **");
-		// console.log(this);
-
-		// console.log(detailModal);
-		// 
 	}, 
 	mounted: function () {
 		
@@ -164,16 +159,12 @@ const app = new Vue({
 
 			let urlParams = `business=${itemid}`;
 			let _self = this;
-			console.log(urlParams);
 
 
 			_self.$root.fetchDataFromApi('business', urlParams)
 				.then(response => {
 					if (typeof response.body === 'object') {
-						console.log(response.body);
-
 						_self.$root.showItemDetail(response.body);
-
 						// TODO store business details locally in an array to save 
 						// future lookups
 						// _self.businesses['this_one'] = response.body;
