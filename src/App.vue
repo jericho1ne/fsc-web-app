@@ -4,23 +4,17 @@
 <template>
 	<div id="app" class="">
 		<div id="header" class="">
-			<div><icon name="coffee" class="fa-icon-xl blue-80"></icon></div>
+			<div><icon name="coffee" class="fa-icon-md blue-80"></icon></div>
 			<!-- <div><span class="blue-90">Find Some Coffee</span></div> -->
 		</div>
 
 		<!-- Menu Bar -->
 		<div id="menu" 
 			class="border-bottom border-bottom-fade pad2" 
-			style="background-color: #FF9A9A"
 		>
-			<h3>
-				<router-link to="/nearby">near me</router-link>
-				<icon name="circle" class="fa-icon-xs"></icon> 
-				<router-link to="/cities">by city</router-link>
-			
-				<!-- <icon name="circle" class="fa-icon-xs"></icon> -->
-				<!-- <a v-link="{path: '/about'}">about</a>  -->
-			</h3>
+			<span class="menu-option"><router-link to="/nearby">coffee near me</router-link></span> 
+			<span class="menu-option"><router-link to="/cities">search by city</router-link></span> 
+			<!-- <a v-link="{path: '/about'}">about</a>  -->
 		</div>
 		
 		<router-view></router-view>
@@ -46,6 +40,20 @@
 		color: #0C5C76;
 		/*color: #0F0E2F;*/
 	}
+
+	#menu {
+		background-color: #FF9A9A;
+		font-weight: bold;
+		font-size: 1.15em;
+		padding: 6px 0;
+		text-align: center;
+		vertical-align: baseline;
+	}
+
+	#menu span.menu-option {
+		padding: 4px;
+	}
+
 	h1, h2 {
 		color: #1A7695;
 		font-weight: normal;
@@ -53,7 +61,7 @@
 	}
 	h3, h4 {
 		font-weight: bold;
-		margin: 0.35em;
+		margin: 0.25em;
 	}
 	h5 {
 		font-weight: normal;
@@ -66,10 +74,12 @@
 		color: #fff;
 	}
 	a:hover {
-		background-color: #EE2222;
+		background-color: #79B0FF;
 		cursor: pointer;
 	}
-
+	.phone {
+		margin: 4px 0;
+	}
 	.vue-dialog .dialog-content a {
 		color: #fff;
 		font-weight: bold;
@@ -87,7 +97,7 @@
 	
 	.vue-dialog .dialog-content img {
 		border: 1px solid #bababa;
-		max-height: 320px;
+		max-height: 280px;
 		width: 100%;
 		object-fit: cover;
 		overflow: hidden;
@@ -100,7 +110,13 @@
 	}
 
 	/* General */
-
+	hr {
+		border: none;
+		width: 100%;
+		border-bottom: 1px solid #0C5C76;
+		opacity: .25;
+		margin: 20px auto;
+	}
 	button {
 		/*font-family: Arial;*/
 		letter-spacing: 2px;
@@ -186,27 +202,28 @@
 	
 	/* Icons */
 	.fa-icon {
+		padding-top: 0.2em;
 		color: #84C2D6;
 	}
 	.fa-icon-xs {
-		width: 12px;
-		height: 12px;
+		width: 0.75em;
+		height: 0.75em;
 	}
 	.fa-icon-sm {
-		width: 14px;
-		height: 14px; /* or any other relative font sizes */
+		width: 1.25em;
+		height: 1.25em; /* or any other relative font sizes */
 	}
 	.fa-icon-md {
-		width: 20px;
-		height: 20px; /* or any other relative font sizes */
+		width: 1.75em;
+		height: 1.75em; /* or any other relative font sizes */
 	}
 	.fa-icon-lg {
-		width: 30px;
-		height: 30px; /* or any other relative font sizes */
+		width: 2.5em;
+		height: 2.5em; /* or any other relative font sizes */
 	}
 	.fa-icon-xl {
-		width: 80px;
-		height: 80px; /* or any other relative font sizes */
+		width: 3.25em;
+		height: 3.25em; /* or any other relative font sizes */
 	}
 
 	/* BORDERS */

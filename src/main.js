@@ -122,14 +122,17 @@ const app = new Vue({
 		
 		showItemDetail: function(item) {
 			var _self = this;
+			const bodyHtml = 
+				`<div>${item.location.display_address[0]}<br>` +
+				`${item.location.display_address[1]}</div>` + 
+				`<div class="phone"><a href="tel:${item.phone}">${item.display_phone}</a></div>` + 
+				`<br>` +
+				// `${item.review_count} reviews<br>` +
+				`<img src="${item.image_url}">`;
 
 			let itemToBeDisplayed = {
 				title: item.name,
-				text: 
-					`${item.review_count} reviews<br><br>` +
-					`<a href="tel:${item.phone}">` + 
-					`${item.display_phone}</a><br><br>` + 
-					`<img src="${item.image_url}">`,
+				text: bodyHtml,
 				buttons: [
 					{ 
 						title: 'Save to Favorites', 
@@ -146,8 +149,15 @@ const app = new Vue({
 		}, // End showItemDetail
 
 		getItemDetail: function(itemid) {
-
-			var dict = {"á":"a", "á":"a", "ç":"c", "é":"e"}
+			// Replace funky characters to keep Yelp API from breaking
+			var dict = {
+				'á':'a', 
+				'á':'a', 
+				'ç':'c', 
+				'é':'e',
+				'è':'e',
+				'ê':'e',
+			}
 			itemid = itemid.replace(/[^\w ]/g, function(char) {
 				return dict[char] || char;
 			});
