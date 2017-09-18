@@ -1,0 +1,8 @@
+Header set Access-Control-Allow-Origin "*"
+
+RewriteEngine on
+RewriteBase /
+
+# Force to SSH
+RewriteCond %{HTTPS} !^on$
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R,L]

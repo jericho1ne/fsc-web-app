@@ -1,16 +1,6 @@
 <template>
 	<div class="">
-		<modal name="vue-js-modal">
-			<form @submit.stop.prevent="submit">
-		  		hello, world! (http://vue-js-modal.yev.io/ modal)
-		  	</form>
-		</modal>
-
-		<!-- <b-modal id="modal1" title="Submit your name" @ok="submit" @shown="clearName">
-    		<form @submit.stop.prevent="submit">
-				<b-form-input type="text" placeholder="Enter your name" v-model="name"></b-form-input>
-			</form>
-		</b-modal> -->
+		<v-dialog/>
 
 		<!-- <input type="text" v-model="msg" /> -->
 		<!-- <icon name="circle" class="fa-icon-xs"></icon>
@@ -51,9 +41,9 @@
 						</div>
 						<div class="mini-action-bar" v-if="item.rating">
 							<!-- //click:deleteItem({{index}}) -->
-							<icon name="bookmark" class="fa-icon-md" style="fill:#fff"></icon>
+							<!-- <icon name="bookmark" class="fa-icon-md" style="fill:#fff"></icon>
 							<icon name="compass" class="fa-icon-md" style="fill:#fff"></icon>
-							<icon name="share-square" class="fa-icon-md" style="fill:#fff"></icon>
+							<icon name="share-square" class="fa-icon-md" style="fill:#fff"></icon> -->
 							<!-- <br>
 							<button class="btn btn-xs btn-danger" v-on="">Delete</button> -->
 						</div>
@@ -83,7 +73,9 @@ export default {
 			// Set up dummy array of coffeeshops
 			items: [
 				{ name: ' * Searching Nearby *', rating: '', review_count: '' },
-			]
+			],
+			// Blank, just need a placeholder
+			item: {}
 		} // End return
 	},
 	created: function () {
@@ -149,13 +141,18 @@ export default {
 		getItemDetail: function(itemid) {
 			this.$root.getItemDetail(itemid);
 		},
-
 		deleteItem: function(index) {
-			if( confirm("Are you sure you want to delete this entry?")) {
+			if(confirm("Are you sure you want to delete this entry?")) {
 				// $remove is a Vue convenience method similar to splice
 				// this.coffeeshops.$remove(index);        
 			}
-		}
+		},
+		beforeOpen (event) {
+			console.log(event.params);
+		},
+		beforeClose (event) {
+			console.log(event.params);
+		},
 	},
 }
 </script>

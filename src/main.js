@@ -30,8 +30,12 @@ Vue.use(Resource)
 
 //  https://www.npmjs.com/package/vue-js-modal 
 //  http://vue-js-modal.yev.io/
-import vmodal from 'vue-js-modal'
-Vue.use(vmodal);
+import VModal from 'vue-js-modal'
+
+// import DemoLoginModal from 'components/DemoLoginModal.vue'
+
+Vue.use(VModal, { dialog: true });
+
 
 //  https://bootstrap-vue.github.io/docs/setup
 // import BootstrapVue from 'bootstrap-vue';
@@ -43,8 +47,8 @@ Vue.use(vmodal);
 const app = new Vue({
 	el: '#app',
 	data: {
-		// apiUrl: 'https://api-php.findsomecoffee.com/',
-		apiUrl: '../../api-php/',
+		apiUrl: 'https://findsomecoffee.com/api-php/',
+		// apiUrl: '../../',
 		// 	coords: '',
 		// 	lat: '',
 		// 	lon: '',
@@ -71,11 +75,15 @@ const app = new Vue({
 		App,
 		Icon,
 		StarRating,
-		vmodal
+		VModal
 	},
 	created: function () {
-		// `this` points to the vm instance
-		console.log(vmodal);
+		// `this` points to the vm instance		
+		// console.log(" ** modal **");
+		// console.log(this);
+
+		// console.log(detailModal);
+		// 
 	}, 
 	mounted: function () {
 		
@@ -108,7 +116,7 @@ const app = new Vue({
 				url: requestUrl, 
 				method: 'GET',
 				headers: { 
-					'Access-Control-Allow-Origin': '*'
+					'Content-Type':'application/x-www-form-urlencoded'
 				}
 			});
 		}, // End fetchData
@@ -116,13 +124,32 @@ const app = new Vue({
 		getItemDetail: function(itemid) {
 			let urlParams = `business=${itemid}`;
 			let _self = this;
-			
-			_self.$modal.show('vue-js-modal');
 
 			_self.$root.fetchDataFromApi('business', urlParams)
 				.then(response => {
 					if (typeof response.body === 'object') {
 						console.log(response.body);
+						const biz = response.body;
+
+						let item = {
+							title: biz.name,
+							text: '<a href="tel:' + biz.phone + '">' + biz.display_phone + '</a><br>' + 
+								biz.review_count + ' reviews' + '<br>' +
+								'<img src="' + biz.image_url + '" width="100%">',
+							buttons: [
+								{ 
+									title: 'Save to Favorites', 
+									handler: () => { 
+										alert('Coming soon.') 
+									} 
+								},
+								{ 
+									title: 'Close' 
+								}
+							]
+						};
+
+						_self.$modal.show('dialog', item);
 
 						// TODO store business details locally in an array to save 
 						// future lookups

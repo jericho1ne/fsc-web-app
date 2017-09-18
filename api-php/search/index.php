@@ -1,13 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-
-require_once '../lib/Yelp.php';
-
-$app_id = '-iMrrWHHxOKehsmtQVpV7A';
-$app_secret = 'gAScHh8LnCyVv7lM4mYQdyAXUYuWKeT2TvDGdXvlTlRs7pY3ZyQY0Dm5qQjUZUPm';
-
-$yelp = new Yelp($app_id, $app_secret);
+require_once '../lib/common.php';
 
 // echo "<pre>";
 // print_r($_GET);

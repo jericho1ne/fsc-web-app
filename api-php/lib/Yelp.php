@@ -5,54 +5,45 @@
  * Yelp Client for v3 API (named Yelp Fusion)
  *
  * @author radone@gmail.com 2017
+ * https://github.com/radoneman/yelp-fusion-v3-php-client
  */
-class Yelp
-{
-
+class Yelp {
     /**
-     *
      * @var string
      */
     protected $app_id;
 
     /**
-     *
      * @var string
      */
     protected $app_secret;
 
     /**
-     *
      * @var string
      */
     protected $api_url = 'https://api.yelp.com/v3/';
 
     /**
-     *
      * @var string
      */
     protected $access_token;
 
     /**
-     *
      * @var string
      */
     protected $error = '';
 
     /**
-     *
      * @var string
      */
     protected $response_type = 'json';
 
     /**
-     *
      * @var string
      */
     protected $last_response = '';
 
     /**
-     *
      * @param string $app_id
      * @param string $app_secret
      * @throws Exception
@@ -74,7 +65,6 @@ class Yelp
     }
 
     /**
-     *
      * @param array $params
      *            [term, location, latitude, longitude, radius ...]
      *            See documentation for full list of params
@@ -86,9 +76,7 @@ class Yelp
 
     /**
      * This endpoint returns the detail information of a business
-     *
-     * @param string $id
-     *            The business id
+     * @param string $id The business id
      * @return mixed|boolean
      */
     public function business($id)
@@ -98,9 +86,7 @@ class Yelp
 
     /**
      * This endpoint returns the up to three reviews of a business
-     *
-     * @param string $id
-     *            The business id
+     * @param string $id The business id
      * @return mixed|boolean
      */
     public function reviews($id)
@@ -109,7 +95,6 @@ class Yelp
     }
 
     /**
-     *
      * @return boolean
      */
     protected function oauth()
@@ -135,13 +120,9 @@ class Yelp
     }
 
     /**
-     *
-     * @param string $cmd
-     *            Endpoint uri param for a command e.g. businesess/search
-     * @param array $data
-     *            (optional)
-     * @param array $headers
-     *            (optional)
+     * @param string $cmd Endpoint uri param for a command e.g. businesess/search
+     * @param array $data (optional)
+     * @param array $headers (optional)
      * @return mixed|boolean
      */
     protected function get($cmd, array $data = [], array $headers = [])
@@ -152,32 +133,24 @@ class Yelp
     }
 
     /**
-     *
-     * @param string $cmd
-     *            Endpoint uri param for a command
-     * @param array $data
-     *            (optional)
-     * @param array $headers
-     *            (optional)
+     * @param string $cmd Endpoint uri param for a command
+     * @param array $data (optional)
+     * @param array $headers (optional)
      * @return mixed|boolean
      */
     protected function post($cmd, array $data = [], array $headers = [])
     {
         $headers[] = 'Authorization: Bearer ' . $this->access_token;
 
-        return $this->exec($enpoint, $cmd, 'post', $data, $headers);
+        return $this->exec($endpoint, $cmd, 'post', $data, $headers);
     }
 
     /**
      *
-     * @param string $url
-     *            The URL
-     * @param string $method
-     *            Allowed values "get" or "post"
-     * @param array $data
-     *            (optional) Associative array with parameters & values to send
-     * @param array $headers
-     *            (optional) Extra headers if needed
+     * @param string $url The URL
+     * @param string $method Allowed values "get" or "post"
+     * @param array $data (optional) Associative array with parameters & values to send
+     * @param array $headers (optional) Extra headers if needed
      * @return mixed array|false
      */
     protected function exec($url, $method = 'get', array $data = [], array $headers = [])
@@ -238,7 +211,6 @@ class Yelp
     }
 
     /**
-     *
      * @return string
      */
     public function get_error()
@@ -247,7 +219,6 @@ class Yelp
     }
 
     /**
-     *
      * @return string
      */
     public function last_response()
