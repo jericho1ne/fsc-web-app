@@ -146,8 +146,16 @@ const app = new Vue({
 		}, // End showItemDetail
 
 		getItemDetail: function(itemid) {
+
+			var dict = {"á":"a", "á":"a", "ç":"c", "é":"e"}
+			itemid = itemid.replace(/[^\w ]/g, function(char) {
+				return dict[char] || char;
+			});
+
 			let urlParams = `business=${itemid}`;
 			let _self = this;
+			console.log(urlParams);
+
 
 			_self.$root.fetchDataFromApi('business', urlParams)
 				.then(response => {
