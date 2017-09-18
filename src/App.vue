@@ -70,6 +70,35 @@
 		cursor: pointer;
 	}
 
+	.vue-dialog .dialog-content a {
+		color: #fff;
+		font-weight: bold;
+		padding: 2px 6px;
+		border-radius: 4px;
+		background-color: #B909B3;
+	}
+	.vue-dialog .dialog-content a:hover {
+		background-color: #FA00ED;
+		cursor: pointer;
+	}
+	.vue-dialog .dialog-content div.dialog-c-title {
+		font-size: 20px;
+	}
+	
+	.vue-dialog .dialog-content img {
+		border: 1px solid #bababa;
+		max-height: 320px;
+		width: 100%;
+		object-fit: cover;
+		overflow: hidden;
+	}
+
+	.v--modal-overlay .v--modal-box {
+		position: static !important;
+		margin: 10px 10px;
+		width: 92% !important;
+	}
+
 	/* General */
 
 	button {

@@ -2,40 +2,38 @@
 // App entrypoint (defined in ./build/webpack.base.conf.js)
 // 
 
+//
+// Register components 
+// 
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+// 
 import Vue from 'vue'
 import App from './App'
 import VueRouter from './VueRouter'
 import Icon from 'vue-awesome/components/Icon'
+import Resource from 'vue-resource'
+Vue.use(Resource)
 
-// Include Font Awesome globally
-// Font Awesome icons (single includes to reduce bundle size) 
-// import 'vue-awesome/icons/circle'
-// import 'vue-awesome/icons/coffee'
-// Or include full set (dev mode)
+// Include full set of Font Awesome icons (dev mode)
 import 'vue-awesome/icons'
 Vue.component('icon', Icon)
+
+// Single includes to reduce bundle size
+// import 'vue-awesome/icons/circle'
+// import 'vue-awesome/icons/coffee'
+// import 'vue-awesome/icons/phone-square'
 
 
 // Import reusable UI elements from 'components/*'
 import StarRating from 'vue-star-rating'
 Vue.component('star-rating', StarRating)
 
-//
-// Register components
-//
-import Resource from 'vue-resource'
-Vue.use(Resource)
-
 //  https://www.npmjs.com/package/vue-js-modal 
 //  http://vue-js-modal.yev.io/
 import VModal from 'vue-js-modal'
-
 // import DemoLoginModal from 'components/DemoLoginModal.vue'
-
 Vue.use(VModal, { dialog: true });
-
 
 //  https://bootstrap-vue.github.io/docs/setup
 // import BootstrapVue from 'bootstrap-vue';
@@ -121,6 +119,32 @@ const app = new Vue({
 			});
 		}, // End fetchData
 
+		
+		showItemDetail: function(item) {
+			var _self = this;
+
+			let itemToBeDisplayed = {
+				title: item.name,
+				text: 
+					`${item.review_count} reviews<br><br>` +
+					`<a href="tel:${item.phone}">` + 
+					`${item.display_phone}</a><br><br>` + 
+					`<img src="${item.image_url}">`,
+				buttons: [
+					{ 
+						title: 'Save to Favorites', 
+						handler: () => { 
+							alert('Coming soon.') 
+						} 
+					},
+					{ 
+						title: 'Close' 
+					}
+				]
+			};
+			_self.$modal.show('dialog', itemToBeDisplayed);
+		}, // End showItemDetail
+
 		getItemDetail: function(itemid) {
 			let urlParams = `business=${itemid}`;
 			let _self = this;
@@ -129,27 +153,8 @@ const app = new Vue({
 				.then(response => {
 					if (typeof response.body === 'object') {
 						console.log(response.body);
-						const biz = response.body;
 
-						let item = {
-							title: biz.name,
-							text: '<a href="tel:' + biz.phone + '">' + biz.display_phone + '</a><br>' + 
-								biz.review_count + ' reviews' + '<br>' +
-								'<img src="' + biz.image_url + '" width="100%">',
-							buttons: [
-								{ 
-									title: 'Save to Favorites', 
-									handler: () => { 
-										alert('Coming soon.') 
-									} 
-								},
-								{ 
-									title: 'Close' 
-								}
-							]
-						};
-
-						_self.$modal.show('dialog', item);
+						_self.$root.showItemDetail(response.body);
 
 						// TODO store business details locally in an array to save 
 						// future lookups
