@@ -1,7 +1,8 @@
 <template>
 	<div class="">
 		<v-dialog/>
-
+		<icon v-show="loading" name="pulse" class="fa-icon-xl spinner"></icon>
+		
 		<!-- <input type="text" v-model="msg" /> -->
 		<!-- <icon name="circle" class="fa-icon-xs"></icon>
 		<icon name="circle" class="fa-icon-sm"></icon>
@@ -75,7 +76,8 @@ export default {
 				{ name: ' * Searching Nearby *', rating: '', review_count: '' },
 			],
 			// Blank, just need a placeholder
-			item: {}
+			item: {},
+			loading: false,
 		} // End return
 	},
 	created: function () {
@@ -84,12 +86,14 @@ export default {
 	mounted: function () {
 		let _self = this;
 
+		_self.loading = true;
+
 		this.$root.getLocation().then(function(position) {
 			// Save position to member vars
 			_self.position.coords = position.coords
 			_self.position.lat = position.coords.latitude
 			_self.position.lon = position.coords.longitude
-
+			
 			// Ajax request to places API
 			let urlParams = 
 				`term=coffee&` + 
@@ -99,7 +103,7 @@ export default {
 				// defaults to best_match
 				// { best_match, rating, review_count, distance }
 				`sort_by=distance&` +
-				`limit=30`;
+				`limit=16`;
 
 			_self.$root.fetchDataFromApi('search', urlParams)
 				.then(response => {
@@ -107,6 +111,9 @@ export default {
 					if (typeof response.body.businesses === 'object') {
 						const items = response.body.businesses;
 
+						// Set loading spinner
+						_self.loading = false;
+						
 						// Sort based on proximity
 						items.sort(function(a, b) {		
 							// sort by proximity (closest first)

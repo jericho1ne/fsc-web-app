@@ -1,3 +1,4 @@
+<IfModule mod_rewrite.c>
 Header set Access-Control-Allow-Origin "*"
 
 RewriteEngine on
@@ -6,3 +7,9 @@ RewriteBase /
 # Force to SSH
 RewriteCond %{HTTPS} !^on$
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R,L]
+
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+</IfModule>

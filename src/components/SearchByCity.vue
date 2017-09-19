@@ -1,9 +1,12 @@
 <template>
 	<div class="">
 		<v-dialog/>
-		
-		<div class="border-bottom" >		
 
+		<icon v-show="loading" 
+			name="pulse" 
+			class="fa-icon-xl spinner"></icon>
+		
+		<div class="city-names" >		
 			<!-- Toggle button  -->
 			<button v-if="cityListActive" 
 				@click="toggleVisibility()" 
@@ -103,17 +106,24 @@ export default {
 				// { name: ' * Searching Nearby *', rating: '', review_count: '' },
 			],
 			cities: [],
+			loading: false,
 		}
 	},
 	created: function () {
 	}, 
 	mounted: function () {
 		var _self = this;
+		
+		// Turn on spinner
+		_self.loading = true;
+
 		_self.$root.fetchDataFromApi('cities', '')
 			.then(response => {
 				// Set the displayed cities to the AJAX response
 				if (typeof response.body === 'object') {
 					_self.cities = response.body;
+					// Turn off spinner
+					_self.loading = false;
 				}
 				else {
 					console.warn("No results.");
@@ -136,11 +146,21 @@ export default {
 		 */
 		selectCity: function(city) {
 			var _self = this;
-			let selectedCity = city.name + ', ' + city.state;
+
+			let selectedCity = 
+				city.name +  
+				(city.state !== undefined ? `, ${city.state}` : '') +
+				(city.country !== undefined ? `, ${city.country}` : '');
+
+			console.log(selectedCity);
+
+			// Turn on Spinner
+			_self.loading = true;
+
 			_self.currentCity = selectedCity;
 
 			// Remove existing list of shops, display loading message
-			_self.items = [{ name: ' * Searching in ' + selectedCity + ' *', rating: '', review_count: '' }];
+			_self.items = [{ name: ' * Searching in ' + city.name + ' *', rating: '', review_count: '' }];
 			
 			// Hide city selection buttons
 			this.toggleVisibility();
@@ -160,6 +180,9 @@ export default {
 				// Set the displayed item to the AJAX response
 				if (typeof response.body.businesses === 'object') {
 					const items = response.body.businesses;
+					
+					// Turn off spinner
+					_self.loading = false;
 
 					// Sort based on proximity
 					items.sort(function(a, b) {		
@@ -180,6 +203,7 @@ export default {
 		}, // End selectCity
 
 		getItemDetail: function(itemid) {
+			console.log(itemid);
 			this.$root.getItemDetail(itemid);
 		},
 
@@ -193,6 +217,19 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+	ul#cityList {
+		margin-top: 0;
+		padding: 12px 4px 0px 4px;
+		border: 0;
+		border-top: 1px solid rgba(10,10,10,.15);
+		height: 100%;
+	}
+	.city-names {
+		box-shadow: inset 0 0 7rem #ccc;
+		padding: 0;
+		margin: 0;
+		border-bottom: 1px solid rgba(10,10,10,.25);
+	}
 	.fade-enter-active, .fade-leave-active {
 		transition: all 0.15s ease;
 	}

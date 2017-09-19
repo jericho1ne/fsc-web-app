@@ -14,17 +14,15 @@
 		>
 			<span class="menu-option"><router-link to="/nearby">coffee near me</router-link></span> 
 			<span class="menu-option"><router-link to="/cities">search by city</router-link></span> 
-			<!-- <a v-link="{path: '/about'}">about</a>  -->
+			<!-- <span class="menu-option"><router-link to="/about">blog</router-link></span>  -->
 		</div>
-		
 		<router-view></router-view>
-	
 	</div>
 </template>
 
 <script>
 	export default {
-		name: 'app_name'
+		name: 'app_name',
 	}
 </script>
 
@@ -44,14 +42,15 @@
 	#menu {
 		background-color: #FF9A9A;
 		font-weight: bold;
-		font-size: 1.15em;
-		padding: 6px 0;
+		font-size: .95em;
+		padding: 4px 0;
 		text-align: center;
 		vertical-align: baseline;
 	}
 
 	#menu span.menu-option {
-		padding: 4px;
+		letter-spacing: -.05em;
+		padding: 3px;
 	}
 
 	h1, h2 {
@@ -119,17 +118,20 @@
 	}
 	button {
 		/*font-family: Arial;*/
-		letter-spacing: 2px;
+		letter-spacing: 1px;
 		font-size: 1em;
 		font-weight: normal;
-		padding: 8px 14px;
-		margin: 8px;
+	/*	max-width: 80px;
+		max-height: 80px;*/
+		width: 3em;
+		height: 3em;
+		/*padding: 1em;*/
+		margin: .45em;
 		color: rgb(255, 255, 255);
 		text-decoration: none;
 		text-transform: uppercase;
 		text-shadow: #0C5C76 0px 1px 2px;
-		width: auto;
-		border-radius: 14px;
+		border-radius: 100px;
 		border: none;
 		display: inline-block;
 		cursor: pointer;
@@ -145,9 +147,9 @@
 		background-color: #EE2222;
 	}
 	button.toggle {
-		background-color: #fff;
-		padding: 2px;
-		margin: 4px;
+		background-color: transparent !important;
+		padding: 0px;
+		margin: 0px;
 	}
 	button:hover.toggle {
 		background-color: none;
@@ -310,5 +312,45 @@
 		padding: 0px;
 		height: auto;
 		color: #fff;
+	}
+
+	.spinner {
+		position: absolute;
+		z-index: 1000;
+		top: 40%;
+		left: 45%;
+		/* Spinner size and color */
+		width: 2.5rem;
+		height: 2.5rem;
+		border-top-color: #84C2D6;
+		border-left-color: #84C2D6;
+		/* Additional spinner styles */
+		animation: spinner 800ms linear infinite;
+		border-bottom-color: transparent;
+		border-right-color: transparent;
+		border-style: solid;
+		border-width: 4px;
+		border-radius: 50%;  
+		box-sizing: border-box;
+		display: inline-block;
+		vertical-align: middle;
+	}
+	/* Animation styles */
+	@keyframes spinner {
+		0% { transform: rotate(0deg); }
+		100% { transform: rotate(360deg); }
+	}
+	/* Optional — create your own variations! */
+	.spinner-large {
+		width: 5rem;
+		height: 5rem;
+		border-width: 6px;
+	}
+	.spinner-slow {
+		animation: spinner 1s linear infinite;
+	}
+	.spinner-blue {
+		border-top-color: #09d;
+		border-left-color: #09d;
 	}
 </style>

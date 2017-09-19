@@ -17,10 +17,11 @@ Vue.use(Resource)
 
 // Include full set of Font Awesome icons (dev mode)
 import 'vue-awesome/icons'
+// Single includes to reduce bundle size
+// import 'vue-awesome/icons/pulse'
 Vue.component('icon', Icon)
 
-// Single includes to reduce bundle size
-// import 'vue-awesome/icons/circle'
+
 // import 'vue-awesome/icons/coffee'
 // import 'vue-awesome/icons/phone-square'
 
@@ -43,8 +44,11 @@ Vue.use(VModal, { dialog: true });
 
 /* eslint-disable no-new */
 const app = new Vue({
+	router: VueRouter,
+	template: '<App/>',
 	el: '#app',
 	data: {
+		// loading: false,
 		apiUrl: 'https://findsomecoffee.com/api-php/',
 		// apiUrl: '../../',
 		// 	coords: '',
@@ -63,11 +67,6 @@ const app = new Vue({
 			}
 		}
 	}, // End watch task
-
-	router: VueRouter,
-	
-	template: '<App/>',
-
 	// Globally available components
 	components: { 
 		App,
@@ -76,7 +75,7 @@ const app = new Vue({
 		VModal
 	},
 	created: function () {
-		// `this` points to the vm instance		
+		// `this` points to the vm instance	
 	}, 
 	mounted: function () {
 		
@@ -103,8 +102,11 @@ const app = new Vue({
 		 */
 		fetchDataFromApi: function(endpoint, urlParams) {
 			var _self = this;
-			var requestUrl = _self._data.apiUrl + endpoint + '?' + urlParams;
+			var requestUrl = this.apiUrl + endpoint + '?' + urlParams;
 			
+			// Triggers loading spinner
+			// this.$data.loading = true;
+
 			return this.$http({ 
 				url: requestUrl, 
 				method: 'GET',
@@ -144,6 +146,10 @@ const app = new Vue({
 		}, // End showItemDetail
 
 		getItemDetail: function(itemid) {
+
+			if (itemid === '' || itemid === undefined) {
+				return;
+			}
 			// Replace funky characters to keep Yelp API from breaking
 			var dict = {
 				'á':'a', 
@@ -164,6 +170,8 @@ const app = new Vue({
 			_self.$root.fetchDataFromApi('business', urlParams)
 				.then(response => {
 					if (typeof response.body === 'object') {
+						// Turn off spinner
+						_self.$data.loading = false;
 						_self.$root.showItemDetail(response.body);
 						// TODO store business details locally in an array to save 
 						// future lookups
@@ -175,3 +183,4 @@ const app = new Vue({
 		},
 	}, 
 })
+
