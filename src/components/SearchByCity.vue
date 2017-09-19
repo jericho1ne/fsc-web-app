@@ -221,11 +221,11 @@ export default {
 		margin-top: 0;
 		padding: 12px 4px 0px 4px;
 		border: 0;
-		border-top: 1px solid rgba(10,10,10,.15);
+		border-top: 1px solid rgba(10,10,10,.1);
 		height: 100%;
 	}
 	.city-names {
-		box-shadow: inset 0 0 7rem #ccc;
+		box-shadow: inset 0 0 6rem rgba(10,10,10,.20);
 		padding: 0;
 		margin: 0;
 		border-bottom: 1px solid rgba(10,10,10,.25);

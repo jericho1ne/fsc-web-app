@@ -119,13 +119,11 @@
 	button {
 		/*font-family: Arial;*/
 		letter-spacing: 1px;
-		font-size: 1em;
+		font-size: .9em;
 		font-weight: normal;
-	/*	max-width: 80px;
-		max-height: 80px;*/
-		width: 3em;
-		height: 3em;
-		/*padding: 1em;*/
+		width: 3.5em;
+		height: 3.5em;
+		padding: .25em;
 		margin: .45em;
 		color: rgb(255, 255, 255);
 		text-decoration: none;
@@ -318,7 +316,7 @@
 		position: absolute;
 		z-index: 1000;
 		top: 40%;
-		left: 45%;
+		left: 50%;
 		/* Spinner size and color */
 		width: 2.5rem;
 		height: 2.5rem;
@@ -348,9 +346,5 @@
 	}
 	.spinner-slow {
 		animation: spinner 1s linear infinite;
-	}
-	.spinner-blue {
-		border-top-color: #09d;
-		border-left-color: #09d;
 	}
 </style>
