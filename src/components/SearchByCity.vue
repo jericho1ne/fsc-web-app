@@ -80,7 +80,7 @@
 							<!-- <icon name="bookmark" class="fa-icon-md" style="fill:#fff"></icon>
 							<icon name="compass" class="fa-icon-md" style="fill:#fff"></icon>
 							<icon name="share-square" class="fa-icon-md" style="fill:#fff"></icon> -->
-							<!-- <br>
+							<!--
 							<button class="btn btn-xs btn-danger" v-on="">Delete</button> -->
 						</div>
 					</div>
@@ -152,7 +152,7 @@ export default {
 				(city.state !== undefined ? `, ${city.state}` : '') +
 				(city.country !== undefined ? `, ${city.country}` : '');
 
-			console.log(selectedCity);
+			// console.log(selectedCity);
 
 			// Turn on Spinner
 			_self.$root.$data.loading = true;

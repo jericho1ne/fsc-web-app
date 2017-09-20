@@ -44,7 +44,7 @@
 							<!-- <icon name="bookmark" class="fa-icon-md" style="fill:#fff"></icon>
 							<icon name="compass" class="fa-icon-md" style="fill:#fff"></icon>
 							<icon name="share-square" class="fa-icon-md" style="fill:#fff"></icon> -->
-							<!-- <br>
+							<!-- 
 							<button class="btn btn-xs btn-danger" v-on="">Delete</button> -->
 						</div>
 					</div>
@@ -64,7 +64,7 @@ export default {
 	data () {
 		return {
 			position: {
-				coords: '',
+				coords: {},
 				lat: '',
 				lon: '',
 			},
@@ -85,18 +85,21 @@ export default {
 	mounted: function () {
 		let _self = this;
 
+		// Set spinner
 		_self.loading = true;
 
 		this.$root.getLocation().then(function(position) {
-			// Save position to member vars
-			_self.position.coords = position.coords
-			_self.position.lat = position.coords.latitude
-			_self.position.lon = position.coords.longitude
-			
+			// Save position to root variables
+			_self.$root.$data.coords = position.coords;
+			_self.$root.$data.position = {
+				lat: position.coords.latitude,
+				lon: position.coords.longitude
+			}
+
 			// Ajax request to places API
 			let urlParams = 
 				`term=coffee&` + 
-				`lat=${_self.position.lat}&lon=${_self.position.lon}&` +
+				`lat=${_self.$root.$data.position.lat}&lon=${_self.$root.$data.position.lon}&` +
 				// List of comma delimited pricing levels (1,2,3,4)
 				`price=1,2,3,4&` +
 				// defaults to best_match

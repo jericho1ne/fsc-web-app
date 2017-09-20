@@ -48,9 +48,8 @@ const app = new Vue({
 	data: {
 		apiUrl: 'https://findsomecoffee.com/api-php/',
 		loading: false,
-		// 	coords: '',
-		// 	lat: '',
-		// 	lon: '',
+		coords: {},
+		position: {},
 	},
 	// Anything that changes inside this task will trigger the
 	// provided method
@@ -115,29 +114,34 @@ const app = new Vue({
 
 		
 		showItemDetail: function(item) {
-			console.log(item);
-			window.item = item;
 			var _self = this;
+			console.log(_self.$root.$data.position.lat);
+			console.log(_self.$root.$data.position.lon);
+
+			let mapsURL = 'https://www.google.com/maps/search/?api=1&query=';
+			mapsURL += `${item.name}, ${item.location.address1}, ${item.location.city}, ${item.location.country}`;
+			console.log(item);
+			console.log(mapsURL);
 
 			const displayPhone = (item.phone !== '' && item.phone !== undefined)
-				? `<div class="phone"><a href="tel:${item.phone}">${item.display_phone}</a></div>` 
+				? `<div class=""><a class="phone-link" href="tel:${item.phone}">${item.display_phone}</a></div>` 
 				: '';
 
 			const bodyHtml = 
 				`<div>${item.location.display_address[0]}<br>` +
 				`${item.location.display_address[1]}</div>` + 
-				`${displayPhone}<br>` +
+				`${displayPhone}` +
 				// `${item.review_count} reviews<br>` +
-				`<img src="${item.image_url}">`;
+				`<div><img src="${item.image_url}"></div>`;
 
 			let itemToBeDisplayed = {
 				title: item.name,
 				text: bodyHtml,
 				buttons: [
 					{ 
-						title: 'Save to Favorites', 
+						title: `Get Directions`, 
 						handler: () => { 
-							alert('Coming soon.') 
+							window.open(mapsURL, '_blank');
 						} 
 					},
 					{ 

@@ -40,8 +40,11 @@
 
 /* 
 	Color Scheme
-		blue 	84C2D6 
-		dk blue EE2222 
+		lt blue b7e0ed
+		blue 	84C2D6
+		dk blue 0C5C76 
+		hot red EE2222
+		lt pink FFDFDF
 		pink 	FF9A9A 
 		dk pink	D86161
 */
@@ -98,36 +101,54 @@
 		cursor: pointer;
 	}
 
-	.phone {
-		margin: 4px 0;
+	.vue-dialog .dialog-content {
+		padding: .75em !important;
 	}
-	.vue-dialog .dialog-content a {
+
+	.vue-dialog .dialog-content div {
+		margin: 0;
+		padding: 2px 0;
+	}
+	.phone-link {
 		color: #fff;
 		font-weight: bold;
-		padding: 2px 6px;
-		border-radius: 4px;
+		padding: 3px 6px 2px 6px;
+		margin: 4px 0;
+		border-radius: 10px;
 		background-color: #B909B3;
 	}
+	.vue-dialog .dialog-buttons button {
+		color: #0C5C76;
+		font-size: 1.15em;
+	}
+	.vue-dialog button {
+		height: 38px !important;
+	}
+	.vue-dialog button:hover {
+		background-color: #b7e0ed !important;
+		transition: all 0.4s ease 0s;
+	}
+
 	.vue-dialog .dialog-content a:hover {
 		background-color: #FA00ED;
 		cursor: pointer;
 	}
 	.vue-dialog .dialog-content div.dialog-c-title {
 		font-size: 20px;
+		padding: .1em 0;
 	}
-	
 	.vue-dialog .dialog-content img {
+		margin: 4px 0;
 		border: 1px solid #bababa;
-		max-height: 280px;
+		max-height: 270px;
 		width: 100%;
 		object-fit: cover;
-		overflow: hidden;
 	}
 
 	.v--modal-overlay .v--modal-box {
 		position: static !important;
-		margin: 10px 10px;
-		width: 92% !important;
+		margin: 0;
+		width: 100% !important;
 	}
 
 	/* General */
@@ -168,10 +189,7 @@
 		/*background-color: #84C2D6;*/
 		border-radius: 100px;
 	}
-	button:hover.primary {
-		background-color: #EE2222;
-	}
-
+	
 	button.toggle {
 		width: auto;
 		height: 2.5em;
