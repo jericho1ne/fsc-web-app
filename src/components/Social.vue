@@ -21,9 +21,7 @@ export default {
 			});   
 	}, 
 	mounted: function () {
-		console.log(` ** ${this.$options.name} ** mounted `);
-		// var self = this;
-		
+		// 
 	},
 	
 	methods: {		
@@ -33,6 +31,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+	/* Copy only needed styles from //assets.juicer.io/embed.css instead! */
 	ul.items {
 		list-style-type: none;
 		padding: 0;
