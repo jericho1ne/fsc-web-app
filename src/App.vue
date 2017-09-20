@@ -96,7 +96,6 @@
 	a:hover,
 	a:active {
 		cursor: pointer;
-		color: #D86161;
 	}
 
 	.phone {
@@ -140,7 +139,7 @@
 		margin: 20px auto;
 	}
 	button {
-		/*font-family: Arial;*/
+		background-color: #bbb;
 		letter-spacing: 1px;
 		font-size: 1em;
 		font-weight: normal;
@@ -151,7 +150,6 @@
 		color: rgb(255, 255, 255);
 		text-decoration: none;
 		text-transform: uppercase;
-		/*text-shadow: #0C5C76 0px 1px 2px;*/
 		border: none;
 		display: inline-block;
 		cursor: pointer;
@@ -175,6 +173,8 @@
 	}
 
 	button.toggle {
+		width: auto;
+		height: 2.5em;
 		background-color: transparent !important;
 		padding: 0px;
 		margin: 0px;

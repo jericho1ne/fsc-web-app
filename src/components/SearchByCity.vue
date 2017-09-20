@@ -7,14 +7,14 @@
 			class="fa-icon-xl spinner">
 		</span>
 
-		<div class="city-names" >		
+		<div class="city-names">		
 			<!-- Toggle button  -->
 			<button v-if="cityListActive" 
 				@click="toggleVisibility()" 
 				class="toggle"
 			>
 				<icon name="angle-up" 
-					class="fa-icon-lg"
+					class="fa-icon-md"
 					v-bind:class="{ active: cityListActive }"></icon>
 			</button>
 			<button v-else 
@@ -22,7 +22,7 @@
 				class="toggle"
 			>
 				<icon name="angle-down" 
-					class="fa-icon-lg"
+					class="fa-icon-md"
 					v-bind:class="{ active: cityListActive }"></icon>
 			</button>
 			
