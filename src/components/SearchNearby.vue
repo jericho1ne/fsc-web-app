@@ -1,14 +1,13 @@
 <template>
 	<div class="">
 		<v-dialog/>
-		<icon v-show="loading" name="pulse" class="fa-icon-xl spinner"></icon>
+
+		<span 
+			v-show="loading" 
+			class="fa-icon-xl spinner"></span>
 		
 		<!-- <input type="text" v-model="msg" /> -->
-		<!-- <icon name="circle" class="fa-icon-xs"></icon>
-		<icon name="circle" class="fa-icon-sm"></icon>
-		<icon name="circle" class="fa-icon-md"></icon>
-		<icon name="circle" class="fa-icon-lg"></icon>
-		<icon name="circle" class="fa-icon-xl"></icon> -->
+		<!-- <icon name="circle" class="fa-icon-xs"></icon> -->
 		
 		<div class="list-group">
 			<ul class="items">

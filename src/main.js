@@ -16,15 +16,13 @@ import Resource from 'vue-resource'
 Vue.use(Resource)
 
 // Include full set of Font Awesome icons (dev mode)
-import 'vue-awesome/icons'
+import 'vue-awesome/icons/coffee'
+import 'vue-awesome/icons/phone-square'
+import 'vue-awesome/icons/angle-up'
+import 'vue-awesome/icons/angle-down'
+
 // Single includes to reduce bundle size
-// import 'vue-awesome/icons/pulse'
 Vue.component('icon', Icon)
-
-
-// import 'vue-awesome/icons/coffee'
-// import 'vue-awesome/icons/phone-square'
-
 
 // Import reusable UI elements from 'components/*'
 import StarRating from 'vue-star-rating'
@@ -48,9 +46,8 @@ const app = new Vue({
 	template: '<App/>',
 	el: '#app',
 	data: {
-		// loading: false,
 		apiUrl: 'https://findsomecoffee.com/api-php/',
-		// apiUrl: '../../',
+		loading: false,
 		// 	coords: '',
 		// 	lat: '',
 		// 	lon: '',
@@ -118,12 +115,18 @@ const app = new Vue({
 
 		
 		showItemDetail: function(item) {
+			console.log(item);
+			window.item = item;
 			var _self = this;
+
+			const displayPhone = (item.phone !== '' && item.phone !== undefined)
+				? `<div class="phone"><a href="tel:${item.phone}">${item.display_phone}</a></div>` 
+				: '';
+
 			const bodyHtml = 
 				`<div>${item.location.display_address[0]}<br>` +
 				`${item.location.display_address[1]}</div>` + 
-				`<div class="phone"><a href="tel:${item.phone}">${item.display_phone}</a></div>` + 
-				`<br>` +
+				`${displayPhone}<br>` +
 				// `${item.review_count} reviews<br>` +
 				`<img src="${item.image_url}">`;
 
@@ -146,6 +149,10 @@ const app = new Vue({
 		}, // End showItemDetail
 
 		getItemDetail: function(itemid) {
+			let _self = this;
+
+			// Turn on spinner
+			_self.$root.$data.loading = true;
 
 			if (itemid === '' || itemid === undefined) {
 				return;
@@ -164,14 +171,13 @@ const app = new Vue({
 			});
 
 			let urlParams = `business=${itemid}`;
-			let _self = this;
-
 
 			_self.$root.fetchDataFromApi('business', urlParams)
 				.then(response => {
 					if (typeof response.body === 'object') {
 						// Turn off spinner
-						_self.$data.loading = false;
+						_self.$root.$data.loading = false;
+						// Pop up modal
 						_self.$root.showItemDetail(response.body);
 						// TODO store business details locally in an array to save 
 						// future lookups

@@ -2,10 +2,11 @@
 	<div class="">
 		<v-dialog/>
 
-		<icon v-show="loading" 
-			name="pulse" 
-			class="fa-icon-xl spinner"></icon>
-		
+		<span 
+			v-show="_self.$root.$data.loading" 
+			class="fa-icon-xl spinner">
+		</span>
+
 		<div class="city-names" >		
 			<!-- Toggle button  -->
 			<button v-if="cityListActive" 
@@ -35,8 +36,8 @@
 				>
 					<li v-for="city in cities" class="city">	
 						<button 
-							:class="{ 'button-selected': isThisTheCurrentCity(city) }"
-							class="btn primary"
+							:class="{ 'active': isThisTheCurrentCity(city) }"
+							class="btn round"
 							@click="selectCity(city)"
 						>
 							{{city.display}}
@@ -44,7 +45,6 @@
 					</li>
 				</ul>
 			</transition>
-
 		</div>
 		
 		<div class="list-group">
@@ -106,7 +106,7 @@ export default {
 				// { name: ' * Searching Nearby *', rating: '', review_count: '' },
 			],
 			cities: [],
-			loading: false,
+			// loading: false,
 		}
 	},
 	created: function () {
@@ -115,7 +115,7 @@ export default {
 		var _self = this;
 		
 		// Turn on spinner
-		_self.loading = true;
+		_self.$root.$data.loading = true;
 
 		_self.$root.fetchDataFromApi('cities', '')
 			.then(response => {
@@ -123,7 +123,7 @@ export default {
 				if (typeof response.body === 'object') {
 					_self.cities = response.body;
 					// Turn off spinner
-					_self.loading = false;
+					_self.$root.$data.loading = false;
 				}
 				else {
 					console.warn("No results.");
@@ -155,7 +155,7 @@ export default {
 			console.log(selectedCity);
 
 			// Turn on Spinner
-			_self.loading = true;
+			_self.$root.$data.loading = true;
 
 			_self.currentCity = selectedCity;
 
@@ -182,7 +182,7 @@ export default {
 					const items = response.body.businesses;
 					
 					// Turn off spinner
-					_self.loading = false;
+					_self.$root.$data.loading = false;
 
 					// Sort based on proximity
 					items.sort(function(a, b) {		
@@ -235,8 +235,5 @@ export default {
 	}
 	.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
 		opacity: 0;
-	}
-	.button-selected {
-		background-color: #BC0C0C;
 	}
 </style>

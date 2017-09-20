@@ -12,9 +12,15 @@
 		<div id="menu" 
 			class="border-bottom border-bottom-fade pad2" 
 		>
-			<span class="menu-option"><router-link to="/nearby">coffee near me</router-link></span> 
-			<span class="menu-option"><router-link to="/cities">search by city</router-link></span> 
-			<!-- <span class="menu-option"><router-link to="/about">blog</router-link></span>  -->
+			<span class="menu-option">
+				<router-link to="/nearby">coffee near me</router-link>
+			</span> 
+			<span class="menu-option">
+				<router-link to="/cities">search by city</router-link>
+			</span> 
+			<!-- <span class="menu-option>
+				<router-link to="/about">blog</router-link>
+			</span>  -->
 		</div>
 		<router-view></router-view>
 	</div>
@@ -27,6 +33,19 @@
 </script>
 
 <style>
+/* 
+ 	Triad: http://paletton.com/#uid=5000u0kcGw03YSm85HMh-r6msmk 
+ 	Mono:  http://paletton.com/#uid=1000E0kcGw03YSm85HMh-r6msmk
+*/
+
+/* 
+	Color Scheme
+		blue 	84C2D6 
+		dk blue EE2222 
+		pink 	FF9A9A 
+		dk pink	D86161
+*/
+
 	body {
 		margin: 0px;
 	}
@@ -43,14 +62,16 @@
 		background-color: #FF9A9A;
 		font-weight: bold;
 		font-size: .95em;
-		padding: 4px 0;
+		padding: 6px 0;
 		text-align: center;
 		vertical-align: baseline;
 	}
-
 	#menu span.menu-option {
-		letter-spacing: -.05em;
-		padding: 3px;
+		letter-spacing: .01em;
+		padding: 0px 10px;
+	}
+	#menu .router-link-active {
+		border-bottom: 2px solid #fff;
 	}
 
 	h1, h2 {
@@ -68,14 +89,16 @@
 	}
 	a {
 		text-decoration: none;
-		padding: 2px 10px;
-		border-radius: 4px;
+		padding: 0px 4px;
+		border-bottom: 2px solid transparent;
 		color: #fff;
 	}
-	a:hover {
-		background-color: #79B0FF;
+	a:hover,
+	a:active {
 		cursor: pointer;
+		color: #D86161;
 	}
+
 	.phone {
 		margin: 4px 0;
 	}
@@ -119,7 +142,7 @@
 	button {
 		/*font-family: Arial;*/
 		letter-spacing: 1px;
-		font-size: .9em;
+		font-size: 1em;
 		font-weight: normal;
 		width: 3.5em;
 		height: 3.5em;
@@ -128,22 +151,29 @@
 		color: rgb(255, 255, 255);
 		text-decoration: none;
 		text-transform: uppercase;
-		text-shadow: #0C5C76 0px 1px 2px;
-		border-radius: 100px;
+		/*text-shadow: #0C5C76 0px 1px 2px;*/
 		border: none;
 		display: inline-block;
 		cursor: pointer;
 	}
-	button:active {
-		background-color: #1A7695;
+	button:hover {
+		background-color: #D86161;
+		transition: all 0.4s ease 0s;
+	}
+	button:active,
+	button.active {
+		/*background-color: #1A7695;*/
+		background-color: #D86161;
 	}
 	
-	button.primary {
-		background-color: #84C2D6;
+	button.round {
+		/*background-color: #84C2D6;*/
+		border-radius: 100px;
 	}
 	button:hover.primary {
 		background-color: #EE2222;
 	}
+
 	button.toggle {
 		background-color: transparent !important;
 		padding: 0px;
@@ -312,22 +342,37 @@
 		color: #fff;
 	}
 
+
+	/* Pure CSS spinner*/
 	.spinner {
 		position: absolute;
 		z-index: 1000;
-		top: 40%;
-		left: 50%;
+		top: 44%;
+		left: 46%;
 		/* Spinner size and color */
 		width: 2.5rem;
 		height: 2.5rem;
-		border-top-color: #84C2D6;
-		border-left-color: #84C2D6;
+
+		/* 
+		/*border-top-color: #84C2D6;
+		border-left-color: #FF9A9A;
+		border-bottom-color: #144F77;*/
+		
+		/* Triad */
+		/*border-top-color: #FFC89A;
+		border-left-color: #FF9A9A;
+		border-bottom-color: #CD7CA8;*/
+
+		/* Monochromatic */
+		border-top-color: #FF9A9A;
+		border-left-color: #D86161;
+		border-bottom-color: #B23535;
+		
 		/* Additional spinner styles */
-		animation: spinner 800ms linear infinite;
-		border-bottom-color: transparent;
+		animation: spinner 1080ms linear infinite;
 		border-right-color: transparent;
 		border-style: solid;
-		border-width: 4px;
+		border-width: 5px;
 		border-radius: 50%;  
 		box-sizing: border-box;
 		display: inline-block;
@@ -337,12 +382,6 @@
 	@keyframes spinner {
 		0% { transform: rotate(0deg); }
 		100% { transform: rotate(360deg); }
-	}
-	/* Optional — create your own variations! */
-	.spinner-large {
-		width: 5rem;
-		height: 5rem;
-		border-width: 6px;
 	}
 	.spinner-slow {
 		animation: spinner 1s linear infinite;

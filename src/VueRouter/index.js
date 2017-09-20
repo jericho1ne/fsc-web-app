@@ -17,7 +17,6 @@ Vue.use(VueAnalytics, {
 	VueRouter
 })
 
-
 // Pages 
 import SearchNearby from 'components/SearchNearby'
 import SearchByCity from 'components/SearchByCity'
