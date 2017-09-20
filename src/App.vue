@@ -12,15 +12,19 @@
 		<div id="menu" 
 			class="border-bottom border-bottom-fade pad2" 
 		>
+
 			<span class="menu-option">
 				<router-link to="/nearby">coffee near me</router-link>
 			</span> 
+
 			<span class="menu-option">
-				<router-link to="/cities">search by city</router-link>
+				<router-link to="/social">social</router-link>
+			</span>
+
+			<span class="menu-option">
+				<router-link to="/cities">cities</router-link>
 			</span> 
-			<!-- <span class="menu-option>
-				<router-link to="/about">blog</router-link>
-			</span>  -->
+			 
 		</div>
 		<router-view></router-view>
 	</div>
@@ -403,5 +407,13 @@
 	}
 	.spinner-slow {
 		animation: spinner 1s linear infinite;
+	}
+	/* Hide Juicer referral tag*/
+	h1.referral,
+	div.j-poster {
+		display: none !important;
+	}
+	a.j-image {
+		padding: 0;
 	}
 </style>

@@ -79,6 +79,27 @@ const app = new Vue({
 	// Globally-avaiable functions
 	methods: {
 		/**
+		 * Loads an external JS script and returns a promise
+		 * @param {string} url Absolute script URL 
+		 * @return {Promise} Object that can be resolved
+		 */
+		loadScript: function(url) {
+			return new Promise(function(resolve, reject) {
+				var script = document.createElement('script');
+
+				script.async = true;
+				script.src = url;
+
+				// trigger fulfilled state when script is ready
+				script.onload = resolve;
+				// trigger rejected state when script is not found
+				script.onerror = reject;
+
+				document.head.appendChild(script);   
+			});
+		},
+
+		/**
 		 * Gets a user's position
 		 * @return {Promise} Object that can be resolved with the provided value
 		 */

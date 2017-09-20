@@ -1,18 +1,8 @@
 <template>
 	<div class="">
-		<!-- <input type="text" v-model="msg" /> -->
-		<!-- <icon name="circle" class="fa-icon-xs"></icon>
-		<icon name="circle" class="fa-icon-sm"></icon>
-		<icon name="circle" class="fa-icon-md"></icon>
-		<icon name="circle" class="fa-icon-lg"></icon>
-		<icon name="circle" class="fa-icon-xl"></icon> -->
-		
-		<div class="list-group">
-			<ul class="items">
-				
-			</ul>
-		</div>
-			
+
+		<ul class="juicer-feed" data-feed-id="findsomecoffee"></ul>
+
 	</div>
 </template>
 
@@ -25,11 +15,15 @@ export default {
 		}
 	},
 	created: function () {
-		console.log(` ** ${this.$options.name} ** created `);
+		this.$root.loadScript('//assets.juicer.io/embed.js')
+			.then(function() {
+				// console.log('script loaded.');
+			});   
 	}, 
 	mounted: function () {
 		console.log(` ** ${this.$options.name} ** mounted `);
-		var self = this;
+		// var self = this;
+		
 	},
 	
 	methods: {		

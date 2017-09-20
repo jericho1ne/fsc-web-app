@@ -20,14 +20,14 @@ Vue.use(VueAnalytics, {
 // Pages 
 import SearchNearby from 'components/SearchNearby'
 import SearchByCity from 'components/SearchByCity'
-// import About from 'components/About'
+import Social from 'components/Social'
 
 // Define the URL routes
 const routes = [
 	{ path: '/', component: SearchNearby },
 	{ path: '/nearby', component: SearchNearby },
+	{ path: '/social', component: Social },
 	{ path: '/cities', component: SearchByCity },
-	// { path: '/about', component: About },
 ]
 
 export default new VueRouter({
