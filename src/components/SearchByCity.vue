@@ -106,7 +106,6 @@ export default {
 				// { name: ' * Searching Nearby *', rating: '', review_count: '' },
 			],
 			cities: [],
-			// loading: false,
 		}
 	},
 	created: function () {
@@ -151,8 +150,6 @@ export default {
 				city.name +  
 				(city.state !== undefined ? `, ${city.state}` : '') +
 				(city.country !== undefined ? `, ${city.country}` : '');
-
-			// console.log(selectedCity);
 
 			// Turn on Spinner
 			_self.$root.$data.loading = true;
@@ -203,7 +200,7 @@ export default {
 		}, // End selectCity
 
 		getItemDetail: function(itemid) {
-			console.log(itemid);
+			// console.log(itemid);
 			this.$root.getItemDetail(itemid);
 		},
 

@@ -55,7 +55,7 @@ const app = new Vue({
 	// provided method
 	watch: {
 		searchCity: function() {
-			console.log( "WATCH searchCity TRIGGERED ")
+			console.log( "searchCity. ")
 			this.cityList = [];
 			// Await a few chars before starting city name auto-search
 			if (this.searchCity.length == 3) {
@@ -136,13 +136,12 @@ const app = new Vue({
 		
 		showItemDetail: function(item) {
 			var _self = this;
-			console.log(_self.$root.$data.position.lat);
-			console.log(_self.$root.$data.position.lon);
+		
 
 			let mapsURL = 'https://www.google.com/maps/search/?api=1&query=';
 			mapsURL += `${item.name}, ${item.location.address1}, ${item.location.city}, ${item.location.country}`;
-			console.log(item);
-			console.log(mapsURL);
+			
+			// console.log(mapsURL);
 
 			const displayPhone = (item.phone !== '' && item.phone !== undefined)
 				? `<div class=""><a class="phone-link" href="tel:${item.phone}">${item.display_phone}</a></div>` 

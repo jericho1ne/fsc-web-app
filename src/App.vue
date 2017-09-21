@@ -367,7 +367,7 @@
 
 	/* Pure CSS spinner*/
 	.spinner {
-		position: absolute;
+		position: fixed;
 		z-index: 1000;
 		top: 44%;
 		left: 46%;
@@ -407,13 +407,5 @@
 	}
 	.spinner-slow {
 		animation: spinner 1s linear infinite;
-	}
-	/* Hide Juicer referral tag*/
-	h1.referral,
-	div.j-poster {
-		display: none !important;
-	}
-	a.j-image {
-		padding: 0;
 	}
 </style>

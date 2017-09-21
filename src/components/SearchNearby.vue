@@ -3,8 +3,9 @@
 		<v-dialog/>
 
 		<span 
-			v-show="loading" 
-			class="fa-icon-xl spinner"></span>
+			v-show="this.$root.$data.loading " 
+			class="fa-icon-xl spinner">
+		</span>
 		
 		<!-- <input type="text" v-model="msg" /> -->
 		<!-- <icon name="circle" class="fa-icon-xs"></icon> -->
@@ -76,7 +77,6 @@ export default {
 			],
 			// Blank, just need a placeholder
 			item: {},
-			loading: false,
 		} // End return
 	},
 	created: function () {
@@ -86,7 +86,7 @@ export default {
 		let _self = this;
 
 		// Set spinner
-		_self.loading = true;
+		_self.$root.$data.loading = true;
 
 		this.$root.getLocation().then(function(position) {
 			// Save position to root variables
@@ -114,7 +114,7 @@ export default {
 						const items = response.body.businesses;
 
 						// Set loading spinner
-						_self.loading = false;
+						_self.$root.$data.loading = false;
 						
 						// Sort based on proximity
 						items.sort(function(a, b) {		
