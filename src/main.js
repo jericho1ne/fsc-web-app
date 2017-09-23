@@ -46,7 +46,7 @@ const app = new Vue({
 	template: '<App/>',
 	el: '#app',
 	data: {
-		apiUrl: 'https://findsomecoffee.com/api-php/',
+		apiUrl: 'https://findsomecoffee.com/api/',
 		loading: false,
 		coords: {},
 		position: {},

@@ -134,7 +134,7 @@ export default {
 	
 	methods: {
 		isThisTheCurrentCity: function(city) {
-			const thisIsTheCurrentCity = this.currentCity === (city.name + ', ' + city.state);
+			const thisIsTheCurrentCity = this.currentCity === city.name;
 			return thisIsTheCurrentCity;
 		},
 
@@ -154,7 +154,7 @@ export default {
 			// Turn on Spinner
 			_self.$root.$data.loading = true;
 
-			_self.currentCity = selectedCity;
+			_self.currentCity = city.name;
 
 			// Remove existing list of shops, display loading message
 			_self.items = [{ name: ' * Searching in ' + city.name + ' *', rating: '', review_count: '' }];

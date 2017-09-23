@@ -18,12 +18,15 @@
 			</span> 
 
 			<span class="menu-option">
-				<router-link to="/social">social</router-link>
+				<router-link to="/whats-good">what's good</router-link>
 			</span>
 
 			<span class="menu-option">
 				<router-link to="/cities">cities</router-link>
 			</span> 
+			<!-- <span class="menu-option">
+				<a href="https://blog.findsomecoffee.com">blog</a>
+			</span>  -->
 			 
 		</div>
 		<router-view></router-view>
@@ -76,6 +79,9 @@
 	#menu span.menu-option {
 		letter-spacing: .01em;
 		padding: 0px 10px;
+	}
+	#menu span.menu-option a {
+		padding: 0;
 	}
 	#menu .router-link-active {
 		border-bottom: 2px solid #fff;

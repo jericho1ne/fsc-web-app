@@ -1,3 +1,8 @@
+/* 
+  
+  Add Plugins Here 
+
+*/
 var path = require('path')
 var utils = require('./utils')
 var webpack = require('webpack')
@@ -6,6 +11,7 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var PrerenderSpaPlugin = require('prerender-spa-plugin')
 var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : config.build.env
@@ -28,11 +34,13 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env
     }),
+
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       }
     }),
+
     // extract css into its own file
     new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash].css')),
     // generate dist index.html with correct asset hash for caching.
@@ -47,13 +55,14 @@ var webpackConfig = merge(baseWebpackConfig, {
       minify: {
         removeComments: true,
         collapseWhitespace: true,
-        removeAttributeQuotes: true
+        removeAttributeQuotes: false
         // more options:
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
     }),
+
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -68,12 +77,30 @@ var webpackConfig = merge(baseWebpackConfig, {
         )
       }
     }),
+
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       chunks: ['vendor']
-    })
+    }),
+
+    new PrerenderSpaPlugin(
+      // Absolute path to compiled SPA
+      path.join(__dirname, '../dist'),
+      // List of routes to prerender
+      [ '/', '/nearby', '/whats-good', '/cities' ],
+
+      // Options
+      {
+        // Wait until a specific event is fired on the document. 
+        captureAfterDocumentEvent: 'render-complete',
+        // http://phantomjs.org/api/webpage/property/settings.html
+        phantomPageSettings: {
+          loadImages: true
+        },
+      }
+    )
   ]
 })
 

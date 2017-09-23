@@ -1,0 +1,9 @@
+Header set Access-Control-Allow-Origin "*"
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteBase /
+# Force to SSH (geolocation on insecure origins is deprecated)
+RewriteCond %{HTTPS} !^on$
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R,L]
+</IfModule>

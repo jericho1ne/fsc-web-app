@@ -5,7 +5,9 @@
 			class="fa-icon-xl spinner">
 		</span>
 
-		<ul class="juicer-feed" data-feed-id="findsomecoffee"></ul>
+		<ul class="juicer-feed" data-feed-id="findsomecoffee">
+            <h1 class="referral"><a href="https://www.juicer.io">Powered by Juicer</a></h1>
+        </ul>
 
 	</div>
 </template>
@@ -42,6 +44,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+ /* 
+    Color Scheme
+        lt blue b7e0ed
+        blue    84C2D6
+        dk blue 0C5C76 
+        hot red EE2222
+        lt pink FFDFDF
+        pink    FF9A9A 
+        dk pink D86161
+ */
+
 /* Hide Juicer referral tag*/
 h1.referral,
 div.j-poster {
@@ -75,13 +88,7 @@ a.j-image {
     background-repeat: no-repeat;
     background-image: url(//assets.juicer.io/embed-se36aebe323-e0ef2ff1ddf423c2dfefd7363696ac52ad6638ddbd5ffcd57685ab008b1fdf4a.png)
 }
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 3 / 2),
-(min-device-pixel-ratio: 2) {
-    .juicer-feed h1.referral a:after {
-        background-image: url(//assets.juicer.io/embed-retina-s4adc3db9d6-b061af77b3ed4a4ec0703b225dd33167df8aa5fbb21b7eefd38faba85b861696.png)
-    }
-}
+/* */
 .juicer-feed {
     *zoom: 1;
     -moz-transition: opacity 0.2s ease-in-out;
@@ -96,12 +103,12 @@ a.j-image {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     -webkit-overflow-scrolling: touch;
-    width: 100%;
+    width: 85%;
     position: relative;
     margin: 0 auto !important;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 0;
+    padding: .1em;
     line-height: 1.4
 }
 .juicer-feed:after {
@@ -132,53 +139,13 @@ a.j-image {
     text-decoration: none !important;
     border-bottom: none
 }
-.juicer-feed h1.referral {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    font-weight: bold;
-    margin: 0 auto 30px;
-    text-align: center;
-    display: block;
-    white-space: nowrap
-}
-.juicer-feed h1.referral a {
-    color: #f05a4b;
-    display: inline-block
-}
-.juicer-feed h1.referral a:after {
-    height: 25px;
-    width: 14px;
-    background-position: 100% -64px;
-    content: '';
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 10px;
-    position: relative;
-    top: -1px
-}
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 3 / 2),
-(min-device-pixel-ratio: 2) {
-    .juicer-feed h1.referral a:after {
-        background-position: 100% -128px;
-        -moz-background-size: 14px auto;
-        -o-background-size: 14px auto;
-        -webkit-background-size: 14px auto;
-        background-size: 14px auto;
-        background-position: 100% -64px
-    }
-}
-.juicer-feed.modern li.feed-item {
-    opacity: 0
-}
 .juicer-feed.modern li.feed-item {
     padding: 10px;
-    background: white;
-    color: #3A3A3A;
+    background: #84C2D6; 
+   
+    color: #fff;
     margin-bottom: 5%;
-    border-color: #e5e5e5;
-    border-style: solid;
-    border-width: 0 1px 1px 0;
+    border: 1px solid #e5e5e5;
     white-space: normal;
     float: none;
     overflow-wrap: break-word;
@@ -235,12 +202,14 @@ a.j-image {
     margin-bottom: 0
 }
 .juicer-feed.modern .j-text {
-    font-size: 14px;
-    padding: 20px 15px 20px 20px
+    font-size: .95em;
+    padding: 20px 15px 20px 20px;
 }
 .juicer-feed.modern .j-message {
-    color: #666;
-    line-height: 25px
+    line-height: 25px;
+}
+.juicer-feed.modern .j-message p {
+    margin: 0;
 }
 .juicer-feed li.feed-item {
     position: relative;
@@ -257,7 +226,7 @@ a.j-image {
     margin-top: 25px
 }
 .juicer-feed .j-meta a {
-    color: #bababa
+    color: #fff
 }
 .juicer-feed .j-meta a:hover {
     color: #F17E6F

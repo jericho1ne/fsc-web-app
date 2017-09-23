@@ -26,7 +26,7 @@ import Social from 'components/Social'
 const routes = [
 	{ path: '/', component: SearchNearby },
 	{ path: '/nearby', component: SearchNearby },
-	{ path: '/social', component: Social },
+	{ path: '/whats-good', component: Social },
 	{ path: '/cities', component: SearchByCity },
 ]
 

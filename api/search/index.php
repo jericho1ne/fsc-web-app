@@ -1,9 +1,7 @@
 <?php
 require_once '../lib/common.php';
 
-// echo "<pre>";
-// print_r($_GET);
-// echo "</pre>";
+// echo "<pre>"; print_r($_GET); echo "</pre>";
 
 $searchParams = [
 	'term' => $_GET['term'],
@@ -15,9 +13,7 @@ $searchParams = [
 	'limit' => $_GET['limit'],
 ];
 
-// echo "<pre>";
-// print_r($searchParams);
-// echo "</pre>";
+// echo "<pre>"; print_r($searchParams); echo "</pre>";
 
 $testParams = [
     'term' => 'coffee',
@@ -36,5 +32,4 @@ if ($businesess === false) {
     exit;
 }
 print_r(json_encode($businesses));
-
 ?>

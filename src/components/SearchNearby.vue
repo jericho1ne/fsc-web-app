@@ -111,11 +111,14 @@ export default {
 				.then(response => {
 					// Set the displayed item to the AJAX response
 					if (typeof response.body.businesses === 'object') {
-						const items = response.body.businesses;
+						// Notify prerender SPA plugin
+						document.dispatchEvent(new Event('render-complete')); 
 
 						// Set loading spinner
 						_self.$root.$data.loading = false;
-						
+
+						const items = response.body.businesses;
+
 						// Sort based on proximity
 						items.sort(function(a, b) {		
 							// sort by proximity (closest first)
