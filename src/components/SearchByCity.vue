@@ -103,7 +103,6 @@ export default {
 			cityListActive: true,
 			currentCity: '',
 			items: [
-				// { name: ' * Searching Nearby *', rating: '', review_count: '' },
 			],
 			cities: [],
 		}
@@ -116,7 +115,10 @@ export default {
 		// Turn on spinner
 		_self.$root.$data.loading = true;
 
-		_self.$root.fetchDataFromApi('cities', '')
+		// Ajax request to grab all cities available
+		let urlParams = `show=all`;
+
+		_self.$root.fetchDataFromApi('cities', urlParams)
 			.then(response => {
 				// Set the displayed cities to the AJAX response
 				if (typeof response.body === 'object') {
@@ -125,7 +127,7 @@ export default {
 
 					// Turn off spinner
 					_self.$root.$data.loading = false;
-					
+
 					_self.cities = response.body;
 				}
 				else {

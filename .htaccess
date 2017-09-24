@@ -13,6 +13,10 @@ RewriteBase /
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# Forward domain.com to www.domain.com (not quite working)
+#RewriteCond %{HTTP_HOST} ^findsomecoffee.com [NC]
+#RewriteRule ^(.*)$ http://www.findsomecoffee.com/$1 [L,R=301]
+
 # Fix the router path issues
 RewriteRule ^index\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
