@@ -83,24 +83,24 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       chunks: ['vendor']
-    }),
+    })
 
-    new PrerenderSpaPlugin(
-      // Absolute path to compiled SPA
-      path.join(__dirname, '../dist'),
-      // List of routes to prerender
-      [ '/', '/nearby', '/whats-good', '/cities' ],
+    // new PrerenderSpaPlugin(
+    //   // Absolute path to compiled SPA
+    //   path.join(__dirname, '../dist'),
+    //   // List of routes to prerender
+    //   [ '/', '/nearby', '/whats-good', '/cities' ],
 
-      // Options
-      {
-        // Wait until a specific event is fired on the document. 
-        captureAfterDocumentEvent: 'render-complete',
-        // http://phantomjs.org/api/webpage/property/settings.html
-        phantomPageSettings: {
-          loadImages: true
-        },
-      }
-    )
+    //   // Options
+    //   {
+    //     // Wait until a specific event is fired on the document. 
+    //     // captureAfterDocumentEvent: 'render-complete',
+    //     // http://phantomjs.org/api/webpage/property/settings.html
+    //     // phantomPageSettings: {
+    //     //   loadImages: true
+    //     // },
+    //   }
+    // )
   ]
 })
 

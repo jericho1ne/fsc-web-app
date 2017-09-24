@@ -29,6 +29,8 @@ export default {
 			.then(function() {
 				// Turn off spinner after a bit more animation 
 				setTimeout(function(){ 
+                    // Notify prerender SPA plugin
+                    document.dispatchEvent(new Event('render-complete'));
 					_self.$root.$data.loading = false;
 				}, 500);
 			});   

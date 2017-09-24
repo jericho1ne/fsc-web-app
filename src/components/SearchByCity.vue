@@ -120,9 +120,13 @@ export default {
 			.then(response => {
 				// Set the displayed cities to the AJAX response
 				if (typeof response.body === 'object') {
-					_self.cities = response.body;
+					// Notify prerender SPA plugin
+					document.dispatchEvent(new Event('render-complete')); 
+
 					// Turn off spinner
 					_self.$root.$data.loading = false;
+					
+					_self.cities = response.body;
 				}
 				else {
 					console.warn("No results.");

@@ -46,7 +46,7 @@ const app = new Vue({
 	template: '<App/>',
 	el: '#app',
 	data: {
-		apiUrl: 'https://findsomecoffee.com/api/',
+		apiUrl: 'https://api.findsomecoffee.com/',
 		loading: false,
 		coords: {},
 		position: {},
@@ -119,7 +119,7 @@ const app = new Vue({
 		 */
 		fetchDataFromApi: function(endpoint, urlParams) {
 			var _self = this;
-			var requestUrl = this.apiUrl + endpoint + '?' + urlParams;
+			var requestUrl = this.apiUrl + endpoint + '/?' + urlParams;
 			
 			// Triggers loading spinner
 			// this.$data.loading = true;

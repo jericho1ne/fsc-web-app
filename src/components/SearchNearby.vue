@@ -7,9 +7,6 @@
 			class="fa-icon-xl spinner">
 		</span>
 		
-		<!-- <input type="text" v-model="msg" /> -->
-		<!-- <icon name="circle" class="fa-icon-xs"></icon> -->
-		
 		<div class="list-group">
 			<ul class="items">
 				<li v-for="item in items" class="item">	
@@ -73,7 +70,7 @@ export default {
 			cityList: [],
 			// Set up dummy array of coffeeshops
 			items: [
-				{ name: ' * Searching Nearby *', rating: '', review_count: '' },
+				{ name: 'Searching Nearby ...', rating: '', review_count: '' },
 			],
 			// Blank, just need a placeholder
 			item: {},
