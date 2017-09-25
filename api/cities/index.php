@@ -3,9 +3,9 @@ require_once '../lib/common.php';
 
 $cities = [
 	[ 
-		'name' => 'Atlanta',
-		'display' => 'ATL',
-		'state' => 'GA',
+		'name' => 'Amsterdam',
+		'display' => 'AMS',
+		'country' => 'Netherlands',
 	],
 
 	// [ 
@@ -32,17 +32,17 @@ $cities = [
 		'state' => 'TX',
 	],
 
-	[ 
-		'name' => 'Kansas City',
-		'display' => 'MCI',
-		'state' => 'MO',
-	],
+	// [ 
+	// 	'name' => 'Kansas City',
+	// 	'display' => 'MCI',
+	// 	'state' => 'MO',
+	// ],
 
-	[ 
-		'name' => 'Lansing',
-		'display' => 'LAN',
-		'state' => 'MI',
-	],
+	// [ 
+	// 	'name' => 'Lansing',
+	// 	'display' => 'LAN',
+	// 	'state' => 'MI',
+	// ],
 
 	[ 
 		'name' => 'Los Angeles',
@@ -92,17 +92,17 @@ $cities = [
 		'state' => 'OR',
 	],
 
-	[ 
-		'name' => 'Providence',
-		'display' => 'PVD',
-		'state' => 'RI',
-	],
+	// [ 
+	// 	'name' => 'Providence',
+	// 	'display' => 'PVD',
+	// 	'state' => 'RI',
+	// ],
 
-	[ 
-		'name' => 'Santa Barbara',
-		'display' => 'SBA',
-		'state' => 'CA',
-	],
+	// [ 
+	// 	'name' => 'Santa Barbara',
+	// 	'display' => 'SBA',
+	// 	'state' => 'CA',
+	// ],
 
 	[ 
 		'name' => 'San Francisco',
@@ -132,7 +132,6 @@ $cities = [
 		'display' => 'MTL',
 		'state' => 'QC',
 		'country' => 'Canada'
-
 	],
 
 	[ 
@@ -140,7 +139,6 @@ $cities = [
 		'display' => 'YYZ',
 		'state' => 'ON',
 		'country' => 'Canada'
-
 	],
 
 	[ 
