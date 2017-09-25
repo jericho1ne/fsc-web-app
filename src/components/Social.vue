@@ -102,7 +102,6 @@ a.j-image {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     -webkit-overflow-scrolling: touch;
     width: 85%;
@@ -142,12 +141,11 @@ a.j-image {
     border-bottom: none
 }
 .juicer-feed.modern li.feed-item {
-    padding: 10px;
+    padding: 0;
     background: #84C2D6; 
-   
+    border-radius: 4px;
+    overflow: hidden;
     color: #fff;
-    margin-bottom: 5%;
-    border: 1px solid #e5e5e5;
     white-space: normal;
     float: none;
     overflow-wrap: break-word;
@@ -163,13 +161,10 @@ a.j-image {
 }
 .juicer-feed.modern img {
     width: 100%;
-    margin-bottom: 10px
+    margin-bottom: 0 !important;
 }
 .juicer-feed.modern .j-meta ul {
     margin: 0;
-    padding: 0
-}
-.juicer-feed.modern li.feed-item {
     padding: 0
 }
 .juicer-feed.modern .j-poster {
@@ -225,7 +220,7 @@ a.j-image {
     content: ''
 }
 .juicer-feed .j-meta {
-    margin-top: 25px
+    margin-top: 10px
 }
 .juicer-feed .j-meta a {
     color: #fff

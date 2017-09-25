@@ -4,30 +4,17 @@
 <template>
 	<div id="app" class="">
 		<div id="header" class="">
-			<div><icon name="coffee" class="fa-icon-md blue-80"></icon></div>
-			<!-- <div><span class="blue-90">Find Some Coffee</span></div> -->
+			<div><icon name="coffee" class="fa-icon-lg"></icon></div>
 		</div>
 
 		<!-- Menu Bar -->
 		<div id="menu" 
-			class="border-bottom border-bottom-fade pad2" 
+			class="border-bottom border-bottom-fade" 
 		>
-
-			<span class="menu-option">
-				<router-link to="/nearby">coffee near me</router-link>
-			</span> 
-
-			<span class="menu-option">
-				<router-link to="/whats-good">what's good</router-link>
-			</span>
-
-			<span class="menu-option">
-				<router-link to="/cities">cities</router-link>
-			</span> 
-			<!-- <span class="menu-option">
-				<a href="https://blog.findsomecoffee.com">blog</a>
-			</span>  -->
-			 
+			<span class="menu-option"><router-link to="/nearby">coffee nearby</router-link></span> 
+			<span class="menu-option"><router-link to="/cities">explore</router-link></span>
+			<span class="menu-option"><router-link to="/whats-good">social</router-link></span>
+			<span class="menu-option"><a href="https://medium.com/artisanal-coffee">blog</a></span> 
 		</div>
 		<router-view></router-view>
 	</div>
@@ -39,56 +26,54 @@
 	}
 </script>
 
-<style>
-/* 
- 	Triad: http://paletton.com/#uid=5000u0kcGw03YSm85HMh-r6msmk 
- 	Mono:  http://paletton.com/#uid=1000E0kcGw03YSm85HMh-r6msmk
-*/
+<style lang="scss">
+ 	// Triad: http://paletton.com/#uid=5000u0kcGw03YSm85HMh-r6msmk 
+ 	// Mono:  http://paletton.com/#uid=1000E0kcGw03YSm85HMh-r6msmk
 
-/* 
-	Color Scheme
-		lt blue b7e0ed
-		blue 	84C2D6
-		dk blue 0C5C76 
-		hot red EE2222
-		lt pink FFDFDF
-		pink 	FF9A9A 
-		dk pink	D86161
-*/
+	// Color Scheme
+	$lt-blue: 	#b7e0ed;
+	$blue: 		#84C2D6;
+	$dk-blue: 	#0C5C76;
+	$hot-red: 	#EE2222;
+	$lt-pink:  	#FFDFDF;
+	$pink: 		#FF9A9A; 
+	$dk-pink:	#D86161;
+	$font-family-base: 'Avenir', Helvetica, Arial, sans-serif;
 
 	body {
-		margin: 0px;
+		font-family: $font-family-base;
+		margin: 0;
+		background-color: #fff;
 	}
 	#app {
-		font-family: 'Avenir', Helvetica, Arial, sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;
-		color: #0C5C76;
-		/*color: #0F0E2F;*/
+		color: $dk-blue;
 	}
 
 	#menu {
-		background-color: #FF9A9A;
-		font-weight: bold;
-		font-size: .95em;
-		padding: 6px 0;
+		background-color: $pink;
+		font-weight: 500;
+		font-size: 1em;
+		padding: 6px 0 8px;
 		text-align: center;
 		vertical-align: baseline;
-	}
-	#menu span.menu-option {
-		letter-spacing: .01em;
-		padding: 0px 10px;
-	}
-	#menu span.menu-option a {
-		padding: 0;
-	}
-	#menu .router-link-active {
-		border-bottom: 2px solid #fff;
+
+		span.menu-option {
+			padding: 0px 10px;
+			a {
+				padding: 0;
+			}
+		}
+
+		.router-link-active {
+			border-bottom: 2px solid #fff;
+		}
 	}
 
 	h1, h2 {
-		color: #1A7695;
+		color: $dk-blue;
 		font-weight: normal;
 		margin: 1.5em;
 	}
@@ -100,59 +85,68 @@
 		font-weight: normal;
 		margin: 0.25em;
 	}
+
 	a {
 		text-decoration: none;
 		padding: 0px 4px;
 		border-bottom: 2px solid transparent;
 		color: #fff;
-	}
-	a:hover,
-	a:active {
-		cursor: pointer;
+
+		&:hover,
+		&:active {
+			cursor: pointer;
+		}
 	}
 
-	.vue-dialog .dialog-content {
-		padding: .75em !important;
+	.vue-dialog {
+		.dialog-content {
+			padding: .75em !important;
+			div {
+				margin: 0;
+				padding: 2px 0;
+			}
+
+			a:hover {
+				background-color: #FA00ED;
+				cursor: pointer;
+			}
+
+			.dialog-c-title {
+				font-size: 20px;
+				padding: .1em 0;
+			}
+
+			img {
+				margin: 8px 0;
+				border: 1px solid #888;
+				max-height: 270px;
+				width: 98%;
+				object-fit: cover;
+			}
+		}
+
+		.dialog-buttons button {
+			color: $dk-blue;
+			font-size: 1.15em;
+		}
+
+		button {
+			height: 42px !important;
+
+			&:hover {
+				background-color: lighten($lt-blue, 7) !important;
+				transition: all 0.35s ease 0.06s;
+			}
+		}
 	}
 
-	.vue-dialog .dialog-content div {
-		margin: 0;
-		padding: 2px 0;
-	}
 	.phone-link {
 		color: #fff;
 		font-weight: bold;
-		padding: 3px 6px 2px 6px;
+		padding: 3px 8px 1px;
 		margin: 4px 0;
-		border-radius: 10px;
+		border-radius: 20px;
 		background-color: #B909B3;
-	}
-	.vue-dialog .dialog-buttons button {
-		color: #0C5C76;
-		font-size: 1.15em;
-	}
-	.vue-dialog button {
-		height: 38px !important;
-	}
-	.vue-dialog button:hover {
-		background-color: #b7e0ed !important;
-		transition: all 0.4s ease 0s;
-	}
-
-	.vue-dialog .dialog-content a:hover {
-		background-color: #FA00ED;
-		cursor: pointer;
-	}
-	.vue-dialog .dialog-content div.dialog-c-title {
-		font-size: 20px;
-		padding: .1em 0;
-	}
-	.vue-dialog .dialog-content img {
-		margin: 4px 0;
-		border: 1px solid #bababa;
-		max-height: 270px;
-		width: 100%;
-		object-fit: cover;
 	}
 
 	.v--modal-overlay .v--modal-box {
@@ -165,7 +159,7 @@
 	hr {
 		border: none;
 		width: 100%;
-		border-bottom: 1px solid #0C5C76;
+		border-bottom: 1px solid $dk-blue;
 		opacity: .25;
 		margin: 20px auto;
 	}
@@ -184,78 +178,40 @@
 		border: none;
 		display: inline-block;
 		cursor: pointer;
-	}
-	button:hover {
-		background-color: #D86161;
-		transition: all 0.4s ease 0s;
-	}
-	button:active,
-	button.active {
-		/*background-color: #1A7695;*/
-		background-color: #D86161;
+		&:hover {
+			background-color: $dk-pink;
+			transition: all 0.4s ease 0s;
+		}
+
+		&:active,
+		&.active {
+			/*background-color: $dk-blue;*/
+			background-color: $dk-pink;
+		}
+
+		&.round {
+			/*background-color: #84C2D6;*/
+			border-radius: 100px;
+		}
+
+		&.toggle {
+			width: auto;
+			height: 2.5em;
+			background-color: transparent !important;
+			padding: 0px;
+			margin: 0px;
+		}
 	}
 	
-	button.round {
-		/*background-color: #84C2D6;*/
-		border-radius: 100px;
-	}
-	
-	button.toggle {
-		width: auto;
-		height: 2.5em;
-		background-color: transparent !important;
-		padding: 0px;
-		margin: 0px;
-	}
 	button:hover.toggle {
 		background-color: none;
 	}
 
 	/* COLOR PALETTE */
 	/* http://paletton.com/palette.php?uid=7000A0kmtw0cHNai7DJrrtVtYnD */
-	.green-80 {
-		color: #8DE98D !important;
-	}
-	.blue-80 {
+	.blue {
 		color: #84C2D6 !important;
 		fill: #84C2D6 !important;
-	}
-	.blue-90 {
-		color: #54A0B9 !important;
-		fill: #54A0B9 !important;
-	}
-	.blue-100 {
-		color: #34849F !important;
-		fill: #34849F !important;
-	}
-	.blue-110 {
-		color: #1A7695 !important;
-		fill: #1A7695 !important;
-	}
-	.blue-120 {
-		color: #0C5C76 !important;
-		fill: #0C5C76 !important;
-	}
-
-	.pink-80 {
-		color: #FF9A9A !important;
-		fill: #FF9A9A !important;
-	}
-	.pink-90 {
-		color: #FF6F6F !important;
-		fill: #FF6F6F !important;
-	}
-	.pink-100 {
-		color: #FF4C4C !important;
-		fill: #FF4C4C !important;
-	}
-	.pink-110 {
-		color: #EE2222 !important;
-		fill: #EE2222 !important;
-	}
-	.pink-120 {
-		color: #BC0C0C !important;
-		fill: #BC0C0C !important;
 	}
 	
 	/* Icons */
@@ -300,46 +256,38 @@
 	.border-bottom-fade {
 		box-shadow: 0 3px 2px -2px #dedede;
 	}
-	.bg-gray {
-		background-color: #eee;
-	}
-
-	/* PADDING / LAYOUT */
-	.pad2 {
-		padding: 2px;
-	}
-	.pad5 {
-		padding: 5px;
-	}
-	.pad10 {
-		padding: 10px;
-	}
 
 	/* ITEM LIST */
 	div .star-rating {
 		display: inline-block !important;
 	}
-	ul li { display: inline; }
+	ul {
+		li { 
+			display: inline; 
 	
-	ul.items {
-		list-style-type: none;
-		padding: 0;
+			&.item {
+				position: relative;
+				display: inline-block;
+				margin: 10px 14px 10px 10px;
+				border-radius: 4px;
+				width:  280px;
+				height: 280px;
+				background-color: transparent;
+				overflow: hidden;
+			}
+
+			.thumb:hover {
+				cursor: pointer;
+				opacity: 0.86;
+			}
+		}
+		&.items {
+			margin-top: 8px;
+			list-style-type: none;
+			padding: 0;
+		}
 	}
-	li.item {
-		position: relative;
-		display: inline-block;
-		/*border: 1px solid #dedede;*/
-		margin: 10px 10px 5px 10px;
-		border-radius: 3px;
-		width:  280px;
-		height: 280px;
-		background-color: transparent;
-		overflow: hidden;
-	}
-	li .thumb:hover {
-		cursor: pointer;
-		opacity: 0.8;
-	}
+	
 	.thumb {
 		top: 0px;
 		height: 100%;
@@ -370,7 +318,6 @@
 		color: #fff;
 	}
 
-
 	/* Pure CSS spinner*/
 	.spinner {
 		position: fixed;
@@ -383,17 +330,17 @@
 
 		/* 
 		/*border-top-color: #84C2D6;
-		border-left-color: #FF9A9A;
+		border-left-color: $pink;
 		border-bottom-color: #144F77;*/
 		
 		/* Triad */
 		/*border-top-color: #FFC89A;
-		border-left-color: #FF9A9A;
+		border-left-color: $pink;
 		border-bottom-color: #CD7CA8;*/
 
 		/* Monochromatic */
-		border-top-color: #FF9A9A;
-		border-left-color: #D86161;
+		border-top-color: $pink;
+		border-left-color: $dk-pink;
 		border-bottom-color: #B23535;
 		
 		/* Additional spinner styles */

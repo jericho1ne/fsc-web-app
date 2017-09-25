@@ -34,7 +34,7 @@
 					v-bind:class="{ active: cityListActive }" 
 					class=""
 				>
-					<li v-for="city in cities" class="city">	
+					<li v-for="city in this.$root.$data.cities" class="city">	
 						<button 
 							:class="{ 'active': isThisTheCurrentCity(city) }"
 							class="btn round"
@@ -55,7 +55,6 @@
 						v-bind:style="{ backgroundImage: 'url(' + item.image_url + ')' }"
 						@click="getItemDetail(item.id)"
 					>
-						
 						<div class="item-title">
 							<h4 class="list-group-item-heading">{{item.name}}</h4>		
 							<h5 class="list-group-item-text" v-if="item.review_count">
@@ -104,7 +103,6 @@ export default {
 			currentCity: '',
 			items: [
 			],
-			cities: [],
 		}
 	},
 	created: function () {
@@ -112,6 +110,10 @@ export default {
 	mounted: function () {
 		var _self = this;
 		
+		// Check for cached data
+		if (_self.$root.$data.cities.length) {
+			return;
+		}
 		// Turn on spinner
 		_self.$root.$data.loading = true;
 
@@ -128,7 +130,7 @@ export default {
 					// Turn off spinner
 					_self.$root.$data.loading = false;
 
-					_self.cities = response.body;
+					_self.$root.$data.cities = response.body;
 				}
 				else {
 					console.warn("No results.");
@@ -226,15 +228,17 @@ export default {
 		border: 0;
 		border-top: 1px solid rgba(10,10,10,.1);
 		height: 100%;
+		transition: all 0.25s ease;
 	}
 	.city-names {
 		box-shadow: inset 0 0 6rem rgba(10,10,10,.20);
 		padding: 0;
 		margin: 0;
 		border-bottom: 1px solid rgba(10,10,10,.25);
+		transition: all .25s ease;
 	}
 	.fade-enter-active, .fade-leave-active {
-		transition: all 0.15s ease;
+		transition: all 0.25s ease;
 	}
 	.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
 		opacity: 0;

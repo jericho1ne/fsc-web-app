@@ -1,7 +1,5 @@
 /* 
-  
   Add Plugins Here 
-
 */
 var path = require('path')
 var utils = require('./utils')
@@ -12,6 +10,7 @@ var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 // var PrerenderSpaPlugin = require('prerender-spa-plugin')
+
 var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : config.build.env

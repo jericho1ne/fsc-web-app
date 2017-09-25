@@ -48,8 +48,19 @@ const app = new Vue({
 	data: {
 		apiUrl: 'https://api.findsomecoffee.com',
 		loading: false,
-		coords: {},
-		position: {},
+		coords: {
+			latitude: '',
+			longitude: ' '
+		},
+		prevCords: {
+			latitude: '',
+			longitude: ' '
+		},
+		// Set up single dummy item to use as user loading message
+		items: [
+			{ name: 'Searching Nearby...', rating: '', review_count: '' },
+		],
+		cities: [],
 	},
 	// Anything that changes inside this task will trigger the
 	// provided method
@@ -74,7 +85,6 @@ const app = new Vue({
 		// `this` points to the vm instance	
 	}, 
 	mounted: function () {
-		
 	},
 	// Globally-avaiable functions
 	methods: {
@@ -104,10 +114,30 @@ const app = new Vue({
 		 * @return {Promise} Object that can be resolved with the provided value
 		 */
 		getLocation: function() {
+			const _self = this;
+			
 			return new Promise(function (resolve, reject) {
-				navigator.geolocation.getCurrentPosition(function (position) {
-					resolve(position);
-				});
+				// _self.$root.$data.coords.latitude = 34.0656855;
+				// _self.$root.$data.coords.longitude = -118.405370599;
+
+				if (_self.$root.$data.coords.latitude &&
+					_self.$root.$data.coords.longitude
+				) {
+					resolve ({
+						'latitude': _self.$root.$data.coords.latitude,
+						'longitude': _self.$root.$data.coords.longitude
+					});
+				}
+				else {
+					navigator.geolocation.getCurrentPosition(function (position) {
+						// First move stale position to old vars
+						_self.$root.$data.prevCoords = _self.$root.$data.coords;
+						// Save new position to root variables
+						_self.$root.$data.coords = position.coords;
+						// Now we can resolve the promise
+						resolve(_self.$root.$data.coords);
+					});
+				}
 			});
 		},
 		
@@ -121,7 +151,7 @@ const app = new Vue({
 			var _self = this;
 			var requestUrl = `${this.apiUrl}/${endpoint}/?${urlParams}`;
 			
-			console.log(requestUrl);
+			// console.log(requestUrl);
 
 			// Triggers loading spinner
 			// this.$data.loading = true;
@@ -135,6 +165,15 @@ const app = new Vue({
 			});
 		}, // End fetchData
 
+		hasPositionChanged: function() {
+			const oldPos = this.$root.$data.coords;
+			const newPos = this.$root.$data.prevCoords;
+			
+			return (
+				oldPos.latitude !== newPos.latitude && 
+				oldPos.longitude !== newPos.longitude
+			);
+		},
 		
 		showItemDetail: function(item) {
 			var _self = this;
