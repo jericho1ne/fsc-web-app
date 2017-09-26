@@ -89,14 +89,15 @@ export default {
 			else {
 				// Ajax request to places API
 				let urlParams = 
-					`term=coffee&` + 
+					`term=latte&` +
+					`categories=coffeeroasteries,coffee&` +
 					`lat=${position.latitude}&lon=${position.longitude}&` +
 					// List of comma delimited pricing levels (1,2,3,4)
 					`price=1,2,3,4&` +
 					// defaults to best_match
 					// { best_match, rating, review_count, distance }
 					`sort_by=distance&` +
-					`limit=16`;
+					`limit=30`;
 
 				_self.$root.fetchDataFromApi('search', urlParams)
 					.then(response => {
@@ -110,6 +111,18 @@ export default {
 
 							let items = response.body.businesses;
 
+							items.forEach((item, index) => {
+								if (item.name.indexOf('Starbucks') >= 0 ||
+									item.name.indexOf('Dunkin Donuts') >= 0 ||
+									item.name.indexOf('Coffee Bean and Tea Leaf') >= 0 ||
+									item.name.indexOf('Peet\'s') >= 0 ||
+									item.name.indexOf('Caribou') >= 0 ||
+									item.name.indexOf('Tim Hortons') >= 0
+								) {
+									items.splice(index, 1);
+								}
+							});
+							
 							// Sort based on proximity
 							items.sort(function(a, b) {		
 								// sort by proximity (closest first)
