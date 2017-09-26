@@ -186,7 +186,21 @@ export default {
 				// Set the displayed item to the AJAX response
 				if (typeof response.body.businesses === 'object') {
 					const items = response.body.businesses;
-					
+
+					items.forEach((item, index) => {
+						const itemName = item.name.trim();
+						if (itemName.indexOf('Starbucks') >= 0 ||
+							itemName.indexOf('Dunkin Donuts') >= 0 ||
+							itemName.indexOf('Coffee Bean and Tea Leaf') >= 0 ||
+							itemName.indexOf('Coffee Bean & Tea Leaf') >= 0 ||
+							itemName.indexOf('Peet\'s') >= 0 ||
+							itemName.indexOf('Caribou') >= 0 ||
+							itemName.indexOf('Tim Hortons') >= 0
+						) {
+							items.splice(index, 1);
+						}
+					});
+
 					// Turn off spinner
 					_self.$root.$data.loading = false;
 

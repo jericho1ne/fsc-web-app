@@ -112,12 +112,14 @@ export default {
 							let items = response.body.businesses;
 
 							items.forEach((item, index) => {
-								if (item.name.indexOf('Starbucks') >= 0 ||
-									item.name.indexOf('Dunkin Donuts') >= 0 ||
-									item.name.indexOf('Coffee Bean and Tea Leaf') >= 0 ||
-									item.name.indexOf('Peet\'s') >= 0 ||
-									item.name.indexOf('Caribou') >= 0 ||
-									item.name.indexOf('Tim Hortons') >= 0
+								const itemName = item.name.trim();
+								if (itemName.indexOf('Starbucks') >= 0 ||
+									itemName.indexOf('Dunkin Donuts') >= 0 ||
+									itemName.indexOf('Coffee Bean and Tea Leaf') >= 0 ||
+									itemName.indexOf('Coffee Bean & Tea Leaf') >= 0 ||
+									itemName.indexOf('Peet\'s') >= 0 ||
+									itemName.indexOf('Caribou') >= 0 ||
+									itemName.indexOf('Tim Hortons') >= 0
 								) {
 									items.splice(index, 1);
 								}

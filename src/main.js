@@ -187,7 +187,6 @@ const app = new Vue({
 		
 		showItemDetail: function(item) {
 			var _self = this;
-			console.log(item);
 
 			let mapsURL = 'https://www.google.com/maps/search/?api=1&query=';
 			mapsURL += `${item.name}, ${item.location.address1}, ${item.location.city}, ${item.location.country}`;
@@ -205,7 +204,6 @@ const app = new Vue({
 				import 'vue-awesome/icons/window-close-o'
 				import 'vue-awesome/icons/close'
 			*/
-			console.log(item.hours[0].is_open_now);
 
 			const nowOpen = item.hours[0].is_open_now 
 				? '<b>Open now</b>'
