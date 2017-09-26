@@ -89,7 +89,7 @@ export default {
 			else {
 				// Ajax request to places API
 				let urlParams = 
-					`term=latte&` +
+					`term=espresso&` +
 					`categories=coffeeroasteries,coffee&` +
 					`lat=${position.latitude}&lon=${position.longitude}&` +
 					// List of comma delimited pricing levels (1,2,3,4)

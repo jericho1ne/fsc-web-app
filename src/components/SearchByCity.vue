@@ -172,14 +172,15 @@ export default {
 
 			// Ajax request to places API
 			let urlParams = 
-				`term=coffee&` + 
+				`term=espresso&` +
+				`categories=coffeeroasteries,coffee&` +
 				`location=${selectedCity}&` +
 				// List of comma delimited pricing levels (1,2,3,4)
 				`price=1,2,3,4&` +
 				// defaults to best_match
 				// { best_match, rating, review_count, distance }
 				`sort_by=review_count&` +
-				`limit=40`;
+				`limit=48`;
 
 			_self.$root.fetchDataFromApi('search', urlParams).then(response => {
 				// Set the displayed item to the AJAX response
