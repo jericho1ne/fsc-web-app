@@ -21,6 +21,16 @@ import 'vue-awesome/icons/phone-square'
 import 'vue-awesome/icons/angle-up'
 import 'vue-awesome/icons/angle-down'
 
+import 'vue-awesome/icons/bookmark'
+import 'vue-awesome/icons/compass'
+import 'vue-awesome/icons/share-square'
+
+import 'vue-awesome/icons/check-square'
+import 'vue-awesome/icons/check-square-o'
+import 'vue-awesome/icons/window-close'
+import 'vue-awesome/icons/window-close-o'
+import 'vue-awesome/icons/close'
+
 // Single includes to reduce bundle size
 Vue.component('icon', Icon)
 
@@ -177,7 +187,7 @@ const app = new Vue({
 		
 		showItemDetail: function(item) {
 			var _self = this;
-		
+			console.log(item);
 
 			let mapsURL = 'https://www.google.com/maps/search/?api=1&query=';
 			mapsURL += `${item.name}, ${item.location.address1}, ${item.location.city}, ${item.location.country}`;
@@ -188,9 +198,23 @@ const app = new Vue({
 				? `<div class=""><a class="phone-link" href="tel:${item.phone}">${item.display_phone}</a></div>` 
 				: '';
 
+			/*
+				import 'vue-awesome/icons/check-square'
+				import 'vue-awesome/icons/check-square-o'
+				import 'vue-awesome/icons/window-close'
+				import 'vue-awesome/icons/window-close-o'
+				import 'vue-awesome/icons/close'
+			*/
+			console.log(item.hours[0].is_open_now);
+
+			const nowOpen = item.hours[0].is_open_now 
+				? '<b>Open now</b>'
+				: '';
+
 			const bodyHtml = 
 				`<div>${item.location.display_address[0]}<br>` +
 				`${item.location.display_address[1]}</div>` + 
+				`<div>${nowOpen}</div>` +
 				`${displayPhone}` +
 				// `${item.review_count} reviews<br>` +
 				`<div><img src="${item.image_url}"></div>`;

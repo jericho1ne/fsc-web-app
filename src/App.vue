@@ -14,7 +14,7 @@
 			<span class="menu-option"><router-link to="/nearby">coffee nearby</router-link></span> 
 			<span class="menu-option"><router-link to="/cities">explore</router-link></span>
 			<span class="menu-option"><router-link to="/whats-good">social</router-link></span>
-			<span class="menu-option"><a href="https://medium.com/artisanal-coffee">blog</a></span> 
+			<span class="menu-option"><a href="https://blog.findsomecoffee.com">blog</a></span> 
 		</div>
 		<router-view></router-view>
 	</div>

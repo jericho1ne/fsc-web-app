@@ -39,9 +39,9 @@
 						</div>
 						<div class="mini-action-bar" v-if="item.rating">
 							<!-- //click:deleteItem({{index}}) -->
-							<!-- <icon name="bookmark" class="fa-icon-md" style="fill:#fff"></icon>
-							<icon name="compass" class="fa-icon-md" style="fill:#fff"></icon>
-							<icon name="share-square" class="fa-icon-md" style="fill:#fff"></icon> -->
+							<!-- <icon name="bookmark" class="fa-icon-md"></icon>
+							<icon name="compass" class="fa-icon-md"></icon>
+							<icon name="share-square" class="fa-icon-md"></icon> -->
 							<!-- 
 							<button class="btn btn-xs btn-danger" v-on="">Delete</button> -->
 						</div>
