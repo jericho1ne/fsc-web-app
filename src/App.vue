@@ -110,10 +110,23 @@
 
 	.vue-dialog {
 		.dialog-content {
-			padding: .75em !important;
-			div {
-				margin: 0;
-				padding: 2px 0 0 0;
+			padding: .75em .75em 0 .75em !important;
+			.dialog-c-text div {
+				margin-top: 4px;
+				padding: 0;
+
+				&.review {
+					border: 1px solid $lt-blue;
+					font-size: 12px;
+					box-shadow: 0.1rem 0.1rem 0.4rem rgba(0,0,0,.15);
+					border-radius: 6px;
+					padding: 8px;
+					margin: 12px 0;
+					text-overflow: fade;
+					text-overflow: fade(10px);
+					text-overflow: fade(5%);
+					overflow: hidden;
+				}
 			}
 
 			a:hover {
@@ -136,17 +149,7 @@
 				object-fit: cover;
 			}
 
-			.review {
-				border: 1px solid $lt-blue;
-				box-shadow: 0.1rem 0.1rem 0.4rem rgba(0,0,0,.15);
-				border-radius: 6px;
-				padding: 8px;
-				margin: 14px 0;
-				text-overflow: fade;
-				text-overflow: fade(10px);
-				text-overflow: fade(5%);
-				overflow: hidden;
-			}
+			
 		}
 	
 		.dialog-buttons button {
