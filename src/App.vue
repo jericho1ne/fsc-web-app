@@ -131,7 +131,7 @@
 			}
 
 			img {
-				max-height: 260px;
+				max-height: 160px;
 				width: 100%;
 				object-fit: cover;
 			}
