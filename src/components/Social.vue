@@ -32,6 +32,8 @@ export default {
                     // Notify prerender SPA plugin
                     document.dispatchEvent(new Event('render-complete'));
 					_self.$root.$data.loading = false;
+
+                    $('li.feed-item.juicer.image-post').remove();
 				}, 500);
 			});   
 	}, 
@@ -45,17 +47,15 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
- /* 
-    Color Scheme
-        lt blue b7e0ed
-        blue    84C2D6
-        dk blue 0C5C76 
-        hot red EE2222
-        lt pink FFDFDF
-        pink    FF9A9A 
-        dk pink D86161
- */
+<style lang="scss">
+// Color Scheme
+$lt-blue:   #b7e0ed;
+$blue:      #84C2D6;
+$dk-blue:   #0C5C76;
+$hot-red:   #EE2222;
+$lt-pink:   #FFDFDF;
+$pink:      #FF9A9A; 
+$dk-pink:   #D86161;
 
 /* Hide Juicer referral tag*/
 h1.referral,
@@ -68,6 +68,11 @@ a.j-image {
 /* Hide Juicer loading icon */
 .j-loading {
 	display: none !important;
+}
+
+/* Hide juicer promotional posts */
+li.feed-item.juicer {
+    display: none
 }
 
 /* JUICER EMBED */
@@ -105,6 +110,7 @@ a.j-image {
     font-size: 16px;
     -webkit-overflow-scrolling: touch;
     width: 85%;
+    max-width: 1280px;
     position: relative;
     margin: 0 auto !important;
     overflow-y: auto;
@@ -138,12 +144,22 @@ a.j-image {
 }
 .juicer-feed a {
     text-decoration: none !important;
-    border-bottom: none
+    border-bottom: none;
+    text-shadow: 0.05rem 0.05rem 0.025rem rgba(220,220,220,.5);
+    -moz-transition: color 0.2s ease-in-out;
+    -o-transition: color 0.2s ease-in-out;
+    -webkit-transition: color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out;
+    color: $dk-pink;
+    &:hover {
+        color: $pink;
+    }
 }
 .juicer-feed.modern li.feed-item {
     padding: 0;
+    margin-bottom: 40px !important;
     background: #84C2D6; 
-    border-radius: 4px;
+    border-radius: 12px;
     overflow: hidden;
     color: #fff;
     white-space: normal;
@@ -282,16 +298,6 @@ a.j-image {
 }
 .juicer-feed .j-meta a.heart:before {
     content: '\f004'
-}
-.juicer-feed a {
-    -moz-transition: color 0.2s ease-in-out;
-    -o-transition: color 0.2s ease-in-out;
-    -webkit-transition: color 0.2s ease-in-out;
-    transition: color 0.2s ease-in-out;
-    color: #3A3A3A
-}
-.juicer-feed a:hover {
-    color: #F17E6F
 }
 .j-poster {
     overflow: hidden;

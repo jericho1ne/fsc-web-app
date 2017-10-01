@@ -11,10 +11,10 @@
 		<div id="menu" 
 			class="border-bottom border-bottom-fade" 
 		>
-			<span class="menu-option"><router-link to="/nearby">coffee nearby</router-link></span> 
-			<span class="menu-option"><router-link to="/cities">explore</router-link></span>
-			<span class="menu-option"><router-link to="/whats-good">social</router-link></span>
+			<span class="menu-option"><router-link to="/nearby">coffee nearby</router-link></span>
+			<span class="menu-option"><router-link to="/cities">cities</router-link></span>
 			<span class="menu-option"><a href="https://blog.findsomecoffee.com">blog</a></span> 
+			<span class="menu-option"><router-link to="/whats-good">social</router-link></span>
 		</div>
 		<router-view></router-view>
 	</div>
