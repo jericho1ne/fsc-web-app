@@ -197,6 +197,17 @@ const app = new Vue({
 				? `<div class=""><a class="phone-link" href="tel:${item.phone}">${item.display_phone}</a></div>` 
 				: '';
 
+			let reviews = ''
+
+			if (item.reviews.length > 0) {
+				for (var i = 0; i < 2; i++){
+					reviews += `<div class="review">${item.reviews[i].text}</div>`;
+				}
+				// item.reviews.forEach((review, index) => {
+				// 	reviews += `<div class="review">${review.text}</div>`;
+				// })
+			}
+
 			/*
 				import 'vue-awesome/icons/check-square'
 				import 'vue-awesome/icons/check-square-o'
@@ -210,12 +221,13 @@ const app = new Vue({
 				: '';
 
 			const bodyHtml = 
-				`<div>${item.location.display_address[0]}<br>` +
+				`<div>${item.location.display_address[0]}, ` +
 				`${item.location.display_address[1]}</div>` + 
 				`<div>${nowOpen}</div>` +
 				`${displayPhone}` +
+				`${reviews}` +
 				// `${item.review_count} reviews<br>` +
-				`<div><img src="${item.image_url}"></div>`;
+				`<div class="detail-thumb"><img src="${item.image_url}"></div>`;
 
 			let itemToBeDisplayed = {
 				title: item.name,
@@ -266,8 +278,10 @@ const app = new Vue({
 						_self.$root.$data.loading = false;
 						// Pop up modal
 						_self.$root.showItemDetail(response.body);
+
 						// TODO store business details locally in an array to save 
-						// future lookups
+
+						// Cache future lookups
 						// _self.businesses['this_one'] = response.body;
 					}
 				}, response => {

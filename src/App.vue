@@ -98,12 +98,22 @@
 		}
 	}
 
+	// VUE MODAL
+	.v--modal-overlay {
+		width: 100% !important;
+	}
+
+	.v--modal-overlay .v--modal-box {
+		position: static !important;
+		width: 100% !important;
+	}
+
 	.vue-dialog {
 		.dialog-content {
 			padding: .75em !important;
 			div {
 				margin: 0;
-				padding: 2px 0;
+				padding: 2px 0 0 0;
 			}
 
 			a:hover {
@@ -112,19 +122,33 @@
 			}
 
 			.dialog-c-title {
-				font-size: 20px;
-				padding: .1em 0;
+				font-size: 16px;
+				padding: .05em 0;
+			}
+		
+			.detail-thumb {
+				margin: 0px;
 			}
 
 			img {
-				margin: 8px 0;
-				border: 1px solid #888;
-				max-height: 270px;
-				width: 98%;
+				max-height: 260px;
+				width: 100%;
 				object-fit: cover;
 			}
-		}
 
+			.review {
+				border: 1px solid $lt-blue;
+				box-shadow: 0.1rem 0.1rem 0.4rem rgba(0,0,0,.15);
+				border-radius: 6px;
+				padding: 8px;
+				margin: 14px 0;
+				text-overflow: fade;
+				text-overflow: fade(10px);
+				text-overflow: fade(5%);
+				overflow: hidden;
+			}
+		}
+	
 		.dialog-buttons button {
 			color: $dk-blue;
 			font-size: 1.15em;
@@ -143,16 +167,9 @@
 	.phone-link {
 		color: #fff;
 		font-weight: bold;
-		padding: 3px 8px 1px;
-		margin: 4px 0;
-		border-radius: 20px;
+		padding: 2px 6px 1px;
+		border-radius: 6px;
 		background-color: #B909B3;
-	}
-
-	.v--modal-overlay .v--modal-box {
-		position: static !important;
-		margin: 0;
-		width: 100% !important;
 	}
 
 	/* General */
