@@ -3,9 +3,11 @@
 
 <template>
 	<div id="app" class="">
-		<div id="header" class="">
-			<div><icon name="coffee" class="fa-icon-lg"></icon></div>
-		</div>
+		<!-- <div id="header" class="">
+			<div>
+				<icon name="coffee" class="fa-icon-lg"></icon>
+			</div>
+		</div> -->
 
 		<!-- Menu Bar -->
 		<div id="menu" 
@@ -39,11 +41,17 @@
 	$pink: 		#FF9A9A; 
 	$dk-pink:	#D86161;
 	$font-family-base: 'Avenir', Helvetica, Arial, sans-serif;
-
+	
 	body {
 		font-family: $font-family-base;
 		margin: 0;
 		background-color: #fff;
+		background: url('assets/fsc-cup-blue.png') no-repeat center center fixed; 
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		z-index: 998;
 	}
 	#app {
 		-webkit-font-smoothing: antialiased;
@@ -109,10 +117,13 @@
 	}
 
 	.vue-dialog {
+		$verticalHeight: 93%;
+		height: $verticalHeight !important;
 		.dialog-content {
+			height: $verticalHeight !important;
+
 			padding: .75em .75em 0 .75em !important;
 			.dialog-c-text div {
-				margin-top: 4px;
 				padding: 0;
 
 				&.review {
@@ -140,29 +151,37 @@
 			}
 		
 			.detail-thumb {
-				margin: 0px;
+				height: auto;
+				margin: 0;
+				padding: 0;
 			}
 
 			img {
-				max-height: 160px;
 				width: 100%;
-				object-fit: cover;
 			}
-
-			
 		}
 	
-		.dialog-buttons button {
-			color: $dk-blue;
-			font-size: 1.15em;
+		.dialog-buttons {
+			position: absolute;
+			bottom: 0;
+			padding: 0 !important;
+			margin: 0 !important;
+			border-top: 0px !important;
+			box-shadow: 0rem -.15rem 1.2rem rgba(100,100,100,.5);
+			background-color: #fff !important;
+			border-bottom: 1px solid #eee !important;
+			// Stupid Safari on iOS...
+			margin-bottom: 30px !important;
 		}
 
 		button {
-			height: 42px !important;
-
-			&:hover {
+			color: $dk-blue !important;
+			font-size: 1.25em !important;
+			background-color: #fff !important;
+			&:hover, 
+			&:active {
 				background-color: lighten($lt-blue, 7) !important;
-				transition: all 0.35s ease 0.06s;
+				transition: all 0.15s ease 0.1s;
 			}
 		}
 	}
@@ -275,6 +294,11 @@
 	}
 	.border-bottom-fade {
 		box-shadow: 0 3px 2px -2px #dedede;
+	}
+
+	/* Padding fixes */
+	.pad-top-4 {
+		margin-top: 4px;
 	}
 
 	/* ITEM LIST */

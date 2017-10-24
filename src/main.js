@@ -194,7 +194,7 @@ const app = new Vue({
 			// console.log(mapsURL);
 
 			const displayPhone = (item.phone !== '' && item.phone !== undefined)
-				? `<div class=""><a class="phone-link" href="tel:${item.phone}">${item.display_phone}</a></div>` 
+				? `<div class="pad-top-4"><a class="phone-link" href="tel:${item.phone}">${item.display_phone}</a></div>` 
 				: '';
 
 			let reviews = ''
@@ -287,7 +287,27 @@ const app = new Vue({
 				}, response => {
 					console.warn("Error");
 				});
-		},
-	}, 
+		}, // End getItemDetail()
+
+		stripCoffeeShops: function(items) {
+			let goodCoffeeShops = [];
+			items.forEach((item, index) => {
+				const itemName = item.name.trim();
+				if (itemName.indexOf('Starbucks') == -1 &&
+					itemName.indexOf('Dunkin Donuts') == -1 &&
+					itemName.indexOf('Coffee Bean and Tea Leaf') == -1 &&
+					itemName.indexOf('Coffee Bean & Tea Leaf') == -1 &&
+					itemName.indexOf('Peet\'s') == -1 &&
+					itemName.indexOf('Caribou') == -1 &&
+					itemName.indexOf('Tim Hortons') == -1 && 
+					itemName.indexOf('Boba') == -1 && 
+					itemName.indexOf('Deli') == -1
+				) {
+					goodCoffeeShops.push(item);
+				}
+			});
+			return goodCoffeeShops;
+		}, // End stripShittyCoffeePlaces()
+	}
 })
 

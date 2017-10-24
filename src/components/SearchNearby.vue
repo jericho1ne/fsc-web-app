@@ -89,8 +89,8 @@ export default {
 			else {
 				// Ajax request to places API
 				let urlParams = 
-					`term=espresso&` +
-					`categories=coffeeroasteries,coffee&` +
+					`term='Coffee-Tea'&` +
+					// `categories=coffeeroasteries,coffee&` +
 					`lat=${position.latitude}&lon=${position.longitude}&` +
 					// List of comma delimited pricing levels (1,2,3,4)
 					`price=1,2,3,4&` +
@@ -110,20 +110,7 @@ export default {
 							_self.$root.$data.loading = false;
 
 							let items = response.body.businesses;
-
-							items.forEach((item, index) => {
-								const itemName = item.name.trim();
-								if (itemName.indexOf('Starbucks') >= 0 ||
-									itemName.indexOf('Dunkin Donuts') >= 0 ||
-									itemName.indexOf('Coffee Bean and Tea Leaf') >= 0 ||
-									itemName.indexOf('Coffee Bean & Tea Leaf') >= 0 ||
-									itemName.indexOf('Peet\'s') >= 0 ||
-									itemName.indexOf('Caribou') >= 0 ||
-									itemName.indexOf('Tim Hortons') >= 0
-								) {
-									items.splice(index, 1);
-								}
-							});
+							items = _self.$root.stripCoffeeShops(items);
 							
 							// Sort based on proximity
 							items.sort(function(a, b) {		

@@ -172,7 +172,7 @@ export default {
 
 			// Ajax request to places API
 			let urlParams = 
-				`term=espresso&` +
+				`term='Coffee-Tea'&` +
 				`categories=coffeeroasteries,coffee&` +
 				`location=${selectedCity}&` +
 				// List of comma delimited pricing levels (1,2,3,4)
@@ -185,21 +185,8 @@ export default {
 			_self.$root.fetchDataFromApi('search', urlParams).then(response => {
 				// Set the displayed item to the AJAX response
 				if (typeof response.body.businesses === 'object') {
-					const items = response.body.businesses;
-
-					items.forEach((item, index) => {
-						const itemName = item.name.trim();
-						if (itemName.indexOf('Starbucks') >= 0 ||
-							itemName.indexOf('Dunkin Donuts') >= 0 ||
-							itemName.indexOf('Coffee Bean and Tea Leaf') >= 0 ||
-							itemName.indexOf('Coffee Bean & Tea Leaf') >= 0 ||
-							itemName.indexOf('Peet\'s') >= 0 ||
-							itemName.indexOf('Caribou') >= 0 ||
-							itemName.indexOf('Tim Hortons') >= 0
-						) {
-							items.splice(index, 1);
-						}
-					});
+					let items = response.body.businesses;
+					items = _self.$root.stripCoffeeShops(items);
 
 					// Turn off spinner
 					_self.$root.$data.loading = false;
@@ -223,7 +210,6 @@ export default {
 		}, // End selectCity
 
 		getItemDetail: function(itemid) {
-			// console.log(itemid);
 			this.$root.getItemDetail(itemid);
 		},
 
@@ -246,6 +232,7 @@ export default {
 		transition: all 0.25s ease;
 	}
 	.city-names {
+		background-color: rgba(255, 255, 255, .7);
 		box-shadow: inset 0 0 6rem rgba(10,10,10,.20);
 		padding: 0;
 		margin: 0;
