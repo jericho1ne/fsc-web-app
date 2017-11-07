@@ -289,25 +289,35 @@ const app = new Vue({
 				});
 		}, // End getItemDetail()
 
+		/**
+		 * Remove mainstream shops and ones without a photo
+		 * @param  {array} items Array of cofee shops returned from API
+		 * @return {array} Stripped down list that passes QC ;)
+		 */
 		stripCoffeeShops: function(items) {
 			let goodCoffeeShops = [];
 			items.forEach((item, index) => {
 				const itemName = item.name.trim();
+				const imgUrl = item.image_url.trim();
+
 				if (itemName.indexOf('Starbucks') == -1 &&
 					itemName.indexOf('Dunkin Donuts') == -1 &&
+					itemName.indexOf('Biggby') == -1 &&
+					itemName.indexOf('Dunkin\' Donuts') == -1 &&
 					itemName.indexOf('Coffee Bean and Tea Leaf') == -1 &&
 					itemName.indexOf('Coffee Bean & Tea Leaf') == -1 &&
 					itemName.indexOf('Peet\'s') == -1 &&
 					itemName.indexOf('Caribou') == -1 &&
-					itemName.indexOf('Tim Hortons') == -1 && 
+					itemName.indexOf('Tim Horton') == -1 && 
 					itemName.indexOf('Boba') == -1 && 
-					itemName.indexOf('Deli') == -1
+					itemName.indexOf('Deli') == -1 &&
+					imgUrl !== ''
 				) {
 					goodCoffeeShops.push(item);
 				}
 			});
 			return goodCoffeeShops;
-		}, // End stripShittyCoffeePlaces()
+		}, // End stripCoffeeShops()
 	}
 })
 
