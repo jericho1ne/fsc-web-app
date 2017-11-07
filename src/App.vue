@@ -1,18 +1,20 @@
-
 <!-- "HTML" BASE FILE -->
 
 <template>
 	<div id="app" class="">
-		<!-- <div id="header" class="">
+		<div class="spacer"></div>
+
+		<div id="header" class="">
 			<div>
-				<icon name="coffee" class="fa-icon-lg"></icon>
+				<!-- <icon name="coffee" class="fa-icon-lg"></icon> -->
 			</div>
-		</div> -->
+		</div>
 
 		<!-- Menu Bar -->
 		<div id="menu" 
-			class="border-bottom border-bottom-fade" 
+			class="border-top" 
 		>
+			<span class=""><img src="assets/fsc-cup-white.svg" class="svg-icon"></span>
 			<span class="menu-option"><router-link to="/nearby">coffee nearby</router-link></span>
 			<span class="menu-option"><router-link to="/cities">cities</router-link></span>
 			<span class="menu-option"><a href="https://blog.findsomecoffee.com">blog</a></span> 
@@ -46,11 +48,11 @@
 		font-family: $font-family-base;
 		margin: 0;
 		background-color: #fff;
-		background: url('assets/fsc-cup-blue.png') no-repeat center center fixed; 
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
+		background: url('assets/fsc-cup-blue.png') repeat center center fixed; 
+		-webkit-background-size: contain;
+		-moz-background-size: contain;
+		-o-background-size: contain;
+
 		z-index: 998;
 	}
 	#app {
@@ -60,16 +62,28 @@
 		color: $dk-blue;
 	}
 
+	.svg-icon {
+		width: 2.25em;
+		height: 2em;
+		margin-top: -0.5em;
+		margin-bottom: -0.75em;
+	}
+
 	#menu {
 		background-color: $pink;
 		font-weight: 500;
 		font-size: 1em;
-		padding: 6px 0 8px;
+		padding: 8px 0 10px;
 		text-align: center;
 		vertical-align: baseline;
+		position: fixed;
+		z-index: 100;
+		width: 100%;
+		opacity: 1;
+		top: 0;
 
 		span.menu-option {
-			padding: 0px 10px;
+			padding: 0px 7px;
 			a {
 				padding: 0;
 			}
@@ -287,13 +301,18 @@
 		border: 1px solid #ddd;
 		border-radius: 3px;
 	}
+	.border-top {
+		border-top: 3px solid $dk-pink;
+		border-radius: 0px;
+		
+	}
 	.border-bottom {
-		border-bottom: 1px solid #ccc;
+		border-bottom: 5px solid $blue; // lt-blue
 		border-radius: 0px;
 		
 	}
 	.border-bottom-fade {
-		box-shadow: 0 3px 2px -2px #dedede;
+		box-shadow: 1px 2px 12px -2px $lt-blue;
 	}
 
 	/* Padding fixes */
@@ -339,6 +358,7 @@
 		background: no-repeat;
 		background-size: cover;
 	}
+
 	.item-title {
 		min-height: 15%;
 		height: auto;
@@ -360,6 +380,10 @@
 		padding: 0px;
 		height: auto;
 		color: #fff;
+	}
+
+	.spacer {
+		height: 40px;
 	}
 
 	/* Pure CSS spinner*/

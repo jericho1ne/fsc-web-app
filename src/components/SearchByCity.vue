@@ -232,10 +232,11 @@ export default {
 		transition: all 0.25s ease;
 	}
 	.city-names {
-		background-color: rgba(255, 255, 255, .7);
+		background-color: rgba(255, 255, 255, .9);
 		box-shadow: inset 0 0 6rem rgba(10,10,10,.20);
 		padding: 0;
 		margin: 0;
+		margin-top: -2px;
 		border-bottom: 1px solid rgba(10,10,10,.25);
 		transition: all .25s ease;
 	}

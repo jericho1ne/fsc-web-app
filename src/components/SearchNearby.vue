@@ -15,7 +15,6 @@
 						v-bind:style="{ backgroundImage: 'url(' + item.image_url + ')' }"
 						@click="getItemDetail(item.id)"
 					>
-						
 						<div class="item-title">
 							<h4 class="list-group-item-heading">{{item.name}}</h4>		
 							<h5 class="list-group-item-text" v-if="item.review_count">
