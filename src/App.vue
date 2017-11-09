@@ -132,10 +132,11 @@
 	}
 
 	.vue-dialog {
-		$verticalHeight: 93%;
-		height: $verticalHeight !important;
+		max-height: 94%;
+		// $verticalHeight: 93%;
+		// height: $verticalHeight !important;
 		.dialog-content {
-			height: $verticalHeight !important;
+			// height: $verticalHeight !important;
 			padding: .75em .75em 0 .75em !important;
 
 			.dialog-c-text div {
@@ -217,7 +218,7 @@
 
 		button {
 			color: $dk-blue !important;
-			font-size: 1.25em !important;
+			font-size: 1em !important;
 			background-color: #fff !important;
 			&:hover, 
 			&:active {
@@ -349,8 +350,8 @@
 	}
 
 	/* ITEM LIST */
-	div .star-rating {
-		display: inline-block !important;
+	div.vue-star-rating {
+		display: block !important;
 	}
 	ul {
 		li { 
