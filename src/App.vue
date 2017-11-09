@@ -17,8 +17,8 @@
 			<span class=""><img src="assets/fsc-cup-white.svg" class="svg-icon"></span>
 			<span class="menu-option"><router-link to="/nearby">coffee nearby</router-link></span>
 			<span class="menu-option"><router-link to="/cities">cities</router-link></span>
+			<span class="menu-option"><router-link to="/whats-good">photos</router-link></span>
 			<span class="menu-option"><a href="https://blog.findsomecoffee.com">blog</a></span> 
-			<span class="menu-option"><router-link to="/whats-good">social</router-link></span>
 		</div>
 		<router-view></router-view>
 	</div>
@@ -123,6 +123,7 @@
 	// VUE MODAL
 	.v--modal-overlay {
 		width: 100% !important;
+		max-width: 600px;
 	}
 
 	.v--modal-overlay .v--modal-box {
@@ -135,23 +136,49 @@
 		height: $verticalHeight !important;
 		.dialog-content {
 			height: $verticalHeight !important;
-
 			padding: .75em .75em 0 .75em !important;
+
 			.dialog-c-text div {
 				padding: 0;
-
+				
 				&.review {
-					border: 1px solid $lt-blue;
+					background: #fff;
+					padding: 6px 14px 6px 40px;
+					margin: 8px 4px;
+					position: relative;
 					font-size: 12px;
-					box-shadow: 0.1rem 0.1rem 0.4rem rgba(0,0,0,.15);
-					border-radius: 6px;
-					padding: 8px;
-					margin: 12px 0;
+					line-height: 1.25;
+					color: #666;
+					text-align: justify;
+					border-left: 12px solid $lt-blue;
+					border-right: 4px solid $lt-blue;
 					text-overflow: fade;
 					text-overflow: fade(10px);
 					text-overflow: fade(5%);
 					overflow: hidden;
+
+					&::before{
+						content: "\201C"; 
+						position: absolute;
+						left: 4px;
+						top: 3px;
+						font-family: Georgia, serif;
+						font-size: 46px;
+						font-weight: bold;
+						color: $lt-blue;
+					}
+					&::after {
+						content: "";
+					}
+					&:first-of-type  {
+						margin-top: 8px;
+					}
+					&:last-of-type  {
+						margin-bottom: 10px;
+					}
 				}
+				
+
 			}
 
 			a:hover {
@@ -203,8 +230,9 @@
 	.phone-link {
 		color: #fff;
 		font-weight: bold;
-		padding: 2px 6px 1px;
-		border-radius: 6px;
+		padding: 1px 6px 0px;
+		margin-top: 10px;
+		border-radius: 2px;
 		background-color: #B909B3;
 	}
 

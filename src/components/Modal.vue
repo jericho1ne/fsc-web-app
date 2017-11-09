@@ -66,8 +66,6 @@
  * these styles.
  */
 
-
-
 .modal-enter {
   opacity: 0;
 }
