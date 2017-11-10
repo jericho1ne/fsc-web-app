@@ -28,13 +28,15 @@ export default {
 		this.$root.loadScript('//assets.juicer.io/embed.js')
 			.then(function() {
 				// Turn off spinner after a bit more animation 
-				setTimeout(function(){ 
-                    // Notify prerender SPA plugin
-                    document.dispatchEvent(new Event('render-complete'));
+				setTimeout(function() { 
 					_self.$root.$data.loading = false;
-
                     $('li.feed-item.juicer.image-post').remove();
 				}, 500);
+
+                // PRERENDER SPA TRIGGER
+                setTimeout(() => {
+                    document.dispatchEvent(new Event('custom-post-render-event'))
+                }, 3000)
 			});   
 	}, 
 	mounted: function () {
@@ -59,7 +61,8 @@ $dk-pink:   #D86161;
 
 /* Hide Juicer referral tag*/
 h1.referral,
-div.j-poster {
+div.j-poster,
+.j-gallery-nav {
 	display: none !important;
 }
 a.j-image {

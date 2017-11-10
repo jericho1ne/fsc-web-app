@@ -10,6 +10,11 @@ var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 // var PrerenderSpaPlugin = require('prerender-spa-plugin')
+var PrerendererWebpackPlugin = require('prerenderer-webpack-plugin')
+
+// Renders in your system browser by opening tabs, rendering your app, then closing tabs.
+// See also: JSDOMRenderer, ChromeRenderer
+var BrowserRenderer = PrerendererWebpackPlugin.BrowserRenderer
 
 var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -53,13 +58,13 @@ var webpackConfig = merge(baseWebpackConfig, {
       inject: true,
       minify: {
         removeComments: true,
-        collapseWhitespace: true,
+        collapseWhitespace: false,
         removeAttributeQuotes: false
         // more options:
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-      chunksSortMode: 'dependency'
+      // chunksSortMode: 'dependency'
     }),
 
     // split vendor js into its own file
@@ -82,25 +87,47 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       chunks: ['vendor']
-    })
+    }),
+
+    // new PrerendererWebpackPlugin({
+    //   // The path to the folder where index.html is.
+    //   staticDir: path.join(__dirname, '../dist'),
+    //   // List of routes to prerender.
+    //   routes: [
+    //     '/', 
+    //     '/nearby/', 
+    //     '/whats-good/', 
+    //     '/cities/'
+    //   ],    
+    //   renderer: new BrowserRenderer({
+    //     maxConcurrentRoutes: 1,
+    //     renderAfterDocumentEvent: 'custom-post-render-event',
+    //   })
+    // })
 
     // new PrerenderSpaPlugin(
     //   // Absolute path to compiled SPA
     //   path.join(__dirname, '../dist'),
     //   // List of routes to prerender
     //   [ '/', '/nearby', '/whats-good', '/cities' ],
-
-    //   // Options
     //   {
-    //     // Wait until a specific event is fired on the document. 
-    //     // captureAfterDocumentEvent: 'render-complete',
+    //     captureAfterTime: 4000,
+    //     ignoreJSErrors: false,
+    //     // captureAfterDocumentEvent: 'custom-post-render-event',
+    //     navigationLocked: true,
+    //     phantomPageViewportSize: {
+    //       width: 1280,
+    //       height: 800
+    //     },
     //     // http://phantomjs.org/api/webpage/property/settings.html
-    //     // phantomPageSettings: {
-    //     //   loadImages: true
-    //     // },
+    //     phantomPageSettings: {
+    //       loadImages: true
+    //     },
     //   }
     // )
-  ]
+  
+
+  ] // End `plugins`
 })
 
 if (config.build.productionGzip) {

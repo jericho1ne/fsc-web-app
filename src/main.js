@@ -95,6 +95,7 @@ const app = new Vue({
 		// `this` points to the vm instance	
 	}, 
 	mounted: function () {
+		// 
 	},
 	// Globally-avaiable functions
 	methods: {
@@ -207,8 +208,8 @@ const app = new Vue({
 			let reviews = '<div id="reviews">';
 
 			if (item.reviews.length > 0) {
-				for (var i = 0; i < 2; i++){
-					reviews += `<div class="review">${item.reviews[i].text}</div>`;
+				for (var i = 0; i < 3; i++){
+					reviews += `<div class="review"><span>${item.reviews[i].text}<span></div>`;
 				}
 				// item.reviews.forEach((review, index) => {
 				// 	reviews += `<div class="review">${review.text}</div>`;
@@ -220,17 +221,29 @@ const app = new Vue({
 				? '<b>Open now</b>'
 				: '';
 
-			const bodyHtml = 
-				`<div>${item.location.display_address[0]}, ` +
-				`${item.location.display_address[1]}</div>` + 
-				`<div>${nowOpen}</div>` +
-				`${displayPhone}` +
-				`${reviews}` +
+			// const bodyHtml = 
+			// 	`<div>${item.location.display_address[0]}, ` +
+			// 	`${item.location.display_address[1]}</div>` + 
+			// 	`<div>${nowOpen}</div>` +
+			// 	`${displayPhone}` +
+			// 	`${reviews}` +
+			// 	// `${item.review_count} reviews<br>` +
+			// 	`<div class="detail-thumb"><img src="${item.image_url}"></div>`;
+
+			const bodyHtml = `${reviews}`;
 				// `${item.review_count} reviews<br>` +
-				`<div class="detail-thumb"><img src="${item.image_url}"></div>`;
+				// `<div class="detail-thumb"><img src="${item.image_url}"></div>`;
+
+			const title = 
+				`<div class="review-header" style="background-image: url('${item.image_url}');">` + 
+					`<div class="title">${item.name}</div>` +
+					`<div>${item.location.display_address[0]}, ` +
+					`${item.location.display_address[1]}</div>` + 
+					`<div>${nowOpen}</div>`+
+				`</div>`;
 
 			let itemToBeDisplayed = {
-				title: item.name,
+				title: title,
 				text: bodyHtml,
 				buttons: [
 					{ 
@@ -297,29 +310,25 @@ const app = new Vue({
 		stripCoffeeShops: function(items) {
 			let goodCoffeeShops = [];
 			items.forEach((item, index) => {
-				const itemName = item.name.trim();
+				const itemName = item.name.trim().toLowerCase();
 				const imgUrl = item.image_url.trim();
 
-				if (itemName.indexOf('Starbucks') == -1 &&
-					itemName.indexOf('Dunkin Donuts') == -1 &&
-					itemName.indexOf('Biggby') == -1 &&
-					itemName.indexOf('Dunkin\' Donuts') == -1 &&
-					itemName.indexOf('Coffee Bean and Tea Leaf') == -1 &&
-					itemName.indexOf('Coffee Bean & Tea Leaf') == -1 &&
-					itemName.indexOf('Peet\'s') == -1 &&
-					itemName.indexOf('Caribou') == -1 &&
-					itemName.indexOf('Tim Horton') == -1 && 
-					itemName.indexOf('Boba') == -1 && 
-					itemName.indexOf('Deli') == -1 &&
+				if (itemName.indexOf('starbucks') == -1 &&
+					itemName.indexOf('dunkin donuts') == -1 &&
+					itemName.indexOf('biggby') == -1 &&
+					itemName.indexOf('dunkin\' donuts') == -1 &&
+					itemName.indexOf('coffee bean and tea') == -1 &&
+					itemName.indexOf('coffee bean & tea') == -1 &&
+					itemName.indexOf('peet\'s') == -1 &&
+					itemName.indexOf('caribou') == -1 &&
+					itemName.indexOf('tim horton') == -1 && 
+					itemName.indexOf('boba') == -1 && 
+					itemName.indexOf('deli') == -1 &&
 					imgUrl !== ''
 				) {
 					goodCoffeeShops.push(item);
 				}
 			});
-
-			// PRERENDER-SPA
-			document.dispatchEvent(new Event('custom-post-render-event'));
-			
 			return goodCoffeeShops;
 		}, // End stripCoffeeShops()
 	}

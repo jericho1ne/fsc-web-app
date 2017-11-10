@@ -11,14 +11,11 @@
 		</div>
 
 		<!-- Menu Bar -->
-		<div id="menu" 
-			class="border-top" 
-		>
-			<span class=""><img src="assets/fsc-cup-white.svg" class="svg-icon"></span>
+		<div id="menu" class="border-top">
 			<span class="menu-option"><router-link to="/nearby">coffee nearby</router-link></span>
 			<span class="menu-option"><router-link to="/cities">cities</router-link></span>
 			<span class="menu-option"><router-link to="/whats-good">photos</router-link></span>
-			<span class="menu-option"><a href="https://blog.findsomecoffee.com">blog</a></span> 
+			<span class="menu-option"><a href="https://blog.findsomecoffee.com">blog</a></span>
 		</div>
 		<router-view></router-view>
 	</div>
@@ -141,22 +138,19 @@
 
 			.dialog-c-text div {
 				padding: 0;
-				
+				font-size: 12px;
 				&.review {
 					background: #fff;
-					padding: 6px 14px 6px 40px;
+					padding: 6px 10px 4px 36px;
 					margin: 8px 4px;
 					position: relative;
 					font-size: 12px;
 					line-height: 1.25;
-					color: #666;
 					text-align: justify;
-					border-left: 12px solid $lt-blue;
-					border-right: 4px solid $lt-blue;
-					text-overflow: fade;
-					text-overflow: fade(10px);
-					text-overflow: fade(5%);
+					border-left: 10px solid $lt-blue;
+					border-right: 2px solid $lt-blue;
 					overflow: hidden;
+					text-overflow: ellipsis;
 
 					&::before{
 						content: "\201C"; 
@@ -167,6 +161,7 @@
 						font-size: 46px;
 						font-weight: bold;
 						color: $lt-blue;
+						background: linear-gradient(transparent 150px, white);
 					}
 					&::after {
 						content: "";
@@ -178,8 +173,6 @@
 						margin-bottom: 10px;
 					}
 				}
-				
-
 			}
 
 			a:hover {
@@ -188,18 +181,80 @@
 			}
 
 			.dialog-c-title {
-				font-size: 16px;
+				font-size: 12px;
+				margin-left: -12px;
+				margin-right: -12px;
+				margin-top: -12px;
+				height: 200px;
 				padding: .05em 0;
+				color: #fff !important;
+				text-shadow: 0.05rem 0.05rem 0.15rem rgba(0, 0, 0, 0.75);
+				
+				div.review-header {
+					padding: 14px;
+
+					background-size: cover;
+					background-position: center center;
+					background-repeat: no-repeat;
+					height: 100%;
+					.title {
+						font-size: 22px;
+					}
+				}
 			}
 		
 			.detail-thumb {
 				height: auto;
 				margin: 0;
 				padding: 0;
+				overflow: hidden;
+
+				/* Small. Above 34em (544px) */
+				@media screen and (min-width: 1em) {
+					max-height: 130px;
+					// @include build-responsive-page(0.75);
+				}
+				
+				// iPhone 6 and above 
+				@media screen and (min-width: 23.4em) {
+					max-height: 220px;
+					// @include build-responsive-page(0.75);
+				}
+
+				// iPhone 6 Plus and above 
+				@media screen and (min-width: 25.8em) {
+					max-height: 320px;
+					// @include build-responsive-page(0.75);
+				}
+
+				@media screen and (min-width: 34em) {
+					max-height: 300px;
+					// @include build-responsive-page(0.86);
+				}
+
+				/* Medium. Above 48em (768px) iPad */
+				@media screen and (min-width: 48em) {
+					max-height: 360px;
+					// @include build-responsive-page(0.9);
+				}
+
+				/* Large. Above 62em (992px) iPad Pro */
+				@media screen and (min-width: 62em) {
+					max-height: 420px;
+					// @include build-responsive-page(0.93);
+				}
+
+				/* Extra large. Above 75em (1200px) */
+				@media screen and (min-width: 75em) {
+					max-height: 500px;
+					// @include build-responsive-page(1);
+				}
+
 			}
 
 			img {
 				width: 100%;
+				height: auto;
 			}
 		}
 	
@@ -218,7 +273,7 @@
 
 		button {
 			color: $dk-blue !important;
-			font-size: 1em !important;
+			font-size: .9em !important;
 			background-color: #fff !important;
 			&:hover, 
 			&:active {
@@ -360,10 +415,9 @@
 			&.item {
 				position: relative;
 				display: inline-block;
-				margin: 10px 14px 10px 10px;
-				border-radius: 4px;
+				margin: 10px 10px 5px;
 				width:  280px;
-				height: 280px;
+				height: 260px;
 				background-color: transparent;
 				overflow: hidden;
 			}

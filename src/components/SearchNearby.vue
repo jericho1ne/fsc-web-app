@@ -25,7 +25,7 @@
 							</h5>
 							<div v-if="item.rating">
 								<star-rating 
-									:star-size="24" 
+									:star-size="20" 
 									:rating="item.rating"
 									:show-rating="false"
 									:border-width="0"
@@ -88,7 +88,7 @@ export default {
 			else {
 				// Ajax request to places API
 				let urlParams = 
-					`term='Coffee-Tea'&` +
+					`term='coffee'&` +
 					// `categories=coffeeroasteries,coffee&` +
 					`lat=${position.latitude}&lon=${position.longitude}&` +
 					// List of comma delimited pricing levels (1,2,3,4)
@@ -96,15 +96,12 @@ export default {
 					// defaults to best_match
 					// { best_match, rating, review_count, distance }
 					`sort_by=distance&` +
-					`limit=30`;
+					`limit=10`;
 
 				_self.$root.fetchDataFromApi('search', urlParams)
 					.then(response => {
 						// Set the displayed item to the AJAX response
 						if (typeof response.body.businesses === 'object') {
-							// Notify prerender SPA plugin
-							document.dispatchEvent(new Event('render-complete')); 
-
 							// Set loading spinner
 							_self.$root.$data.loading = false;
 
@@ -132,7 +129,11 @@ export default {
 
 							// Set the reactive property, which auto-triggers display
 							_self.$root.$data.items = items;
-							// _self.items = items;
+							
+							// Notify prerender SPA plugin
+							setTimeout(() => {
+								document.dispatchEvent(new Event('custom-post-render-event'))
+							}, 3000)
 						} else {
 							console.warn("No results.");
 						}
