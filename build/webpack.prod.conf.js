@@ -100,12 +100,12 @@ var webpackConfig = merge(baseWebpackConfig, {
       // List of routes to prerender.
       routes: [
         '/', 
-        '/nearby', 
-        '/whats-good', 
-        '/cities'
+        '/nearby/', 
+        '/whats-good/', 
+        '/cities/'
       ],    
       renderer: new ChromeRenderer({
-        maxConcurrentRoutes: 4,
+        maxConcurrentRoutes: 1,
         renderAfterDocumentEvent: 'custom-post-render-event',
       })
     })
