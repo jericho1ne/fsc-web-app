@@ -120,29 +120,21 @@
 	// VUE MODAL
 	.v--modal-overlay {
 		width: 100% !important;
-		max-width: 600px;
-	}
-
-	.v--modal-overlay .v--modal-box {
-		position: static !important;
-		width: 100% !important;
+		background: rgba(170, 170, 170, .9) !important;
 	}
 
 	.vue-dialog {
-		max-height: 94%;
-		// $verticalHeight: 93%;
-		// height: $verticalHeight !important;
+		max-height: 93% !important;
 		.dialog-content {
-			// height: $verticalHeight !important;
-			padding: .75em .75em 0 .75em !important;
+			height: auto;
 
 			.dialog-c-text div {
 				padding: 0;
 				font-size: 12px;
 				&.review {
 					background: #fff;
-					padding: 6px 10px 4px 36px;
-					margin: 8px 4px;
+					padding: 6px 10px 0px 36px;
+					margin: 10px 2px;
 					position: relative;
 					font-size: 12px;
 					line-height: 1.25;
@@ -166,9 +158,6 @@
 					&::after {
 						content: "";
 					}
-					&:first-of-type  {
-						margin-top: 8px;
-					}
 					&:last-of-type  {
 						margin-bottom: 10px;
 					}
@@ -181,25 +170,24 @@
 			}
 
 			.dialog-c-title {
-				font-size: 12px;
-				margin-left: -12px;
-				margin-right: -12px;
-				margin-top: -12px;
-				height: 200px;
-				padding: .05em 0;
+				// border: 2px solid black !important;
+				padding: 0px;
+				font-size: 14px;
+				margin: -11px -11px 0;
 				color: #fff !important;
 				text-shadow: 0.05rem 0.05rem 0.15rem rgba(0, 0, 0, 0.75);
 				
+				.title {
+					font-size: 28px;
+					line-height: 1.05;
+				}
 				div.review-header {
-					padding: 14px;
-
+					padding: 1em 1em;
 					background-size: cover;
 					background-position: center center;
 					background-repeat: no-repeat;
 					height: 100%;
-					.title {
-						font-size: 22px;
-					}
+
 				}
 			}
 		
@@ -208,48 +196,6 @@
 				margin: 0;
 				padding: 0;
 				overflow: hidden;
-
-				/* Small. Above 34em (544px) */
-				@media screen and (min-width: 1em) {
-					max-height: 130px;
-					// @include build-responsive-page(0.75);
-				}
-				
-				// iPhone 6 and above 
-				@media screen and (min-width: 23.4em) {
-					max-height: 220px;
-					// @include build-responsive-page(0.75);
-				}
-
-				// iPhone 6 Plus and above 
-				@media screen and (min-width: 25.8em) {
-					max-height: 320px;
-					// @include build-responsive-page(0.75);
-				}
-
-				@media screen and (min-width: 34em) {
-					max-height: 300px;
-					// @include build-responsive-page(0.86);
-				}
-
-				/* Medium. Above 48em (768px) iPad */
-				@media screen and (min-width: 48em) {
-					max-height: 360px;
-					// @include build-responsive-page(0.9);
-				}
-
-				/* Large. Above 62em (992px) iPad Pro */
-				@media screen and (min-width: 62em) {
-					max-height: 420px;
-					// @include build-responsive-page(0.93);
-				}
-
-				/* Extra large. Above 75em (1200px) */
-				@media screen and (min-width: 75em) {
-					max-height: 500px;
-					// @include build-responsive-page(1);
-				}
-
 			}
 
 			img {
@@ -511,5 +457,76 @@
 	}
 	.spinner-slow {
 		animation: spinner 1s linear infinite;
+	}
+	
+	@mixin build-responsive-page($m) {
+		$review-header-height: 180px;
+
+		.v--modal-overlay .v--modal-box {
+			margin-top: auto;
+			margin-auto: auto;
+			// width: $m*300px !important;
+		}
+	
+		.vue-dialog {
+			.dialog-content { 
+				height: $m*54% !important;
+				padding: .75em .75em 0 .75em !important;
+				.dialog-c-title {
+					height: $m * $review-header-height;
+				}
+			}
+		}
+	}
+
+	/* --------- 0-320px: iPhone 5 ---- */
+	@media screen and (max-width: 320px) {
+	    @include build-responsive-page(1.15);
+	    .v--modal-overlay .v--modal-box { 
+	    	position: static !important;
+	    	width: 100% !important; 
+	    }
+	}
+	/* --------- 321-546px: iPhone 6 ----------------------- */
+	@media screen and (min-width: 321px) and (max-width: 413px) {
+	    @include build-responsive-page(1.5);
+	    .v--modal-overlay .v--modal-box { 
+	    	position: static !important;
+	    	width: 100% !important;
+	    }
+	}
+	/* --------- 321-546px: iPhone 6 Plus ------------------- */
+	@media screen and (min-width: 414px) and (max-width: 546px) {
+	    @include build-responsive-page(1.9);
+	    .v--modal-overlay .v--modal-box { 
+	    	position: static !important;
+	    	width: 100% !important; 
+	    }
+	}
+	/* --------- 547-767px ---------------------------------- */
+	@media screen and (min-width: 547px) and (max-width: 767px) {
+	    @include build-responsive-page(1.05);
+	    .v--modal-overlay .v--modal-box { 
+	    	// position: static !important;
+	    	// width: 100% !important; 
+	    }
+	}
+	/* --------- 768px - 950px ------------------------------ */
+	@media screen and (min-width: 768px) and (max-width: 950px) {
+	    @include build-responsive-page(1.1);
+	}
+	/* --------- 950px - 1200px ----------------------------- */
+	@media screen and (min-width: 951px) and (max-width: 1200px) {
+	    @include build-responsive-page(1.15);
+	}
+	/* --------- 1201px - 1600px ------------------------------ */
+	@media screen and (min-width: 1201px) and (max-width: 1600px) {
+		.vue-dialog { max-width: 600px; }
+	    @include build-responsive-page(1.2);
+	}
+	/* --------- 1601px + -------------------------------------- */
+	@media screen and (min-width: 1601px) and (max-width: 10000px) {
+		.vue-dialog { max-width: 600px; }
+	    @include build-responsive-page(1.35);
 	}
 </style>

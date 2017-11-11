@@ -96,7 +96,7 @@ export default {
 					// defaults to best_match
 					// { best_match, rating, review_count, distance }
 					`sort_by=distance&` +
-					`limit=10`;
+					`limit=20`;
 
 				_self.$root.fetchDataFromApi('search', urlParams)
 					.then(response => {

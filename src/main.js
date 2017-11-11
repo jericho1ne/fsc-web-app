@@ -240,6 +240,7 @@ const app = new Vue({
 					`<div>${item.location.display_address[0]}, ` +
 					`${item.location.display_address[1]}</div>` + 
 					`<div>${nowOpen}</div>`+
+					`${displayPhone}` +
 				`</div>`;
 
 			let itemToBeDisplayed = {
