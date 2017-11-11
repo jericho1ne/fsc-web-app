@@ -88,8 +88,8 @@ export default {
 			else {
 				// Ajax request to places API
 				let urlParams = 
-					`term='coffee'&` +
-					// `categories=coffeeroasteries,coffee&` +
+					`term=coffee&` +
+					`categories=coffeeroasteries,coffee&` +
 					`lat=${position.latitude}&lon=${position.longitude}&` +
 					// List of comma delimited pricing levels (1,2,3,4)
 					`price=1,2,3,4&` +
@@ -133,7 +133,7 @@ export default {
 							// Notify prerender SPA plugin
 							setTimeout(() => {
 								document.dispatchEvent(new Event('custom-post-render-event'))
-							}, 3000)
+							}, 10000)
 						} else {
 							console.warn("No results.");
 						}

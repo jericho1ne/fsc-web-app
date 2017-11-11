@@ -131,7 +131,7 @@ export default {
 					// PRERENDER SPA TRIGGER
 					setTimeout(() => {
 						document.dispatchEvent(new Event('custom-post-render-event'))
-					}, 3000)
+					}, 15000)
 				}
 				else {
 					console.warn("No results.");
@@ -173,14 +173,14 @@ export default {
 
 			// Ajax request to places API
 			let urlParams = 
-				`term='coffee'&` +
-				//`categories=coffeeroasteries,coffee&` +
+				`term=coffee&` +
+				`categories=coffeeroasteries,coffee&` +
 				`location=${selectedCity}&` +
 				// List of comma delimited pricing levels (1,2,3,4)
 				`price=1,2,3,4&` +
 				// defaults to best_match
 				// { best_match, rating, review_count, distance }
-				`sort_by=review_count&` +
+				`sort_by=rating&` +
 				`limit=40`;
 
 			_self.$root.fetchDataFromApi('search', urlParams).then(response => {

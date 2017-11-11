@@ -36,7 +36,7 @@ export default {
                 // PRERENDER SPA TRIGGER
                 setTimeout(() => {
                     document.dispatchEvent(new Event('custom-post-render-event'))
-                }, 3000)
+                }, 6000)
 			});   
 	}, 
 	mounted: function () {

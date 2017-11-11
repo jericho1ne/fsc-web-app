@@ -10,11 +10,16 @@ var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 // var PrerenderSpaPlugin = require('prerender-spa-plugin')
-var PrerendererWebpackPlugin = require('prerenderer-webpack-plugin')
 
 // Renders in your system browser by opening tabs, rendering your app, then closing tabs.
+// Readme: https://alligator.io/vuejs/vue-prerender-prerenderer/
+var PrerendererWebpackPlugin = require('prerenderer-webpack-plugin')
+
+// http://render-vendor.com/pages/chrome-renderer
+var ChromeRenderer = PrerendererWebpackPlugin.JSDOMRenderer
 // See also: JSDOMRenderer, ChromeRenderer
-var BrowserRenderer = PrerendererWebpackPlugin.BrowserRenderer
+// var BrowserRenderer = PrerendererWebpackPlugin.BrowserRenderer
+// var JSDOMRenderer = PrerendererWebpackPlugin.JSDOMRenderer
 
 var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -89,21 +94,21 @@ var webpackConfig = merge(baseWebpackConfig, {
       chunks: ['vendor']
     }),
 
-    // new PrerendererWebpackPlugin({
-    //   // The path to the folder where index.html is.
-    //   staticDir: path.join(__dirname, '../dist'),
-    //   // List of routes to prerender.
-    //   routes: [
-    //     '/', 
-    //     '/nearby/', 
-    //     '/whats-good/', 
-    //     '/cities/'
-    //   ],    
-    //   renderer: new BrowserRenderer({
-    //     maxConcurrentRoutes: 1,
-    //     renderAfterDocumentEvent: 'custom-post-render-event',
-    //   })
-    // })
+    new PrerendererWebpackPlugin({
+      // The path to the folder where index.html is.
+      staticDir: path.join(__dirname, '../dist'),
+      // List of routes to prerender.
+      routes: [
+        '/', 
+        '/nearby', 
+        '/whats-good', 
+        '/cities'
+      ],    
+      renderer: new ChromeRenderer({
+        maxConcurrentRoutes: 4,
+        renderAfterDocumentEvent: 'custom-post-render-event',
+      })
+    })
 
     // new PrerenderSpaPlugin(
     //   // Absolute path to compiled SPA

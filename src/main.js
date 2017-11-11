@@ -75,14 +75,6 @@ const app = new Vue({
 	// Anything that changes inside this task will trigger the
 	// provided method
 	watch: {
-		searchCity: function() {
-			console.log( "searchCity. ")
-			this.cityList = [];
-			// Await a few chars before starting city name auto-search
-			if (this.searchCity.length == 3) {
-				//this.lookupNearbyCities();
-			}
-		}
 	}, // End watch task
 	// Globally available components
 	components: { 
@@ -126,39 +118,40 @@ const app = new Vue({
 		 */
 		getLocation: function() {
 			const _self = this;
-
 			return new Promise(function (resolve, reject) {
-				if (_self.$root.$data.coords.latitude &&
-					_self.$root.$data.coords.longitude
-				) {
+				if (_self.$root.$data.coords.latitude && _self.$root.$data.coords.longitude) {
 					resolve ({
 						'latitude': _self.$root.$data.coords.latitude,
 						'longitude': _self.$root.$data.coords.longitude
 					});
 				}
 				else {
-					navigator.geolocation.getCurrentPosition(function (position) {
-						// Predefine lat/lon for debugging purposes or prerendering
+					// Browser should have access to geolocation features over https
+					if (navigator.geolocation && typeof navigator.geolocation.getCurrentPosition === 'function') {
+						navigator.geolocation.getCurrentPosition(function (position) {
+							// First move stale position to old vars
+							_self.$root.$data.prevCoords = _self.$root.$data.coords;
+							// Save new position to root variables
+							_self.$root.$data.coords = position.coords;
+							// Now we can resolve the promise
+							resolve(_self.$root.$data.coords);
+						});
+					}
+					// Predefine lat/lon for debugging purposes or prerendering
+					else {
 						// let BHcoords = {
 						// 	longitude: -118.4053706,
 						// 	latitude: 34.065685
 						// };
-						// let ELcoords = {
-						// 	longitude: -84.5240879,
-						// 	latitude: 42.7332615
-						// };
-						// _self.$root.$data.prevCoords = ELcoords;
-						// _self.$root.$data.coords = ELcoords;
-						// resolve(ELcoords);
-
-						// First move stale position to old vars
-						_self.$root.$data.prevCoords = _self.$root.$data.coords;
-						// Save new position to root variables
-						_self.$root.$data.coords = position.coords;
-						// Now we can resolve the promise
+						let ELcoords = {
+							longitude: -84.5240879,
+							latitude: 42.7332615
+						};
+						_self.$root.$data.prevCoords = ELcoords;
+						_self.$root.$data.coords = ELcoords;
 						resolve(_self.$root.$data.coords);
-					});
-				}
+					}
+				} // End else need to query for coordinates
 			});
 		},
 		
@@ -172,8 +165,6 @@ const app = new Vue({
 			var _self = this;
 			var requestUrl = `${this.apiUrl}/${endpoint}/?${urlParams}`;
 			
-			// console.log(requestUrl);
-
 			// Triggers loading spinner
 			// this.$data.loading = true;
 
