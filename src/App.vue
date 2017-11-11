@@ -175,7 +175,7 @@
 				font-size: 14px;
 				margin: -11px -11px 0;
 				color: #fff !important;
-				text-shadow: 0.05rem 0.05rem 0.15rem rgba(0, 0, 0, 0.75);
+				text-shadow: 0.05rem 0.05rem 0.05rem rgba(0, 0, 0, 0.95);
 				
 				.title {
 					font-size: 28px;
@@ -232,7 +232,7 @@
 	.phone-link {
 		color: #fff;
 		font-weight: bold;
-		padding: 1px 6px 0px;
+		padding: 2px 6px 0px;
 		margin-top: 10px;
 		border-radius: 2px;
 		background-color: #B909B3;
@@ -460,7 +460,7 @@
 	}
 	
 	@mixin build-responsive-page($m) {
-		$review-header-height: 180px;
+		$review-header-height: 200px;
 
 		.v--modal-overlay .v--modal-box {
 			margin-top: auto;
@@ -481,7 +481,7 @@
 
 	/* --------- 0-320px: iPhone 5 ---- */
 	@media screen and (max-width: 320px) {
-	    @include build-responsive-page(1.15);
+	    @include build-responsive-page(1);
 	    .v--modal-overlay .v--modal-box { 
 	    	position: static !important;
 	    	width: 100% !important; 
@@ -489,7 +489,7 @@
 	}
 	/* --------- 321-546px: iPhone 6 ----------------------- */
 	@media screen and (min-width: 321px) and (max-width: 413px) {
-	    @include build-responsive-page(1.5);
+	    @include build-responsive-page(1.7);
 	    .v--modal-overlay .v--modal-box { 
 	    	position: static !important;
 	    	width: 100% !important;
@@ -497,7 +497,7 @@
 	}
 	/* --------- 321-546px: iPhone 6 Plus ------------------- */
 	@media screen and (min-width: 414px) and (max-width: 546px) {
-	    @include build-responsive-page(1.9);
+	    @include build-responsive-page(2);
 	    .v--modal-overlay .v--modal-box { 
 	    	position: static !important;
 	    	width: 100% !important; 
@@ -505,7 +505,7 @@
 	}
 	/* --------- 547-767px ---------------------------------- */
 	@media screen and (min-width: 547px) and (max-width: 767px) {
-	    @include build-responsive-page(1.05);
+	    @include build-responsive-page(2.15);
 	    .v--modal-overlay .v--modal-box { 
 	    	// position: static !important;
 	    	// width: 100% !important; 
@@ -513,20 +513,19 @@
 	}
 	/* --------- 768px - 950px ------------------------------ */
 	@media screen and (min-width: 768px) and (max-width: 950px) {
-	    @include build-responsive-page(1.1);
+	    @include build-responsive-page(2.25);
 	}
 	/* --------- 950px - 1200px ----------------------------- */
 	@media screen and (min-width: 951px) and (max-width: 1200px) {
-	    @include build-responsive-page(1.15);
+		.vue-dialog { max-width: 600px; }
+	    @include build-responsive-page(2.4);
 	}
 	/* --------- 1201px - 1600px ------------------------------ */
 	@media screen and (min-width: 1201px) and (max-width: 1600px) {
-		.vue-dialog { max-width: 600px; }
-	    @include build-responsive-page(1.2);
+	    @include build-responsive-page(2.0);
 	}
 	/* --------- 1601px + -------------------------------------- */
-	@media screen and (min-width: 1601px) and (max-width: 10000px) {
-		.vue-dialog { max-width: 600px; }
-	    @include build-responsive-page(1.35);
+	@media screen and (min-width: 1601px) {
+	    @include build-responsive-page(2.0);
 	}
 </style>
