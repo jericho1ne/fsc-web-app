@@ -173,7 +173,7 @@ export default {
 
 			// Ajax request to places API
 			let urlParams = 
-				`term=coffee&` +
+				`term=coffee-and-tea&` +
 				`categories=coffeeroasteries,coffee&` +
 				`location=${selectedCity}&` +
 				// List of comma delimited pricing levels (1,2,3,4)
@@ -185,8 +185,8 @@ export default {
 
 			_self.$root.fetchDataFromApi('search', urlParams).then(response => {
 				// Set the displayed item to the AJAX response
-				if (typeof response.body.businesses === 'object') {
-					let items = response.body.businesses;
+				if (typeof response.body === 'object') {
+					let items = response.body;
 					items = _self.$root.stripCoffeeShops(items);
 
 					// Turn off spinner

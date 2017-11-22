@@ -94,22 +94,25 @@ var webpackConfig = merge(baseWebpackConfig, {
       chunks: ['vendor']
     }),
 
-    new PrerendererWebpackPlugin({
-      // The path to the folder where index.html is.
-      staticDir: path.join(__dirname, '../dist'),
-      // List of routes to prerender.
-      routes: [
-        '/', 
-        '/nearby/', 
-        '/whats-good/', 
-        '/cities/'
-      ],    
-      renderer: new ChromeRenderer({
-        maxConcurrentRoutes: 1,
-        renderAfterDocumentEvent: 'custom-post-render-event',
-      })
-    })
 
+    // THIS ONE KINDA WORKS
+    // new PrerendererWebpackPlugin({
+    //   // The path to the folder where index.html is.
+    //   staticDir: path.join(__dirname, '../dist'),
+    //   // List of routes to prerender.
+    //   routes: [
+    //     '/', 
+    //     '/nearby/', 
+    //     '/whats-good/', 
+    //     '/cities/'
+    //   ],    
+    //   renderer: new ChromeRenderer({
+    //     maxConcurrentRoutes: 1,
+    //     renderAfterDocumentEvent: 'custom-post-render-event',
+    //   })
+    // })
+
+    // DEFINITELY DOES NOT WORK
     // new PrerenderSpaPlugin(
     //   // Absolute path to compiled SPA
     //   path.join(__dirname, '../dist'),

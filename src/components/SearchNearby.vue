@@ -88,7 +88,7 @@ export default {
 			else {
 				// Ajax request to places API
 				let urlParams = 
-					`term=coffee&` +
+					`term=coffee-and-tea&` +
 					`categories=coffeeroasteries,coffee&` +
 					`lat=${position.latitude}&lon=${position.longitude}&` +
 					// List of comma delimited pricing levels (1,2,3,4)
@@ -96,16 +96,16 @@ export default {
 					// defaults to best_match
 					// { best_match, rating, review_count, distance }
 					`sort_by=distance&` +
-					`limit=20`;
+					`limit=40`;
 
 				_self.$root.fetchDataFromApi('search', urlParams)
 					.then(response => {
 						// Set the displayed item to the AJAX response
-						if (typeof response.body.businesses === 'object') {
+						if (typeof response.body === 'object') {
 							// Set loading spinner
 							_self.$root.$data.loading = false;
 
-							let items = response.body.businesses;
+							let items = response.body;
 							items = _self.$root.stripCoffeeShops(items);
 							
 							// Sort based on proximity
@@ -114,7 +114,8 @@ export default {
 								return parseFloat(a.distance) - parseFloat(b.distance);
 							});
 
-							// Convert meters to miles, customize display value
+							// Convert meters to miles, 
+							// customize displayed values
 							items.forEach((item) => {
 								let thisFarAway = (item.distance * 0.000621371).toFixed(1);
 								item.distance = thisFarAway < 0.1 

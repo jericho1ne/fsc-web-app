@@ -302,22 +302,10 @@ const app = new Vue({
 		stripCoffeeShops: function(items) {
 			let goodCoffeeShops = [];
 			items.forEach((item, index) => {
-				const itemName = item.name.trim().toLowerCase();
+				// const itemName = item.name.trim().toLowerCase();
 				const imgUrl = item.image_url.trim();
 
-				if (itemName.indexOf('starbucks') == -1 &&
-					itemName.indexOf('dunkin donuts') == -1 &&
-					itemName.indexOf('biggby') == -1 &&
-					itemName.indexOf('dunkin\' donuts') == -1 &&
-					itemName.indexOf('coffee bean and tea') == -1 &&
-					itemName.indexOf('coffee bean & tea') == -1 &&
-					itemName.indexOf('peet\'s') == -1 &&
-					itemName.indexOf('caribou') == -1 &&
-					itemName.indexOf('tim horton') == -1 && 
-					itemName.indexOf('boba') == -1 && 
-					itemName.indexOf('deli') == -1 &&
-					imgUrl !== ''
-				) {
+				if (imgUrl !== '') {
 					goodCoffeeShops.push(item);
 				}
 			});

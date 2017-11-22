@@ -21,15 +21,27 @@ $testParams = [
     // 'location' => '90401'
     'longitude' => '-118.495155',
 	'latitude' => '34.012638',
-	'price' => '1,2', 
-    'limit' => '3',
+	'price' => '1,2,3,4', 
+    'limit' => '30',
 ];
 
-$businesses = $yelp->search($searchParams);
+$data = $yelp->search($searchParams);
 
-if ($businesess === false) {
+$allCoffeeShops = $data['businesses'];
+
+$decentCoffeeShops = [];
+foreach ($allCoffeeShops as $v) {
+	if ($v['rating'] > 3.5 && isDecentCoffeeShop($v['name'])) {
+		$decentCoffeeShops[] = $v;
+	} 
+}
+
+// Returned object instead of array when a bad coffee shop was encountered (?)
+// $decentCoffeeShops = array_filter($allCoffeeShops, function($v) { return isDecentCoffeeShop($v['name']); });
+
+if ($data === false) {
     print_r(json_encode($yelp->get_error()));
     exit;
 }
-print_r(json_encode($businesses));
+print_r(json_encode($decentCoffeeShops, true));
 ?>
