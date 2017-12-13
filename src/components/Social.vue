@@ -51,13 +51,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 // Color Scheme
-$lt-blue:   #b7e0ed;
-$blue:      #84C2D6;
+$lt-blue:   #53C1CC;
+$blue:      #53C1CC;
 $dk-blue:   #0C5C76;
 $hot-red:   #EE2222;
 $lt-pink:   #FFDFDF;
 $pink:      #FF9A9A; 
 $dk-pink:   #D86161;
+
 
 /* Hide Juicer referral tag*/
 h1.referral,
@@ -164,7 +165,7 @@ li.feed-item.juicer {
 .juicer-feed.modern li.feed-item {
     padding: 0;
     margin-bottom: 20px !important;
-    background: #84C2D6; 
+    background: $blue; 
     border-radius: 0;
     overflow: show;
     color: #fff;

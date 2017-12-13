@@ -30,20 +30,38 @@ function isDecentCoffeeShop($name) {
 		'peet\'s',
 		'caribou',
 		'tim horton',
-		// Sellouts
+		'Teavana',
 		'philz',
-		// Other random shit
+		// Not really specialty coffee...
+		'urth caf',
+		'honeymee',
 		'boba',
 		'deli',
 		'pizzeria',
 		'pizza',
 		'restaurant',
-		'cafe',
 		'kitchen',
+		'bakery',
+		'cookies',
+		'donuts',
+		'doughnuts',
+		'coffee seletto',
+		// Blacklisted
+		'Lollicup',
+		'moe\'s cafe',
+		'vinoteca',
+		'splurge',
+		'everyday cafe',
+		'nespresso',
+		'caffe dell',
+		'Kerckhoff Coffee House',
+		'Study at Hedrick',
 	];
 	
 	foreach ($badCoffee as $negativeTerm) {
-		if (strpos(strtolower($name), strtolower($negativeTerm)) !== false) {
+		$needle = strtolower($negativeTerm);
+		$haystack = strtolower($name);
+		if (strpos($haystack, $needle) !== false) {
 			return false;
 			break;
 		}
@@ -51,5 +69,4 @@ function isDecentCoffeeShop($name) {
 	// Hey, we got this far.  Must be a decent spot!
 	return true;
 }
-
 ?>

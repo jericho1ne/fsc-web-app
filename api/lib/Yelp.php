@@ -91,7 +91,14 @@ class Yelp {
      */
     public function reviews($id)
     {
-        return $this->get('businesses/' . $id . '/reviews');
+        $reviews = $this->get('businesses/' . $id . '/reviews');
+
+        foreach ($reviews['reviews'] as $key => $review ) {
+            unset($reviews['reviews'][$key]['url']);
+            unset($reviews['reviews'][$key]['user']);
+            unset($reviews['reviews'][$key]['time_created']);
+        }
+        return $reviews;
     }
 
     /**

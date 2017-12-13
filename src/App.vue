@@ -12,6 +12,7 @@
 
 		<!-- Menu Bar -->
 		<div id="menu" class="border-top">
+			<span class="fsc-logo svg-icon"></span>
 			<span class="menu-option"><router-link to="/nearby">coffee nearby</router-link></span>
 			<span class="menu-option"><router-link to="/cities">cities</router-link></span>
 			<span class="menu-option"><router-link to="/whats-good">photos</router-link></span>
@@ -32,8 +33,8 @@
  	// Mono:  http://paletton.com/#uid=1000E0kcGw03YSm85HMh-r6msmk
 
 	// Color Scheme
-	$lt-blue: 	#b7e0ed;
-	$blue: 		#84C2D6;
+	$lt-blue: 	#53C1CC;
+	$blue: 		#53C1CC;
 	$dk-blue: 	#0C5C76;
 	$hot-red: 	#EE2222;
 	$lt-pink:  	#FFDFDF;
@@ -64,6 +65,7 @@
 		height: 2em;
 		margin-top: -0.5em;
 		margin-bottom: -0.75em;
+		border: 1px solid;
 	}
 
 	#menu {
@@ -460,7 +462,7 @@
 	}
 	
 	@mixin build-responsive-page($m) {
-		$review-header-height: 200px;
+		$review-header-height: 180px;
 
 		.v--modal-overlay .v--modal-box {
 			margin-top: auto;

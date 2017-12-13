@@ -88,15 +88,15 @@ export default {
 			else {
 				// Ajax request to places API
 				let urlParams = 
-					`term=coffee-and-tea&` +
-					`categories=coffeeroasteries,coffee&` +
+					`term=coffee-tea&` +
 					`lat=${position.latitude}&lon=${position.longitude}&` +
 					// List of comma delimited pricing levels (1,2,3,4)
 					`price=1,2,3,4&` +
 					// defaults to best_match
 					// { best_match, rating, review_count, distance }
 					`sort_by=distance&` +
-					`limit=40`;
+					`fieldset=light&` +
+					`limit=30`;
 
 				_self.$root.fetchDataFromApi('search', urlParams)
 					.then(response => {

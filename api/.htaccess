@@ -1,6 +1,11 @@
 Header set Access-Control-Allow-Origin "*"
 
 <IfModule mod_rewrite.c>
+# If intermediate/chain certs break
+#RewriteEngine On
+#RewriteCond %{HTTPS} on
+#RewriteRule (.*) http://%{HTTP_HOST}%{REQUEST_URI}
+
 RewriteEngine on
 RewriteBase /
 # Force to SSH (geolocation on insecure origins is deprecated)
