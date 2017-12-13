@@ -8,6 +8,9 @@ $data = file_get_contents($BASE_URL);
 //$result = json_decode(utf8_encode($data), true); 
 $result = json_decode($data, true); 
 
+$MAX_CHARS = 128;
+$MAX_ITEMS = 40;
+
 if ($data === false || !($result['posts'])) {
     print_r(json_encode(["error" => "Sorry, no data."]));
     exit;
@@ -17,9 +20,18 @@ if ($data === false || !($result['posts'])) {
 	
 	// Fill in just the info we need
 	$feedItems = [];
-	foreach($posts as $post) {
+	foreach($posts as $key=>$post) {
+		if ($key >= $MAX_ITEMS) {
+			break;
+		}
+
 		// Break out position into lat/lon array
 		$position = explode(',', $post['location']);
+		
+		$description = strip_tags($post['unformatted_message']);	
+		$dotDotDot = strlen($description) > $MAX_CHARS ? '...' : '';
+		$description = substr($description, 0, $MAX_CHARS) . $dotDotDot;
+				
 		// Remove any extra referral thingy at end of post url, if `?` exists
 		$questionMarkPos = strpos($post['full_url'], '?');
 		
@@ -31,8 +43,8 @@ if ($data === false || !($result['posts'])) {
 		$feedItems[] = [
 			'id' 			=> $post['id'],
 			'url' 			=> $url,
-			// 'title'			=> $post['title'],
-			'description' 	=> $post['unformatted_message'],
+			'title'			=> substr($description, 0, 24) . "...",
+			'description' 	=> substr($description,0, 128),
 			'location'		=> [
 				trim($position[0]),
 				trim($position[1])
