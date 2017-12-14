@@ -9,7 +9,7 @@ $data = file_get_contents($BASE_URL);
 $result = json_decode($data, true); 
 
 $MAX_CHARS = 128;
-$MAX_ITEMS = 40;
+$MAX_ITEMS = 25;
 
 if ($data === false || !($result['posts'])) {
     print_r(json_encode(["error" => "Sorry, no data."]));
@@ -41,7 +41,8 @@ if ($data === false || !($result['posts'])) {
 			$url = $post['full_url'];
 		}		
 		$feedItems[] = [
-			'id' 			=> $post['id'],
+			// 'id' 			=> $post['id'],
+			'id'			=> $post['external_id'],
 			'url' 			=> $url,
 			'title'			=> substr($description, 0, 24) . "...",
 			'description' 	=> substr($description,0, 128),
