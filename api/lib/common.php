@@ -3,12 +3,6 @@ header('Content-Type: application/json;charset=UTF-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
 
-// header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
-// header('Access-Control-Max-Age: 1728000');
-
-// header('Access-Control-Allow-Origin: *');
-// header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-
 require_once 'Yelp.php';
 
 $app_id = '-iMrrWHHxOKehsmtQVpV7A';
@@ -32,6 +26,7 @@ function isDecentCoffeeShop($name) {
 		'tim horton',
 		'Teavana',
 		'philz',
+		'eataly',
 		// Not really specialty coffee...
 		'urth caf',
 		'honeymee',
@@ -45,9 +40,13 @@ function isDecentCoffeeShop($name) {
 		'cookies',
 		'donuts',
 		'doughnuts',
+		'brunch',
 		'coffee seletto',
 		// Blacklisted
 		'Lollicup',
+		'icy rush',
+		'street level cafe',
+		'sd coffee',
 		'moe\'s cafe',
 		'vinoteca',
 		'splurge',
