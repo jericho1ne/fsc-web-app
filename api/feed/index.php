@@ -8,7 +8,7 @@ $data = file_get_contents($BASE_URL);
 //$result = json_decode(utf8_encode($data), true); 
 $result = json_decode($data, true); 
 
-$MAX_CHARS = 128;
+$MAX_CHARS = 512;
 $MAX_ITEMS = 25;
 
 if ($data === false || !($result['posts'])) {
@@ -27,10 +27,21 @@ if ($data === false || !($result['posts'])) {
 
 		// Break out position into lat/lon array
 		$position = explode(',', $post['location']);
+		$type = (strpos($post['full_url'], 'blog.findsomecoffee') === false)
+			? 'ig'
+			: 'blog';
+			
+		$title = strip_tags($post['unformatted_message']);	
 		
-		$description = strip_tags($post['unformatted_message']);	
-		$dotDotDot = strlen($description) > $MAX_CHARS ? '...' : '';
-		$description = substr($description, 0, $MAX_CHARS) . $dotDotDot;
+		if ($type == 'ig') {
+			$description = $title;
+		} else {
+			$endOfFirstSentence = strpos($post['description'], '.') + 1;
+			$description = strip_tags(substr($post['description'], 0, $endOfFirstSentence));
+		}
+		
+		//$dotDotDot = strlen($description) > $MAX_CHARS ? '...' : '';
+		//$description = substr($description, 0, $MAX_CHARS) . $dotDotDot;
 				
 		// Remove any extra referral thingy at end of post url, if `?` exists
 		$questionMarkPos = strpos($post['full_url'], '?');
@@ -41,11 +52,12 @@ if ($data === false || !($result['posts'])) {
 			$url = $post['full_url'];
 		}		
 		$feedItems[] = [
-			// 'id' 			=> $post['id'],
+			// 'id' 		=> $post['id'],
 			'id'			=> $post['external_id'],
 			'url' 			=> $url,
-			'title'			=> substr($description, 0, 24) . "...",
-			'description' 	=> substr($description,0, 128),
+			'type'			=> $type,
+			'title'			=> $title,
+			'description' 	=> $description,
 			'location'		=> [
 				trim($position[0]),
 				trim($position[1])
