@@ -14,7 +14,7 @@
 		<div id="menu" class="border-top">
 			<SomeIcon class="svg-icon" />
 			<!-- <span class="fsc-logo svg-icon"></span> -->
-			<span class="menu-option"><router-link to="/nearby">coffee nearby</router-link></span>
+			<span class="menu-option"><router-link to="/nearby">nearby</router-link></span>
 			<span class="menu-option"><router-link to="/cities">cities</router-link></span>
 			<span class="menu-option"><router-link to="/whats-good">feed</router-link></span>
 		</div>
@@ -52,13 +52,13 @@ export default {
 	
 	body {
 		font-family: $font-family-base;
-		margin: 30px 0 0 0;
+		margin: 26px 0 0 0;
 		background-color: #fff;
-		background: url('assets/fsc-cup-blue.png') repeat center center fixed; 
-		-webkit-background-size: contain;
-		-moz-background-size: contain;
-		-o-background-size: contain;
-
+		background: url('assets/latte-art.png') center center fixed; 
+		background-repeat: repeat repeat;
+		-webkit-background-size: 12% auto;
+		-moz-background-size: 12% auto;
+		-o-background-size: 12% auto;
 		z-index: 998;
 	}
 	#app {
@@ -90,10 +90,10 @@ export default {
 		top: 0;
 
 		span.menu-option {
-			padding: 0px 10px;
+			padding: 0px 8px;
 			a {
 				color: $lt-blue;
-				font-size: 18px;
+				font-size: 17px;
 				padding: 0;
 			}
 		}
