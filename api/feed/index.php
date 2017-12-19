@@ -9,7 +9,7 @@ $data = file_get_contents($BASE_URL);
 $result = json_decode($data, true); 
 
 $MAX_CHARS = 512;
-$MAX_ITEMS = 45;
+$MAX_ITEMS = 32;
 
 if ($data === false || !($result['posts'])) {
     print_r(json_encode(["error" => "Sorry, no data."]));

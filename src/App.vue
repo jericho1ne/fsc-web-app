@@ -12,20 +12,27 @@
 
 		<!-- Menu Bar -->
 		<div id="menu" class="border-top">
-			<span class="fsc-logo svg-icon"></span>
+			<SomeIcon class="svg-icon" />
+			<!-- <span class="fsc-logo svg-icon"></span> -->
 			<span class="menu-option"><router-link to="/nearby">coffee nearby</router-link></span>
 			<span class="menu-option"><router-link to="/cities">cities</router-link></span>
-			<span class="menu-option"><router-link to="/whats-good">photos</router-link></span>
-			<span class="menu-option"><a href="https://blog.findsomecoffee.com">blog</a></span>
+			<span class="menu-option"><router-link to="/whats-good">feed</router-link></span>
 		</div>
 		<router-view></router-view>
 	</div>
 </template>
 
 <script>
-	export default {
-		name: 'app_name',
-	}
+
+// SVG icons
+import SomeIcon from './assets/fsc-logo.svg';
+
+export default {
+	name: 'app_name',
+	components: {
+		SomeIcon,
+	},
+}
 </script>
 
 <style lang="scss">
@@ -33,18 +40,19 @@
  	// Mono:  http://paletton.com/#uid=1000E0kcGw03YSm85HMh-r6msmk
 
 	// Color Scheme
-	$lt-blue: 	#53C1CC;
-	$blue: 		#53C1CC;
-	$dk-blue: 	#0C5C76;
+	$lt-blue: 	#53c1cc;
+	$blue: 		#53c1cc;
+	$dk-blue: 	#3f929b;
 	$hot-red: 	#EE2222;
 	$lt-pink:  	#FFDFDF;
 	$pink: 		#FF9A9A; 
 	$dk-pink:	#D86161;
+	$off-white: #fafafa;
 	$font-family-base: 'Avenir', Helvetica, Arial, sans-serif;
 	
 	body {
 		font-family: $font-family-base;
-		margin: 0;
+		margin: 30px 0 0 0;
 		background-color: #fff;
 		background: url('assets/fsc-cup-blue.png') repeat center center fixed; 
 		-webkit-background-size: contain;
@@ -61,18 +69,18 @@
 	}
 
 	.svg-icon {
-		width: 2.25em;
-		height: 2em;
+		width: 3.25em;
+		height: 2.5em;
 		margin-top: -0.5em;
 		margin-bottom: -0.75em;
-		border: 1px solid;
 	}
 
 	#menu {
-		background-color: $pink;
+		background-color: $off-white;
+		box-shadow: 0rem 0.05rem 1.25rem rgba(100, 100, 100, .35);
 		font-weight: 500;
 		font-size: 1em;
-		padding: 8px 0 10px;
+		padding: 18px 10px;
 		text-align: center;
 		vertical-align: baseline;
 		position: fixed;
@@ -82,14 +90,16 @@
 		top: 0;
 
 		span.menu-option {
-			padding: 0px 7px;
+			padding: 0px 10px;
 			a {
+				color: $lt-blue;
+				font-size: 18px;
 				padding: 0;
 			}
 		}
 
 		.router-link-active {
-			border-bottom: 2px solid #fff;
+			border-bottom: 2px solid $lt-blue;
 		}
 	}
 
