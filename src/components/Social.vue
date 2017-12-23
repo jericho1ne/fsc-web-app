@@ -25,6 +25,11 @@ export default {
 		// Turn on spinner
 		_self.$root.$data.loading = true;
 
+        // PRERENDER SPA TRIGGER
+        setTimeout(() => {
+            document.dispatchEvent(new Event('custom-post-render-event'))
+        }, 4000)
+                
 		this.$root.loadScript('//assets.juicer.io/embed.js')
 			.then(function() {
 				// Turn off spinner after a bit more animation 
@@ -32,11 +37,6 @@ export default {
 					_self.$root.$data.loading = false;
                     $('li.feed-item.juicer.image-post').remove();
 				}, 500);
-
-                // PRERENDER SPA TRIGGER
-                setTimeout(() => {
-                    document.dispatchEvent(new Event('custom-post-render-event'))
-                }, 6000)
 			});   
 	}, 
 	mounted: function () {

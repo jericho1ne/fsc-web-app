@@ -127,11 +127,6 @@ export default {
 					// Turn off spinner
 					_self.$root.$data.loading = false;
 					_self.$root.$data.cities = response.body;
-					
-					// PRERENDER SPA TRIGGER
-					setTimeout(() => {
-						document.dispatchEvent(new Event('custom-post-render-event'))
-					}, 15000)
 				}
 				else {
 					console.warn("No results.");

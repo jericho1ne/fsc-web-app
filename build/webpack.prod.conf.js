@@ -9,7 +9,7 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-// var PrerenderSpaPlugin = require('prerender-spa-plugin')
+var PrerenderSpaPlugin = require('prerender-spa-plugin')
 
 // Renders in your system browser by opening tabs, rendering your app, then closing tabs.
 // Readme: https://alligator.io/vuejs/vue-prerender-prerenderer/
@@ -26,116 +26,117 @@ var env = process.env.NODE_ENV === 'testing'
   : config.build.env
 
 var webpackConfig = merge(baseWebpackConfig, {
-  module: {
-    rules: utils.styleLoaders({
-      sourceMap: config.build.productionSourceMap,
-      extract: true
-    })
-  },
-  devtool: config.build.productionSourceMap ? '#source-map' : false,
-  output: {
-    path: config.build.assetsRoot,
-    filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
-  },
-  plugins: [
-    // http://vuejs.github.io/vue-loader/en/workflow/production.html
-    new webpack.DefinePlugin({
-      'process.env': env
-    }),
+    module: {
+        rules: utils.styleLoaders({
+            sourceMap: config.build.productionSourceMap,
+            extract: true
+        })
+    },
 
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
-
-    // extract css into its own file
-    new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash].css')),
-    // generate dist index.html with correct asset hash for caching.
-    // you can customize output by editing /index.html
-    // see https://github.com/ampedandwired/html-webpack-plugin
-    new HtmlWebpackPlugin({
-      filename: process.env.NODE_ENV === 'testing'
-        ? 'index.html'
-        : config.build.index,
-      template: 'index.html',
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: false,
-        removeAttributeQuotes: false
-        // more options:
-        // https://github.com/kangax/html-minifier#options-quick-reference
-      },
-      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-      // chunksSortMode: 'dependency'
-    }),
-
-    // split vendor js into its own file
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: function (module, count) {
-        // any required modules inside node_modules are extracted to vendor
-        return (
-          module.resource &&
-          /\.js$/.test(module.resource) &&
-          module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
-          ) === 0
-        )
-      }
-    }),
-
-    // extract webpack runtime and module manifest to its own file in order to
-    // prevent vendor hash from being updated whenever app bundle is updated
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
-      chunks: ['vendor']
-    }),
-
-
-    // THIS ONE KINDA WORKS
-    // new PrerendererWebpackPlugin({
-    //   // The path to the folder where index.html is.
-    //   staticDir: path.join(__dirname, '../dist'),
-    //   // List of routes to prerender.
-    //   routes: [
-    //     '/', 
-    //     '/nearby/', 
-    //     '/whats-good/', 
-    //     '/cities/'
-    //   ],    
-    //   renderer: new ChromeRenderer({
-    //     maxConcurrentRoutes: 1,
-    //     renderAfterDocumentEvent: 'custom-post-render-event',
-    //   })
-    // })
-
-    // DEFINITELY DOES NOT WORK
-    // new PrerenderSpaPlugin(
-    //   // Absolute path to compiled SPA
-    //   path.join(__dirname, '../dist'),
-    //   // List of routes to prerender
-    //   [ '/', '/nearby', '/whats-good', '/cities' ],
-    //   {
-    //     captureAfterTime: 4000,
-    //     ignoreJSErrors: false,
-    //     // captureAfterDocumentEvent: 'custom-post-render-event',
-    //     navigationLocked: true,
-    //     phantomPageViewportSize: {
-    //       width: 1280,
-    //       height: 800
-    //     },
-    //     // http://phantomjs.org/api/webpage/property/settings.html
-    //     phantomPageSettings: {
-    //       loadImages: true
-    //     },
-    //   }
-    // )
+    devtool: config.build.productionSourceMap ? '#source-map' : false,
   
+    output: {
+        path: config.build.assetsRoot,
+        filename: utils.assetsPath('js/[name].[chunkhash].js'),
+        chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    },
 
-  ] // End `plugins`
+    plugins: [
+        // http://vuejs.github.io/vue-loader/en/workflow/production.html
+        new webpack.DefinePlugin({
+          'process.env': env
+        }),
+
+        new webpack.optimize.UglifyJsPlugin({
+          compress: {
+            warnings: false
+          }
+        }),
+
+        // extract css into its own file
+        new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash].css')),
+        // generate dist index.html with correct asset hash for caching.
+        // you can customize output by editing /index.html
+        // see https://github.com/ampedandwired/html-webpack-plugin
+        new HtmlWebpackPlugin({
+          filename: process.env.NODE_ENV === 'testing'
+            ? 'index.html'
+            : config.build.index,
+          template: 'index.html',
+          inject: true,
+          minify: {
+            removeComments: true,
+            collapseWhitespace: false,
+            removeAttributeQuotes: false
+            // more options:
+            // https://github.com/kangax/html-minifier#options-quick-reference
+          },
+          // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+          // chunksSortMode: 'dependency'
+        }),
+
+        // split vendor js into its own file
+        new webpack.optimize.CommonsChunkPlugin({
+          name: 'vendor',
+          minChunks: function (module, count) {
+            // any required modules inside node_modules are extracted to vendor
+            return (
+              module.resource &&
+              /\.js$/.test(module.resource) &&
+              module.resource.indexOf(
+                path.join(__dirname, '../node_modules')
+              ) === 0
+            )
+          }
+        }),
+
+        // extract webpack runtime and module manifest to its own file in order to
+        // prevent vendor hash from being updated whenever app bundle is updated
+        new webpack.optimize.CommonsChunkPlugin({
+          name: 'manifest',
+          chunks: ['vendor']
+        }),
+
+
+        // THIS ONE KINDA WORKS
+        new PrerendererWebpackPlugin({
+          // The path to the folder where index.html is.
+          staticDir: path.join(__dirname, '../dist'),
+          // List of routes to prerender.
+          routes: [
+            '/', 
+            '/nearby/', 
+            '/whats-good/', 
+            '/cities/'
+          ],    
+          renderer: new ChromeRenderer({
+            maxConcurrentRoutes: 4,
+            renderAfterDocumentEvent: 'custom-post-render-event',
+          })
+        })
+
+        // DEFINITELY DOES NOT WORK
+        /* new PrerenderSpaPlugin(
+            path.join(__dirname, '../dist'),
+            // List of routes to prerender
+            //[ '/', '/nearby', '/whats-good', '/cities' ],
+            [ '/' ],
+            {
+                captureAfterTime: 6000,
+                ignoreJSErrors: false,
+                captureAfterDocumentEvent: 'custom-post-render-event',
+                // navigationLocked: true,
+                // phantomPageViewportSize: {
+                //     width: 1280,
+                //     height: 800
+                // },
+                // // http://phantomjs.org/api/webpage/property/settings.html
+                // phantomPageSettings: {
+                //     loadImages: true
+                // },
+            }
+        ) */
+    ] // End `plugins`
 })
 
 if (config.build.productionGzip) {

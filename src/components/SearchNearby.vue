@@ -130,11 +130,6 @@ export default {
 
 							// Set the reactive property, which auto-triggers display
 							_self.$root.$data.items = items;
-							
-							// Notify prerender SPA plugin
-							setTimeout(() => {
-								document.dispatchEvent(new Event('custom-post-render-event'))
-							}, 10000)
 						} else {
 							console.warn("No results.");
 						}

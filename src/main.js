@@ -139,16 +139,10 @@ const app = new Vue({
 					}
 					// Predefine lat/lon for debugging purposes or prerendering
 					else {
-						// let BHcoords = {
-						// 	longitude: -118.4053706,
-						// 	latitude: 34.065685
-						// };
-						let ELcoords = {
-							longitude: -84.5240879,
-							latitude: 42.7332615
-						};
-						_self.$root.$data.prevCoords = ELcoords;
-						_self.$root.$data.coords = ELcoords;
+						// let BH = { latitude: 34.065685, longitude: -118.4053706 };
+						// let EL = { latitude: 42.733261, longitude: -84.5240879 };
+						let SaMo = { latitude: 34.0292383, longitude: -118.4762496 };
+						_self.$root.$data.prevCoords = _self.$root.$data.coords = SaMo;
 						resolve(_self.$root.$data.coords);
 					}
 				} // End else need to query for coordinates
@@ -167,6 +161,12 @@ const app = new Vue({
 			
 			// Triggers loading spinner
 			// this.$data.loading = true;
+
+			// PRERENDER SPA TRIGGER
+			setTimeout(() => {
+				console.log(">>> FIRED >>> custom-post-render-event");
+				document.dispatchEvent(new Event('custom-post-render-event'));
+			}, 5000)
 
 			return this.$http({ 
 				url: requestUrl, 
