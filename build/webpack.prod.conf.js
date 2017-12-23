@@ -107,7 +107,8 @@ var webpackConfig = merge(baseWebpackConfig, {
             '/', 
             '/nearby/', 
             '/whats-good/', 
-            '/cities/'
+            '/cities/',
+            '/about/',
           ],    
           renderer: new ChromeRenderer({
             maxConcurrentRoutes: 4,
