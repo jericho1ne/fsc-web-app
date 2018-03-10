@@ -1,0 +1,1035 @@
+
+body {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  margin: 26px 0 0 0;
+  background-color: #fff;
+  background: url(/assets/img/latte-art.5b6fd12.png) center center fixed;
+  background-repeat: repeat repeat;
+  -webkit-background-size: 12% auto;
+  -moz-background-size: 12% auto;
+  -o-background-size: 12% auto;
+  z-index: 998;
+}
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #3f929b;
+}
+.svg-icon {
+  width: 3.25em;
+  height: 2.5em;
+  margin-top: -0.5em;
+  margin-bottom: -0.75em;
+}
+#menu {
+  background-color: #fafafa;
+  box-shadow: 0rem 0.05rem 1.25rem rgba(100, 100, 100, 0.35);
+  font-weight: 500;
+  font-size: 1em;
+  padding: 18px 10px;
+  text-align: center;
+  vertical-align: baseline;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  opacity: 1;
+  top: 0;
+}
+#menu span.menu-option {
+    padding: 0px 8px;
+}
+#menu span.menu-option a {
+      color: #53c1cc;
+      font-size: 17px;
+      padding: 0;
+}
+#menu .router-link-active {
+    border-bottom: 2px solid #53c1cc;
+}
+h1, h2 {
+  color: #3f929b;
+  font-weight: normal;
+  margin: 1.5em;
+}
+h3, h4 {
+  font-weight: bold;
+  margin: 0.25em;
+}
+h5 {
+  font-weight: normal;
+  margin: 0.25em;
+}
+a {
+  text-decoration: none;
+  padding: 0px 4px;
+  border-bottom: 2px solid transparent;
+  color: #fff;
+}
+a:hover, a:active {
+    cursor: pointer;
+}
+.v--modal-overlay {
+  width: 100% !important;
+  background: rgba(170, 170, 170, 0.9) !important;
+}
+.vue-dialog {
+  max-height: 93% !important;
+}
+.vue-dialog .dialog-content {
+    height: auto;
+}
+.vue-dialog .dialog-content .dialog-c-text div {
+      padding: 0;
+      font-size: 12px;
+}
+.vue-dialog .dialog-content .dialog-c-text div.review {
+        background: #fff;
+        padding: 6px 10px 0px 36px;
+        margin: 10px 2px;
+        position: relative;
+        font-size: 12px;
+        line-height: 1.25;
+        text-align: justify;
+        border-left: 10px solid #53c1cc;
+        border-right: 2px solid #53c1cc;
+        overflow: hidden;
+        text-overflow: ellipsis;
+}
+.vue-dialog .dialog-content .dialog-c-text div.review::before {
+          content: "\201C";
+          position: absolute;
+          left: 4px;
+          top: 3px;
+          font-family: Georgia, serif;
+          font-size: 46px;
+          font-weight: bold;
+          color: #53c1cc;
+          background: linear-gradient(transparent 150px, white);
+}
+.vue-dialog .dialog-content .dialog-c-text div.review::after {
+          content: "";
+}
+.vue-dialog .dialog-content .dialog-c-text div.review:last-of-type {
+          margin-bottom: 10px;
+}
+.vue-dialog .dialog-content a:hover {
+      background-color: #FA00ED;
+      cursor: pointer;
+}
+.vue-dialog .dialog-content .dialog-c-title {
+      padding: 0px;
+      font-size: 14px;
+      margin: -11px -11px 0;
+      color: #fff !important;
+      text-shadow: 0.05rem 0.05rem 0.05rem rgba(0, 0, 0, 0.95);
+}
+.vue-dialog .dialog-content .dialog-c-title .title {
+        font-size: 28px;
+        line-height: 1.05;
+}
+.vue-dialog .dialog-content .dialog-c-title div.review-header {
+        padding: 1em 1em;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        height: 100%;
+}
+.vue-dialog .dialog-content .detail-thumb {
+      height: auto;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+}
+.vue-dialog .dialog-content img {
+      width: 100%;
+      height: auto;
+}
+.vue-dialog .dialog-buttons {
+    position: absolute;
+    bottom: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-top: 0px !important;
+    box-shadow: 0rem -0.15rem 1.2rem rgba(100, 100, 100, 0.5);
+    background-color: #fff !important;
+    border-bottom: 1px solid #eee !important;
+    margin-bottom: 30px !important;
+}
+.vue-dialog button {
+    color: #3f929b !important;
+    font-size: .9em !important;
+    background-color: #fff !important;
+}
+.vue-dialog button:hover, .vue-dialog button:active {
+      background-color: #6fcbd4 !important;
+      transition: all 0.15s ease 0.1s;
+}
+.phone-link {
+  color: #fff;
+  font-weight: bold;
+  padding: 2px 6px 0px;
+  margin-top: 10px;
+  border-radius: 2px;
+  background-color: #B909B3;
+}
+
+/* General */
+hr {
+  border: none;
+  width: 100%;
+  border-bottom: 1px solid #3f929b;
+  opacity: .25;
+  margin: 20px auto;
+}
+button {
+  background-color: #bbb;
+  letter-spacing: 1px;
+  font-size: 1em;
+  font-weight: normal;
+  width: 3.5em;
+  height: 3.5em;
+  padding: .25em;
+  margin: .45em;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+}
+button:hover {
+    background-color: #D86161;
+    transition: all 0.4s ease 0s;
+}
+button:active, button.active {
+    /*background-color: $dk-blue;*/
+    background-color: #D86161;
+}
+button.round {
+    /*background-color: #84C2D6;*/
+    border-radius: 100px;
+}
+button.toggle {
+    width: auto;
+    height: 2.5em;
+    background-color: transparent !important;
+    padding: 0px;
+    margin: 0px;
+}
+button:hover.toggle {
+  background-color: none;
+}
+
+/* COLOR PALETTE */
+/* http://paletton.com/palette.php?uid=7000A0kmtw0cHNai7DJrrtVtYnD */
+.blue {
+  color: #84C2D6 !important;
+  fill: #84C2D6 !important;
+}
+
+/* Icons */
+.fa-icon {
+  padding-top: 0.2em;
+  color: #84C2D6;
+}
+.fa-icon-xs {
+  width: 0.75em;
+  height: 0.75em;
+}
+.fa-icon-sm {
+  width: 1.25em;
+  height: 1.25em;
+  /* or any other relative font sizes */
+}
+.fa-icon-md {
+  width: 1.75em;
+  height: 1.75em;
+  /* or any other relative font sizes */
+}
+.fa-icon-lg {
+  width: 2.5em;
+  height: 2.5em;
+  /* or any other relative font sizes */
+}
+.fa-icon-xl {
+  width: 3.25em;
+  height: 3.25em;
+  /* or any other relative font sizes */
+}
+
+/* BORDERS */
+.border-dev {
+  border: 1px solid pink;
+}
+.border-dark {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+.border-top {
+  border-top: 3px solid #D86161;
+  border-radius: 0px;
+}
+.border-bottom {
+  border-bottom: 5px solid #53c1cc;
+  border-radius: 0px;
+}
+.border-bottom-fade {
+  box-shadow: 1px 2px 12px -2px #53c1cc;
+}
+
+/* Padding fixes */
+.pad-top-4 {
+  margin-top: 4px;
+}
+
+/* ITEM LIST */
+div.vue-star-rating {
+  display: block !important;
+}
+ul li {
+  display: inline;
+}
+ul li.item {
+    position: relative;
+    display: inline-block;
+    margin: 10px 10px 5px;
+    width: 280px;
+    height: 260px;
+    background-color: transparent;
+    overflow: hidden;
+}
+ul li .thumb:hover {
+    cursor: pointer;
+    opacity: 0.86;
+}
+ul.items {
+  margin-top: 8px;
+  list-style-type: none;
+  padding: 0;
+}
+.thumb {
+  top: 0px;
+  height: 100%;
+  background-position: left top;
+  background: no-repeat;
+  background-size: cover;
+}
+.item-title {
+  min-height: 15%;
+  height: auto;
+  width: auto;
+  color: #fff;
+  background-color: #84C2D6;
+  padding: 2px;
+  opacity: 1;
+}
+.thumb-spacer {
+  height: auto;
+}
+.mini-action-bar {
+  position: absolute;
+  bottom: -2px;
+  margin-left: 35%;
+  text-align: center;
+  opacity: 0.95;
+  padding: 0px;
+  height: auto;
+  color: #fff;
+}
+.spacer {
+  height: 40px;
+}
+
+/* Pure CSS spinner*/
+.spinner {
+  position: fixed;
+  z-index: 1000;
+  top: 44%;
+  left: 46%;
+  /* Spinner size and color */
+  width: 2.5rem;
+  height: 2.5rem;
+  /* 
+		/*border-top-color: #84C2D6;
+		border-left-color: $pink;
+		border-bottom-color: #144F77;*/
+  /* Triad */
+  /*border-top-color: #FFC89A;
+		border-left-color: $pink;
+		border-bottom-color: #CD7CA8;*/
+  /* Monochromatic */
+  border-top-color: #FF9A9A;
+  border-left-color: #D86161;
+  border-bottom-color: #B23535;
+  /* Additional spinner styles */
+  animation: spinner 1080ms linear infinite;
+  border-right-color: transparent;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Animation styles */
+@keyframes spinner {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
+}
+.spinner-slow {
+  animation: spinner 1s linear infinite;
+}
+
+/* --------- 0-320px: iPhone 5 ---- */
+@media screen and (max-width: 320px) {
+.v--modal-overlay .v--modal-box {
+    margin-top: auto;
+    margin-auto: auto;
+}
+.vue-dialog .dialog-content {
+    height: 54% !important;
+    padding: .75em .75em 0 .75em !important;
+}
+.vue-dialog .dialog-content .dialog-c-title {
+      height: 180px;
+}
+.v--modal-overlay .v--modal-box {
+    position: static !important;
+    width: 100% !important;
+}
+}
+
+/* --------- 321-546px: iPhone 6 ----------------------- */
+@media screen and (min-width: 321px) and (max-width: 413px) {
+.v--modal-overlay .v--modal-box {
+    margin-top: auto;
+    margin-auto: auto;
+}
+.vue-dialog .dialog-content {
+    height: 91.8% !important;
+    padding: .75em .75em 0 .75em !important;
+}
+.vue-dialog .dialog-content .dialog-c-title {
+      height: 306px;
+}
+.v--modal-overlay .v--modal-box {
+    position: static !important;
+    width: 100% !important;
+}
+}
+
+/* --------- 321-546px: iPhone 6 Plus ------------------- */
+@media screen and (min-width: 414px) and (max-width: 546px) {
+.v--modal-overlay .v--modal-box {
+    margin-top: auto;
+    margin-auto: auto;
+}
+.vue-dialog .dialog-content {
+    height: 108% !important;
+    padding: .75em .75em 0 .75em !important;
+}
+.vue-dialog .dialog-content .dialog-c-title {
+      height: 360px;
+}
+.v--modal-overlay .v--modal-box {
+    position: static !important;
+    width: 100% !important;
+}
+}
+
+/* --------- 547-767px ---------------------------------- */
+@media screen and (min-width: 547px) and (max-width: 767px) {
+.v--modal-overlay .v--modal-box {
+    margin-top: auto;
+    margin-auto: auto;
+}
+.vue-dialog .dialog-content {
+    height: 116.1% !important;
+    padding: .75em .75em 0 .75em !important;
+}
+.vue-dialog .dialog-content .dialog-c-title {
+      height: 387px;
+}
+}
+
+/* --------- 768px - 950px ------------------------------ */
+@media screen and (min-width: 768px) and (max-width: 950px) {
+.v--modal-overlay .v--modal-box {
+    margin-top: auto;
+    margin-auto: auto;
+}
+.vue-dialog .dialog-content {
+    height: 121.5% !important;
+    padding: .75em .75em 0 .75em !important;
+}
+.vue-dialog .dialog-content .dialog-c-title {
+      height: 405px;
+}
+}
+
+/* --------- 950px - 1200px ----------------------------- */
+@media screen and (min-width: 951px) and (max-width: 1200px) {
+.vue-dialog {
+    max-width: 600px;
+}
+.v--modal-overlay .v--modal-box {
+    margin-top: auto;
+    margin-auto: auto;
+}
+.vue-dialog .dialog-content {
+    height: 129.6% !important;
+    padding: .75em .75em 0 .75em !important;
+}
+.vue-dialog .dialog-content .dialog-c-title {
+      height: 432px;
+}
+}
+
+/* --------- 1201px - 1600px ------------------------------ */
+@media screen and (min-width: 1201px) and (max-width: 1600px) {
+.v--modal-overlay .v--modal-box {
+    margin-top: auto;
+    margin-auto: auto;
+}
+.vue-dialog .dialog-content {
+    height: 108% !important;
+    padding: .75em .75em 0 .75em !important;
+}
+.vue-dialog .dialog-content .dialog-c-title {
+      height: 360px;
+}
+}
+
+/* --------- 1601px + -------------------------------------- */
+@media screen and (min-width: 1601px) {
+.v--modal-overlay .v--modal-box {
+    margin-top: auto;
+    margin-auto: auto;
+}
+.vue-dialog .dialog-content {
+    height: 108% !important;
+    padding: .75em .75em 0 .75em !important;
+}
+.vue-dialog .dialog-content .dialog-c-title {
+      height: 360px;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ul#cityList[data-v-6d4b50a0] {
+	margin-top: 0;
+	padding: 12px 4px 0px 4px;
+	border: 0;
+	border-top: 1px solid rgba(10,10,10,.1);
+	height: 100%;
+	transition: all 0.25s ease;
+}
+.city-names[data-v-6d4b50a0] {
+	background-color: rgba(255, 255, 255, .9);
+	box-shadow: inset 0 0 6rem rgba(10,10,10,.20);
+	padding: 0;
+	margin: 0;
+	margin-top: -2px;
+	border-bottom: 1px solid rgba(10,10,10,.25);
+	transition: all .25s ease;
+}
+.fade-enter-active[data-v-6d4b50a0], .fade-leave-active[data-v-6d4b50a0] {
+	transition: all 0.25s ease;
+}
+.fade-enter[data-v-6d4b50a0], .fade-leave-to[data-v-6d4b50a0] /* .fade-leave-active in <2.1.8 */ {
+	opacity: 0;
+}
+
+@charset "UTF-8";
+/* Hide Juicer referral tag*/
+h1.referral,
+div.j-poster,
+.j-gallery-nav {
+  display: none !important;
+}
+a.j-image {
+  padding: 0;
+}
+
+/* Hide Juicer loading icon */
+.j-loading {
+  display: none !important;
+}
+
+/* Hide juicer promotional posts */
+li.feed-item.juicer {
+  display: none;
+}
+
+/* DO NO ALLOW negative margins */
+.j-stacker-wrapper {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* JUICER EMBED */
+.j-instagram {
+  background: #3F729B;
+}
+.j-instagram:before {
+  content: "\F16D";
+}
+@font-face {
+  font-family: "fontawesome-webfont";
+  src: url(//assets.juicer.io/fonts/fontawesome-webfont.eot);
+  src: url(//assets.juicer.io/fonts/fontawesome-webfont.eot?#iefix) format("embedded-opentype"), url(//assets.juicer.io/fontawesome-webfont-adbc4f95eb6d7f2738959cf0ecbc374672fce47e856050a8e9791f457623ac2c.woff) format("woff"), url(//assets.juicer.io/fontawesome-webfont-ae19e2e4c04f2b04bf030684c4c1db8faf5c8fe3ee03d1e0c409046608b38912.ttf) format("truetype"), url(//assets.juicer.io/fontawesome-webfont-e0d04e3fed3df6f5d84bc45d9b96279e7177b1b8c3d18d567af75af5997ff73b.svg#fontawesome-webfont) format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+.juicer-feed h1.referral a:after {
+  text-indent: -9999px;
+  display: block;
+  background-repeat: no-repeat;
+}
+
+/* */
+.juicer-feed {
+  *zoom: 1;
+  transition: opacity 0.2s ease-in-out;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  font-size: 16px;
+  width: 98%;
+  max-width: 580px;
+  position: relative;
+  margin: 0 auto !important;
+  overflow-y: show;
+  overflow-x: show;
+  padding: 0;
+  line-height: 1;
+}
+.juicer-feed:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.juicer-feed .j-stacker {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.juicer-feed .j-stacker > * {
+  display: table-cell !important;
+  vertical-align: top;
+  float: none !important;
+}
+.juicer-feed * {
+  box-sizing: border-box;
+}
+.juicer-feed.loaded {
+  visibility: visible;
+  opacity: 1;
+}
+.juicer-feed a {
+  text-decoration: none !important;
+  border-bottom: none;
+  text-shadow: 0.05rem 0.05rem 0.025rem rgba(220, 220, 220, 0.5);
+  transition: color 0.2s ease-in-out;
+  color: #D86161;
+}
+.juicer-feed a:hover {
+    color: #FF9A9A;
+}
+.juicer-feed.modern li.feed-item {
+  padding: 0;
+  margin-bottom: 20px !important;
+  background: #53C1CC;
+  border-radius: 0;
+  overflow: show;
+  color: #fff;
+  white-space: normal;
+  float: none;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.juicer-feed.modern li.feed-item .j-message a {
+  font-weight: bold;
+}
+.juicer-feed.modern img {
+  width: 100%;
+  margin-bottom: 0 !important;
+}
+.juicer-feed.modern .j-meta ul {
+  margin: 0;
+  padding: 0;
+}
+.juicer-feed.modern .j-poster {
+  padding: 14px 10px 12px;
+  height: auto;
+  margin: 0;
+  height: 56px;
+}
+.juicer-feed.modern .j-poster img,
+.juicer-feed.modern .j-poster h3 {
+  margin-bottom: 0;
+}
+.juicer-feed.modern .j-poster img {
+  border-radius: 50%;
+  border-color: white;
+  margin: 0 11px 0 0;
+  height: 30px;
+}
+.juicer-feed.modern .j-poster h3 {
+  margin: 6px 0 0 0;
+}
+.juicer-feed.modern .j-poster h3,
+.juicer-feed.modern .j-poster .j-date {
+  font-size: 12px;
+}
+.juicer-feed.modern .j-poster .j-date {
+  margin-top: 7px;
+}
+.juicer-feed.modern .j-image img {
+  margin-bottom: 0;
+}
+.juicer-feed.modern .j-text {
+  font-size: 1em;
+  padding: 20px 15px 20px 20px;
+}
+.juicer-feed.modern .j-message {
+  line-height: 1.5em;
+}
+.juicer-feed.modern .j-message p {
+  margin: 0;
+}
+.juicer-feed li.feed-item {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  margin: 0;
+  list-style-type: none;
+  display: block;
+}
+.juicer-feed li.feed-item:before {
+  content: '';
+}
+.juicer-feed .j-meta {
+  margin-top: 10px;
+}
+.juicer-feed .j-meta a {
+  color: #fff;
+}
+.juicer-feed .j-meta a:hover {
+  color: #F17E6F;
+}
+.juicer-feed .j-meta ul {
+  display: inline-block;
+  width: auto !important;
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
+  line-height: 1em;
+  float: none;
+}
+.juicer-feed .j-meta li {
+  display: inline-block;
+  margin: 0 10px 0 0;
+  padding: 0;
+  background-image: none;
+  border: none;
+  font-size: 1em;
+  font-weight: normal;
+  height: auto;
+  width: auto;
+}
+.juicer-feed .j-meta li:last-of-type {
+  margin-right: 0;
+}
+.juicer-feed .j-meta nav {
+  display: inline-block;
+  float: right;
+  border: none;
+  background: transparent;
+  position: relative;
+  width: auto;
+  height: auto;
+}
+.juicer-feed .j-meta a {
+  background: transparent;
+  width: auto;
+  height: auto;
+  float: none;
+}
+.juicer-feed .j-meta a.j-social {
+  font-size: 1.5em;
+  line-height: 1;
+  float: none;
+  margin: 0;
+}
+.juicer-feed .j-meta a:before {
+  font-family: "fontawesome-webfont", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  margin-right: 5px;
+}
+.juicer-feed .j-meta a.comments:before {
+  content: '\F086';
+}
+.juicer-feed .j-meta a.heart:before {
+  content: '\F004';
+}
+.j-poster {
+  overflow: show;
+  margin: 0 0 10px 0;
+  height: 30px;
+}
+.j-poster img {
+  float: left;
+  width: 30px !important;
+  margin: 0 7px 0 0;
+  padding: 0;
+}
+.j-poster a {
+  color: #3A3A3A;
+}
+.j-poster a:hover {
+  color: #F17E6F;
+}
+.j-poster h3 {
+  float: left;
+  margin: 4px 0 0 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: bold;
+  max-width: 67%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  clear: none;
+  color: #3A3A3A;
+  line-height: 20px;
+}
+.j-poster .j-date {
+  float: right;
+  font-size: 14px;
+  margin-top: 4px;
+  color: #a0a0a0;
+}
+.juicer-feed .j-instagram {
+  background: #3F729B;
+}
+.juicer-feed .j-instagram:before {
+  content: "\F16D";
+}
+
+a {
+  font-weight: bold;
+  color: #D86161;
+  padding: 0 2px;
+}
+a:hover, a:focus {
+    color: #e28a8a;
+}
+#aboutPage div {
+  padding: 0 30px;
+}
+
+.fa-icon {
+  display: inline-block;
+  fill: currentColor;
+}
+.fa-flip-horizontal {
+  transform: scale(-1, 1);
+}
+.fa-flip-vertical {
+  transform: scale(1, -1);
+}
+.fa-spin {
+  animation: fa-spin 1s 0s infinite linear;
+}
+.fa-inverse {
+  color: #fff;
+}
+.fa-pulse {
+  animation: fa-spin 1s infinite steps(8);
+}
+@keyframes fa-spin {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
+}
+
+/*# sourceMappingURL=app.30ad2b786c070dce2189a61ba2fb099f.css.map*/
