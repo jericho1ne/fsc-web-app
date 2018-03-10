@@ -26,9 +26,9 @@ export default {
 		_self.$root.$data.loading = true;
 
         // PRERENDER SPA TRIGGER
-        setTimeout(() => {
-            document.dispatchEvent(new Event('custom-post-render-event'))
-        }, 4000)
+        // setTimeout(() => {
+        //     document.dispatchEvent(new Event('custom-post-render-event'))
+        // }, 4000)
                 
 		this.$root.loadScript('//assets.juicer.io/embed.js')
 			.then(function() {

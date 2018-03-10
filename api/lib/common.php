@@ -6,7 +6,7 @@ header('Access-Control-Allow-Methods: GET, POST');
 require_once 'Yelp.php';
 
 $app_id = '-iMrrWHHxOKehsmtQVpV7A';
-$app_secret = 'gAScHh8LnCyVv7lM4mYQdyAXUYuWKeT2TvDGdXvlTlRs7pY3ZyQY0Dm5qQjUZUPm';
+$app_secret = 'p6R0WPIiykKwVOJhgcv3SgsBLPKAhYQCa2i8FbXqUEcH42edQQKydEHYCfMTHYHc_WUtFaA2yOkbsBQ5dvk7rVspyXCwGLNrVnVSCWIMY3hKkcuo_0Lkg1GTmyikWnYx';
 
 $yelp = new Yelp($app_id, $app_secret);
 

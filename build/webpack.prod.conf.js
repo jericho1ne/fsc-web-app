@@ -9,7 +9,7 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var PrerenderSpaPlugin = require('prerender-spa-plugin')
+// var PrerenderSpaPlugin = require('prerender-spa-plugin')
 
 // Renders in your system browser by opening tabs, rendering your app, then closing tabs.
 // Readme: https://alligator.io/vuejs/vue-prerender-prerenderer/
@@ -99,22 +99,22 @@ var webpackConfig = merge(baseWebpackConfig, {
 
 
         // THIS ONE KINDA WORKS
-        new PrerendererWebpackPlugin({
-          // The path to the folder where index.html is.
-          staticDir: path.join(__dirname, '../dist'),
-          // List of routes to prerender.
-          routes: [
-            '/', 
-            '/nearby/', 
-            '/whats-good/', 
-            '/cities/',
-            '/about/',
-          ],    
-          renderer: new ChromeRenderer({
-            maxConcurrentRoutes: 4,
-            renderAfterDocumentEvent: 'custom-post-render-event',
-          })
-        })
+        // new PrerendererWebpackPlugin({
+        //   // The path to the folder where index.html is.
+        //   staticDir: path.join(__dirname, '../dist'),
+        //   // List of routes to prerender.
+        //   routes: [
+        //     '/', 
+        //     '/nearby/', 
+        //     '/whats-good/', 
+        //     '/cities/',
+        //     '/about/',
+        //   ],    
+        //   renderer: new ChromeRenderer({
+        //     maxConcurrentRoutes: 4,
+        //     renderAfterDocumentEvent: 'custom-post-render-event',
+        //   })
+        // })
 
         // DEFINITELY DOES NOT WORK
         /* new PrerenderSpaPlugin(

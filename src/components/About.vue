@@ -31,9 +31,9 @@ export default {
 		let _self = this;
 	
         // PRERENDER SPA TRIGGER
-        setTimeout(() => {
-            document.dispatchEvent(new Event('custom-post-render-event'))
-        }, 1000)
+        // setTimeout(() => {
+        //     document.dispatchEvent(new Event('custom-post-render-event'))
+        // }, 1000)
                   
 	}, 
 	mounted: function () {

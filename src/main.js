@@ -163,10 +163,10 @@ const app = new Vue({
 			// this.$data.loading = true;
 
 			// PRERENDER SPA TRIGGER
-			setTimeout(() => {
-				console.log(">>> FIRED >>> custom-post-render-event");
-				document.dispatchEvent(new Event('custom-post-render-event'));
-			}, 5000)
+			// setTimeout(() => {
+			// 	// console.log(">>> FIRED >>> custom-post-render-event");
+			// 	document.dispatchEvent(new Event('custom-post-render-event'));
+			// }, 5000)
 
 			return this.$http({ 
 				url: requestUrl, 

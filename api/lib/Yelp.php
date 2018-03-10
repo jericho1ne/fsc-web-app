@@ -61,7 +61,7 @@ class Yelp {
         $this->app_id = $app_id;
         $this->app_secret = $app_secret;
 
-        $this->oauth();
+        // $this->oauth();
     }
 
     /**
@@ -134,7 +134,8 @@ class Yelp {
      */
     protected function get($cmd, array $data = [], array $headers = [])
     {
-        $headers[] = 'Authorization: Bearer ' . $this->access_token;
+        $headers = [];
+        $headers[] = 'Authorization: Bearer ' . $this->app_secret;
 
         return $this->exec($this->api_url . $cmd, 'get', $data, $headers);
     }
