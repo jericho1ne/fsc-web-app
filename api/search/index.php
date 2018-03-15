@@ -4,7 +4,8 @@ require_once '../lib/common.php';
 // echo "<pre>"; print_r($_GET); echo "</pre>";
 
 $searchParams = [
-	'term' => 'coffee-tea',
+	'term' => 'coffee',
+	'categories' => 'coffeeroasteries,coffee',
 	'location' => $_GET['location'],
 	'latitude' => $_GET['lat'],
 	'longitude' => $_GET['lon'],

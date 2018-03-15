@@ -30,7 +30,6 @@ function isDecentCoffeeShop($name) {
 		// Not really specialty coffee...
 		'urth caf',
 		'honeymee',
-		'boba',
 		'deli',
 		'pizzeria',
 		'pizza',
@@ -42,6 +41,12 @@ function isDecentCoffeeShop($name) {
 		'doughnuts',
 		'brunch',
 		'coffee seletto',
+		'forty carrots',
+		'backyard bowl',
+		'mogo coffee',
+		'golden mean',
+		'cafe lucy',
+		'ebar',
 		// Blacklisted
 		'Lollicup',
 		'icy rush',
@@ -55,6 +60,16 @@ function isDecentCoffeeShop($name) {
 		'caffe dell',
 		'Kerckhoff Coffee House',
 		'Study at Hedrick',
+		// Not fucking coffee
+		'boba',
+		'burger',
+		'sweetfin',
+		'mainland poke',
+		'sunnin',
+		'tar & roses',
+		'the hive',
+		'maui wowi',
+		'enso tea',
 	];
 	
 	foreach ($badCoffee as $negativeTerm) {
