@@ -27,6 +27,8 @@ function isDecentCoffeeShop($name) {
 		'Teavana',
 		'philz',
 		'eataly',
+		'7 eleven',
+		'7-Eleven',
 		// Not really specialty coffee...
 		'urth caf',
 		'honeymee',
