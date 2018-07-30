@@ -47,8 +47,6 @@ Vue.use(VModal, { dialog: true });
 //  https://bootstrap-vue.github.io/docs/setup
 // import BootstrapVue from 'bootstrap-vue';
 // Vue.use(BootstrapVue);
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 /* eslint-disable no-new */
 const app = new Vue({

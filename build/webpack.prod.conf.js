@@ -1,6 +1,10 @@
 /* 
   Add Plugins Here 
 */
+
+// IF ANY BUILD ERRORS CHECK THIS THREAD
+// https://github.com/webpack/webpack/issues/5858
+
 var path = require('path')
 var utils = require('./utils')
 var webpack = require('webpack')
@@ -9,14 +13,16 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 // var PrerenderSpaPlugin = require('prerender-spa-plugin')
 
 // Renders in your system browser by opening tabs, rendering your app, then closing tabs.
 // Readme: https://alligator.io/vuejs/vue-prerender-prerenderer/
-var PrerendererWebpackPlugin = require('prerenderer-webpack-plugin')
+// var PrerendererWebpackPlugin = require('prerenderer-webpack-plugin')
 
 // http://render-vendor.com/pages/chrome-renderer
-var ChromeRenderer = PrerendererWebpackPlugin.JSDOMRenderer
+// var ChromeRenderer = PrerendererWebpackPlugin.JSDOMRenderer
 // See also: JSDOMRenderer, ChromeRenderer
 // var BrowserRenderer = PrerendererWebpackPlugin.BrowserRenderer
 // var JSDOMRenderer = PrerendererWebpackPlugin.JSDOMRenderer
@@ -47,11 +53,7 @@ var webpackConfig = merge(baseWebpackConfig, {
           'process.env': env
         }),
 
-        new webpack.optimize.UglifyJsPlugin({
-          compress: {
-            warnings: false
-          }
-        }),
+        new UglifyJsPlugin(),
 
         // extract css into its own file
         new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash].css')),

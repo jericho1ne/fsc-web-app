@@ -16,8 +16,8 @@
 			<!-- <span class="fsc-logo svg-icon"></span> -->
 			<span class="menu-option"><router-link to="/nearby">nearby</router-link></span>
 			<span class="menu-option"><router-link to="/cities">cities</router-link></span>
-			<span class="menu-option"><router-link to="/whats-good">feed</router-link></span>
-			<span class="menu-option"><router-link to="/about">about</router-link></span>
+			<!-- <span class="menu-option"><router-link to="/whats-good">feed</router-link></span> -->
+			<!-- <span class="menu-option"><router-link to="/about">about</router-link></span> -->
 
 		</div>
 		<router-view></router-view>
