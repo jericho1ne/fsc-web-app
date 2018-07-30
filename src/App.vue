@@ -12,7 +12,7 @@
 
 		<!-- Menu Bar -->
 		<div id="menu" class="border-top">
-			<SomeIcon class="svg-icon" />
+			<a href="https://findsomecoffee.com/"><SomeIcon class="svg-icon" /></a>
 			<!-- <span class="fsc-logo svg-icon"></span> -->
 			<span class="menu-option"><router-link to="/nearby">nearby</router-link></span>
 			<span class="menu-option"><router-link to="/cities">cities</router-link></span>
