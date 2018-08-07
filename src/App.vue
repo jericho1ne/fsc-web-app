@@ -2,20 +2,15 @@
 
 <template>
 	<div id="app" class="">
-		<div class="spacer"></div>
-
 		<div id="header" class="">
-			<div>
-				<!-- <icon name="coffee" class="fa-icon-lg"></icon> -->
-			</div>
 		</div>
 
 		<!-- Menu Bar -->
-		<div id="menu" class="border-top">
+		<div id="menu" class="">
 			<a href="https://findsomecoffee.com/"><SomeIcon class="svg-icon" /></a>
 			<!-- <span class="fsc-logo svg-icon"></span> -->
-			<span class="menu-option"><router-link to="/nearby">nearby</router-link></span>
-			<span class="menu-option"><router-link to="/cities">cities</router-link></span>
+			<span class="menu-option"><router-link to="/nearby">search nearby</router-link></span>
+			<span class="menu-option"><router-link to="/cities">by city</router-link></span>
 			<!-- <span class="menu-option"><router-link to="/whats-good">feed</router-link></span> -->
 			<!-- <span class="menu-option"><router-link to="/about">about</router-link></span> -->
 
@@ -46,15 +41,15 @@ export default {
 	$blue: 		#53c1cc;
 	$dk-blue: 	#3f929b;
 	$hot-red: 	#EE2222;
-	$lt-pink:  	#FFDFDF;
-	$pink: 		#FF9A9A; 
-	$dk-pink:	#D86161;
+	$lt-pink:  	#f776db;
+	$pink: 		#ff30d1; 
+	$dk-pink:	#b31390;
 	$off-white: #fafafa;
 	$font-family-base: 'Avenir', Helvetica, Arial, sans-serif;
 	
 	body {
 		font-family: $font-family-base;
-		margin: 26px 0 0 0;
+		margin: 0;
 		background-color: #fff;
 		background: url('assets/latte-art.png') center center fixed; 
 		background-repeat: repeat repeat;
@@ -79,19 +74,20 @@ export default {
 
 	#menu {
 		background-color: $off-white;
-		box-shadow: 0rem 0.05rem 1.25rem rgba(100, 100, 100, .35);
+		box-shadow: 0rem 0.05rem 1.25rem rgba(100, 100, 100, .25);
 		font-weight: 500;
-		font-size: 1em;
-		padding: 18px 10px;
-		text-align: center;
-		vertical-align: baseline;
-		position: fixed;
+		font-size: .8em;
+		padding: 1.6rem 0;
+		// text-align: center;
+		vertical-align: baseline; 
+		// position: fixed;
 		z-index: 100;
 		width: 100%;
 		opacity: 1;
 		top: 0;
 
 		span.menu-option {
+      text-transform: uppercase;
 			padding: 0px 8px;
 			a {
 				color: $lt-blue;
@@ -287,7 +283,7 @@ export default {
 		}
 
 		&.round {
-			/*background-color: #84C2D6;*/
+			background-color: $pink;
 			border-radius: 100px;
 		}
 
@@ -418,7 +414,7 @@ export default {
 		position: absolute;
 		bottom: -2px;
 		margin-left: 35%;
-		text-align: center;
+		// text-align: center;
 		opacity: 0.95;
 		padding: 0px;
 		height: auto;

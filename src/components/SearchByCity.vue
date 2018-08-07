@@ -218,7 +218,16 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
+  // Color Scheme
+	$lt-blue: 	#9be6ec;
+	$blue: 		#53c1cc;
+	$dk-blue: 	#3f929b;
+	$hot-red: 	#EE2222;
+	$lt-pink:  	#FFDFDF;
+	$pink: 		#FF9A9A; 
+	$dk-pink:	#D86161;
+
 	ul#cityList {
 		margin-top: 0;
 		padding: 12px 4px 0px 4px;
@@ -228,12 +237,13 @@ export default {
 		transition: all 0.25s ease;
 	}
 	.city-names {
-		background-color: rgba(255, 255, 255, .9);
-		box-shadow: inset 0 0 6rem rgba(10,10,10,.20);
+		background: -webkit-gradient(linear, left top, left bottom, from(#52c2cd), to(#52c2cd), color-stop(0, rgba(200, 200, 241, 0.8)));
 		padding: 0;
 		margin: 0;
 		margin-top: -2px;
-		border-bottom: 1px solid rgba(10,10,10,.25);
+    
+		border-bottom: 4px solid $blue;  
+    /*  rgba(10,10,10,.25); */
 		transition: all .25s ease;
 	}
 	.fade-enter-active, .fade-leave-active {

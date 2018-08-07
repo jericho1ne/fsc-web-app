@@ -85,7 +85,7 @@ const app = new Vue({
 		// `this` points to the vm instance	
 	}, 
 	mounted: function () {
-		// 
+	  // console.log(">>> FIRED >>> mounted ");
 	},
 	// Globally-avaiable functions
 	methods: {
