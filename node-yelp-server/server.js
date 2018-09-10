@@ -22,15 +22,12 @@ var debugParams = {
 	limit: 2
 };
 
-console.log(debugParams);
+// console.log(debugParams);
 
 let portNumber = 3001;
 
 // Enable All CORS Requests
 // app.use(cors())
-
-
-console.log('here 2');
 
 //
 // API endpoints
